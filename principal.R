@@ -6,7 +6,7 @@ source("table_site.R")
 source("table_espece.R")
 source("event_table.R")
 
-Data <- grosse_tab("/lepidopteres")
+Data <- grosse_tab("lepidopteres")
 #définir le chemin pour le dossier lepidopteres
 Data<-concordance(Data)
 Data <- clean_na(Data)
