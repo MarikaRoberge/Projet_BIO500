@@ -5,7 +5,7 @@ create_event_table <- function(data) {
 
 data$event_id <- paste(data$site_id, data$year_obs, data$day_obs, data$time_obs ,data$dwc_event_date, sep = "_") 
 
-#Créer la table 
+#Créer la table #Revoir car on ne crée pas de table, on veux seulement merger cette nouvelle colonne avec la table primaire!!
 
 event_table <- data.frame( site_id = data$site_id, year= data$year_obs, field_day=data$day_obs, time=data$time_obs, dwc_event_date = data$dwc_event_date ) 
 

@@ -24,7 +24,7 @@ col_types <- cols(
 
 # Fonction pour charger un fichier et appliquer les corrections
 type_colonne <- function(file_path) {
-  df <- read_csv(file_path, col_types = col_types, col_names = TRUE, na = c("", "NA"))
+  df <- read_csv(file_path, col_types = col_types, col_names = TRUE, na = c("", "NA"))   #revoir pour la fonction read.csv
   return(df)  # Pas de conversion des dates ici
 }
 
