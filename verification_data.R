@@ -1,38 +1,45 @@
 library(readr)
 library(dplyr)
 
-# Fonction pour vérifier que `year_obs` est au format YYYY et entre 1800 et 2050
-verification_year_obs <- function(folder_path) {
-  message("\n Vérification des valeurs dans 'year_obs' avant l'assemblage...\n")
+
+verif <- function(df){
+  v <- class(df$dwc_event_date)
   
-  # Lister tous les fichiers CSV sauf taxonomie.csv
-  file_list <- list.files(path = folder_path, pattern = "\\.csv$", full.names = TRUE)
-  file_list <- file_list[!grepl("taxonomie\\.csv$", file_list)]  # Exclure taxonomie.csv
-  
-  # Vérifier si `year_obs` contient uniquement des années valides (YYYY et 1800-2050)
-  for (file in file_list) {
-    df <- read_csv(file, show_col_types = FALSE)
-    
-    if ("year_obs" %in% names(df)) {
-      erreurs_year <- df %>%
-        filter(!grepl("^\\d{4}$", as.character(year_obs)) | as.numeric(year_obs) < 1800 | as.numeric(year_obs) > 2050, 
-               !is.na(year_obs))  # Vérifie format YYYY et limite 1800-2050
-      
-      if (nrow(erreurs_year) > 0) {
-        message("⚠️ Erreur dans 'year_obs' du fichier ", basename(file), " : certaines valeurs ne respectent pas le format YYYY ou sont hors de la plage 1800-2050.")
-        print(erreurs_year %>% select(year_obs) %>% head(10))  # Affiche 10 exemples
-      }
-    } else {
-      message("⚠️ Le fichier ", basename(file), " ne contient pas la colonne 'year_obs'.")
-    }
+  if(v == "Date"){
+    cat("le format date est bien programmé \n")
+  }
+  if(v != "Date"){
+    cat("format non date \n")
   }
   
-  message("\n Vérification des années terminée.")
+  # Vérifier s'il reste des chaînes vides
+  empty_cells <- sapply(df, function(col) any(col == "", na.rm = TRUE))
+  
+  # Afficher les résultats
+  if (any(empty_cells, na.rm = TRUE)) {
+    cat("Il y a encore des cases vides dans les colonnes suivantes :\n")
+    print(names(df)[empty_cells])
+  } else {
+    cat("Toutes les cases vides ont été remplacées par NA.\n")
+  }
+  
+  
+  presence <- any(df$obs_variable == "pr@#sence", na.rm = TRUE)
+  
+  # Afficher les résultats
+  if (any(presence, na.rm = TRUE)) {
+    cat("Il y a encore des occurrences de 'pr@#sence' dans la colonne",".\n")
+  } else {
+    cat("Tous les 'pr@#sence' ont été remplacés par 'presence' dans la colonne", ".\n")
+  }
+  
+  zero <- any(df$time_obs == "0", na.rm = TRUE)
+  
+  # Afficher les résultats
+  if (any(zero, na.rm = TRUE)) {
+    cat("Il y a encore des occurrences de '0' dans la colonne",".\n")
+  } else {
+    cat("Tous les '0' ont été remplacés par 'NA' dans la colonne", ".\n")
+  }
+  
 }
-
-#Notre script :
-# verification_brute <- function(data_frame){
-#   dwc_format <- 
-#   
-#   if(data_frame$dwc_event_date)
-# }
