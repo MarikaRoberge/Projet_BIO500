@@ -21,3 +21,4 @@ grosse_tab <- function(chemin){
   return(df) #retourne de dataframe
 }
 
+t <- grosse_tab("lepidopteres")
