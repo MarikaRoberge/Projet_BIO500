@@ -1,9 +1,9 @@
 library(dplyr)
 
-#fonction qui prend le working directory en arrgument et retourne le dataframe avec toutes les données
+#fonction qui prend le working directory en argument et retourne le dataframe avec toutes les données
 grosse_tab <- function(chemin){ 
   
-  setwd(chemin) #working directory pour le fchier les lepidopteres
+  
   file_list = list.files(pattern="*.csv") #crée une liste avec tous les fichiers terminants avec .csv
   file_list <- file_list[file_list != "taxonomie.csv"] #retire le fichier "taxonomie"
   
@@ -41,4 +41,4 @@ clean_na <- function(df) {
   return(df)
   } 
 
-#
+

@@ -1,4 +1,4 @@
-setwd("")
+
 source("appel_data.R")
 source("table_primaire.R")
 source("table_date.R")
