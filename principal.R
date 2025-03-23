@@ -22,25 +22,25 @@ source("table_espece.R") #script qui permet de construire la table secondaire es
 ##Étapes :   #écrire des étapes qui montrent ce à quoi chaque fonction réfère
 
 #Étape 1 : Mettre les données lepidopteres (brutes) dans un dataframe 
-Data <- grosse_tab("lepidopteres") #définir le chemin pour le dossier lepidopteres
+Brute <- grosse_tab("lepidopteres") #définir le chemin pour le dossier lepidopteres
 
 #Étape 2 : Remplace les cases vides par NA et corrige les fautes d'orthographes retrouvées dans lepidopteres
-clean_na(Data)
+clean_na(Brute)
 
 #Étape 3 : Définir les types des colonnes et appliquer les corrections
-type_colonne(Data)
+type_colonne(Brute)
 
 #Étape 4 : Conversion de la colonne dwc_event_date en en type DATE
-formatage_data(Data)
+formatage_data(Brute)
 
 #Étape 5 : Uniformisation du nombre de décimales des colonnes lat et long pour 5 décimales
-uniformisation_decimales(Data)
+uniformisation_decimales(Brute)
 
 #Étape 6 : Vérification des corrections apportées lors des étapes 2 à 5
-verification_data(Data)
+verification_data(Brute)
 
 #Étape 7 : Création de la table primaire 
-tab_primaire(Data)
+tab_primaire(Brute)
 
 #Étape 8 : Ajout d'une colonne id_site (revoir si c'est le bon nom de colonne) à la table primaire
 #revoir le nom de la fonction
@@ -57,8 +57,8 @@ table_esp(primaire)
 
 ## Charger la table primaire et les tables secondaires
 
-tab_prim <- tab_primaire(Data)
-tab_site <- create_site_table(tab_prim, Data)
-tab_esp <- table_esp(Data)
-tab_date <- create_event_table(tab_prim, Data) 
+tab_prim <- tab_primaire(Brute) 
+tab_site <- create_site_table(tab_prim, Brute)
+tab_esp <- table_esp(Brute)
+tab_date <- create_event_table(tab_prim, Brute) 
 
