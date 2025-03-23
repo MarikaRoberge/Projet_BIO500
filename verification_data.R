@@ -31,4 +31,4 @@ verification_year_obs <- function(folder_path) {
 }
 
 #Notre script :
-verification_brute <- function()
+#verification_brute <- function()
