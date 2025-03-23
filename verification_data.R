@@ -31,8 +31,8 @@ verification_year_obs <- function(folder_path) {
 }
 
 #Notre script :
-verification_brute <- function(data_frame){
-  dwc_format <- 
-  
-  if(data_frame$dwc_event_date)
-}
+# verification_brute <- function(data_frame){
+#   dwc_format <- 
+#   
+#   if(data_frame$dwc_event_date)
+# }
