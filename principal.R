@@ -54,6 +54,9 @@ create_site_table(primaire)
 #Étape 11 : Création de la table secondaire espece
 table_esp(primaire)
 
+#Étape 12 : SQL de la table primaire et des tables secondaires?
+
+
 
 ## Charger la table primaire et les tables secondaires
 
