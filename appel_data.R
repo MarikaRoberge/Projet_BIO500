@@ -3,7 +3,7 @@ library(dplyr)
 #fonction qui prend le working directory en argument et retourne le dataframe avec toutes les données
 grosse_tab <- function(chemin){ 
   
-  
+  setwd(chemin)
   file_list = list.files(pattern="*.csv") #crée une liste avec tous les fichiers terminants avec .csv
   file_list <- file_list[file_list != "taxonomie.csv"] #retire le fichier "taxonomie"
   
