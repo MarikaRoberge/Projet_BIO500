@@ -31,13 +31,13 @@ clean_na(Brute)
 type_colonne(Brute)
 
 #Étape 4 : Conversion de la colonne dwc_event_date en en type DATE
-formatage_data(Brute)
+formatage_date(Brute)
 
 #Étape 5 : Uniformisation du nombre de décimales des colonnes lat et long pour 5 décimales
 uniformisation_decimales(Brute)
 
 #Étape 6 : Vérification des corrections apportées lors des étapes 2 à 5
-verification_data(Brute)
+verif(Brute)
 
 #Étape 7 : Création de la table primaire 
 tab_primaire(Brute)
