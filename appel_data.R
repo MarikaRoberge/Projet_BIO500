@@ -10,7 +10,7 @@ grosse_tab <- function(chemin){
   daf <- lapply(file_list, read.csv) #importe tous les fichiers dans une liste et les convertis en dataframe
   df <- data.frame() #création d'un dataframe pour la boucle
   
-  for(i in 1:154) { #passe tous les datas frame pour les combiner en un seul
+  for(i in length(file_list)) { #passe tous les datas frame pour les combiner en un seul
     colnames(daf[[i]]) <- c("observed_scientific_name","year_obs","day_obs","time_obs", #nommer tous les tableaux avec le même
                             #header pour tous les dataframes pour éviter des erreurs de titres eet de non-concordance
                                             "dwc_event_date","obs_variable","obs_unit","obs_value","lat", 
