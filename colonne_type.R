@@ -1,7 +1,7 @@
 library(dplyr)
-#Fonction qui définit les types de colonnes :
 
-type_colonne <- function(Brute) {
+# Fonction qui définit les types de colonnes
+type_colonne <- function(Brute) {  # Déclare correctement la fonction
   Brute %>%
     mutate(
       observed_scientific_name = as.character(observed_scientific_name),
@@ -23,4 +23,7 @@ type_colonne <- function(Brute) {
       owner = as.character(owner)
     )
 }
+
+# Utilisation de la fonction
+Brute <- type_colonne(Brute)  # Applique la transformation à ton dataframe
 
