@@ -38,17 +38,20 @@ uniformisation_decimales(Brute)
 #Étape 5 : Vérification des corrections apportées lors des étapes 2 à 5
 verif(Brute)
 
+####Ajouter une étape ou on crée un nouveau dataframe Brute avec les modifs apportés? on devrait référer à ce nouveau dataframe dans les prochaines étapes pour la création de nos tables.
+
 #Étape 6 : Création de la table primaire (sans unique_id)
-tab_primaire(Brute)
+tab_prim <- tab_primaire(Brute)
 
 #Étape 7 : Ajout de `unique_id` basé sur les colonnes de `tab_prim`de l'étape 6
-create_unique_id(tab_primaire)
+create_unique_id(tab_prim)
+tab_prim <- create_unique_id(tab_prim)
 
 #Étape 8 : Création de la table secondaire site
-create_site_table(primaire)
+create_site_table(tab_prim, Brute)
 
 #Étape 9 : Création de la table secondaire date
-create_table_date(primaire) #revoir pour le nom de la fonction (semble être le même que pour l'étape 8)
+create_table_date(tab_prim, Brute) 
 
 #Étape 10 : SQL de la table primaire et des tables secondaires?
 
@@ -61,3 +64,7 @@ tab_site <- create_site_table(tab_prim, Brute)
 tab_esp <- table_esp(Brute)
 tab_date <- create_event_table(tab_prim, Brute) 
 
+
+length(primaire$unique_id)
+length(Brute$lat)
+length(Brute$lon)
