@@ -49,7 +49,7 @@ tab_primaire(Brute)
 create_site_table(primaire)
 
 #Étape 10 : Création de la table secondaire date
-#revoir pour le nom de la fonction (semble être le même que pour l'étape 8)
+create_table_date(primaire) #revoir pour le nom de la fonction (semble être le même que pour l'étape 8)
 
 #Étape 11 : Création de la table secondaire espece
 table_esp(primaire)

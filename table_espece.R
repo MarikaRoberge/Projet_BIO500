@@ -9,3 +9,5 @@ table_esp <- function(data) {
     return(as.data.frame(table_esp))  
   
 } 
+
+#faudrait-il rajouter le site_id dans cette table?
