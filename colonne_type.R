@@ -25,5 +25,5 @@ type_colonne <- function(Brute) {
 }
 
 # Utilisation de la fonction
-Brute <- type_colonne(Brute)  # Applique la transformation au dataframe de nos données brutes
+#Brute <- type_colonne(Brute)  # Applique la transformation au dataframe de nos données brutes
 
