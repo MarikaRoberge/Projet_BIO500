@@ -24,8 +24,7 @@ tar_option_set(packages = c("dplyr", "RSQLite", "readr")) #Ici on met les packag
 
 #Faire une liste des targets (étapes du pipeline)
 
-
-list(
+tar_script({list(
   #Étape 1 : Mettre les données lepidopteres (brutes) dans un dataframe 
   tar_target(
     name= Brute, 
@@ -84,5 +83,6 @@ list(
     command= create_table_date(tab_prim, data_brute_ULTIME)
   )
 )
+}, script = "_targets.R")
 
 
