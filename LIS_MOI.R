@@ -30,6 +30,7 @@ tar_script({list(
     name= Brute, 
     command = grosse_tab("lepidopteres")  #définir le chemin pour le dossier lepidopteres
   ),
+  #il y a un problème mais je sais pas comment le régler
   
   #Étape 2 : Remplace les cases vides par NA et corrige les fautes d'orthographes retrouvées dans lepidopteres
   tar_target(

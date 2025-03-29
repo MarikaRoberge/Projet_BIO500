@@ -8,15 +8,18 @@ grosse_tab <- function(chemin){
   file_list <- file_list[file_list != "taxonomie.csv"] #retire le fichier "taxonomie"
   
   daf <- lapply(file_list, read.csv) #importe tous les fichiers dans une liste et les convertis en dataframe
-  df <- data.frame() #création d'un dataframe pour la boucle
+  df <- data.frame()  # Création d'un dataframe vide pour concaténer les données
   
-  for(i in length(file_list)) { #passe tous les datas frame pour les combiner en un seul
-    colnames(daf[[i]]) <- c("observed_scientific_name","year_obs","day_obs","time_obs", #nommer tous les tableaux avec le même
-                            #header pour tous les dataframes pour éviter des erreurs de titres eet de non-concordance
-                                            "dwc_event_date","obs_variable","obs_unit","obs_value","lat", 
-                                            "lon","original_source","creator","title","publisher",
-                                            "intellectual_rights","license","owner")
-    df <- rbind(df, daf[[i]])  # Append each data frame to df fisionner chque dataframes au dataframe principal (df)
+  # Nommer les colonnes une seule fois avant la boucle
+  column_names <- c("observed_scientific_name", "year_obs", "day_obs", "time_obs", 
+                    "dwc_event_date", "obs_variable", "obs_unit", "obs_value", "lat", 
+                    "lon", "original_source", "creator", "title", "publisher",
+                    "intellectual_rights", "license", "owner")
+  
+  # Boucle pour itérer sur les fichiers CSV et combiner les données
+  for (i in 1:length(file_list)) {
+    colnames(daf[[i]]) <- column_names  # Assigner les noms de colonnes à chaque dataframe
+    df <- rbind(df, daf[[i]])  # Ajouter chaque dataframe au dataframe principal df
   }
   return(df) #retourne de dataframe
 }
