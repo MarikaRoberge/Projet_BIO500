@@ -1,3 +1,8 @@
 name|type|parent|branches|progress
-Brute|stem|Brute|0|dispatched
-Brute|stem|Brute|0|errored
+Brute|stem|Brute|0|skipped
+data_no_na|stem|data_no_na|0|skipped
+data_colonne_correction|stem|data_colonne_correction|0|skipped
+data_uniform_dec|stem|data_uniform_dec|0|skipped
+data_brute_ULTIME|stem|data_brute_ULTIME|0|skipped
+tab_prim_sans_id|stem|tab_prim_sans_id|0|dispatched
+tab_prim_sans_id|stem|tab_prim_sans_id|0|errored
