@@ -1,7 +1,6 @@
 # Équipe : Juliette Boulet-Thomas, Bertrand Labrecque et Marika Roberge
 # Travail sur les données de lépidoptères
 
-##On pourrait ajouter les librairies qu'on a utilisé dans les scripts (au lieu de les répéter dans chaque script concerné)
 
 
 ## Charger les scripts nécessaires
@@ -64,10 +63,6 @@ list(
     name= data_ULTIME_with_ID,
     command= create_unique_id(data_idsite)
   ),
-  
-  
-  ####Ajouter une étape ou on crée un nouveau dataframe Brute avec les modifs apportés? on devrait référer à ce nouveau dataframe dans les prochaines étapes pour la création de nos tables.
-  ####Car par exemple, dans la table primaire, dwc_event_date ne sort pas dans le bon format (on aimerait seulement année-mois-jour et aussi enlever dwc_event_date dans la table de date, car redondance)
   
   #Étape 6 : Création de la table primaire (sans unique_id) ####BUG POUR TARGET
   tar_target(

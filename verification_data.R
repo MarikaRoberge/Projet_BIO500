@@ -1,6 +1,3 @@
-library(readr)
-library(dplyr)
-
 
 verif <- function(df){
   v <- class(df$dwc_event_date)
