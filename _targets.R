@@ -12,7 +12,7 @@ source("colonne_type.R") #script qui spécifie les types de colones de la table 
 source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
 source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
 source("create_unique_id.R")
-source("Create_id_site.R")
+
 #création de la table primaire et des tables secondaires
 source("table_primaire.R") #script qui permet de construire la table primaire 
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
@@ -49,31 +49,19 @@ list(
     command= uniformisation_decimales(data_no_na)
   ),
   
-  #Étape 5 : Vérification des corrections apportées lors des étapes 2 à 5
+  #Étape 5 : Vérification des corrections apportées lors des étapes 2 à 4
   tar_target(
     name= verification,
     command= verif(data_uniform_dec)
   ),
-  #Étape 6 : ajouter id_site à la table brute pour créer table finale brute
-  tar_target(
-    name= Brute_finale,
-    command= ajouter_id_site(data_uniform_dec)
-  ),
   
-  
-  #Étape 8 : Création de la table primaire (sans unique_id) ####BUG POUR TARGET
+  #Étape 6 : Création de la table primaire (sans unique_id) 
   tar_target(
     name= tab_prim_sans_id,
     command= tab_primaire(Brute_finale)
   ),
   
-  #Étape 9 : création d'un unique_id
-  tar_target(
-    name= creation_unique_id,
-    command= create_unique_id(tab_prim_sans_id)
-  ),
-  
-  #Étape 9 : Ajout de `unique_id` dans la table primaire 
+  #Étape 7 : création d'un "unique_id"
   tar_target(
     name= tab_prim,
     command= create_unique_id(tab_prim_sans_id)
@@ -82,13 +70,13 @@ list(
   #Étape 10 : Création de la table secondaire site
   tar_target(
     name= tab_site,
-    command= create_site_table(tab_prim_vide, data_brute_ULTIME)
+    command= create_site_table(tab_prim_vide, tab_prim)
   ),
   
-  #Étape 9 : Création de la table secondaire date
+  #Étape 11 : Création de la table secondaire date
   tar_target(
     name= tab_date,
-    command= create_table_date(tab_prim, data_brute_ULTIME)
+    command= create_table_date(tab_prim_vide, tab_prim)
   )
 )
 
