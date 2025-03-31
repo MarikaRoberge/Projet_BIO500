@@ -33,13 +33,13 @@ source("table_date.R") #script qui permet de construire la table secondaire date
 Brute <- grosse_tab("lepidopteres") #définir le chemin pour le dossier lepidopteres
 
 #Étape 2 : Remplace les cases vides par NA et corrige les fautes d'orthographes retrouvées dans lepidopteres
-clean_na(Brute)
+Brute <- clean_na(Brute)
 
 #Étape 3 : Définir les types des colonnes et appliquer les corrections
-type_colonne(Brute)
+Brute <- type_colonne(Brute)
 
 #Étape 4 : Uniformisation du nombre de décimales des colonnes lat et long pour 5 décimales
-uniformisation_decimales(Brute)
+Brute <- uniformisation_decimales(Brute)
 
 #Étape 5 : Vérification des corrections apportées lors des étapes 2 à 5
 verif(Brute)
