@@ -50,35 +50,20 @@ list(
   
   #Étape 5 : Vérification des corrections apportées lors des étapes 2 à 4
   tar_target(
-    name= verification,
+    name= data_verif_fin,
     command= verif(data_final)
   ),
   
   #Étape 6 : Création de la table primaire (sans unique_id) 
   tar_target(
-    name= tab_prim_sans_id,
-    command= tab_primaire(data_final)
+    name= data_avec_unique_id,
+    command= create_unique_id(data_verif_fin)
   ),
   
-  #Étape 7 : création d'un "unique_id"
-  tar_target(
-    name= tab_prim,
-    command= create_unique_id(tab_prim_sans_id)
-  ),
   
-  #Étape 10 : Création de la table secondaire site
-  tar_target(
-    name= tab_site,
-    command= create_site_table(tab_prim_sans_id, tab_prim)
-  ),
   
-  #Étape 11 : Création de la table secondaire date
-  tar_target(
-    name= tab_date,
-    command= create_table_date(tab_prim_sans_id, tab_prim)
-  )
-)
-
-IMPORTANT POUR DÉBUGGER****** :
+  
+ 
+#IMPORTANT POUR DÉBUGGER****** :
 #le bug qui apparait quand on fait tar_visnetwork() cercle en rouge est parce qu'il faudrait intégrer dans la fonction de création de la table 
 #primaire, le unique_id. après tout devrait fonctionner.
