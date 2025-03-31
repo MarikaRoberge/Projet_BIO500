@@ -51,32 +51,35 @@ list(
   
   #Étape 5 : Vérification des corrections apportées lors des étapes 2 à 5
   tar_target(
-    name= data_brute_ULTIME,
+    name= verification,
     command= verif(data_uniform_dec)
   ),
-  
+  #Étape 6 : ajouter id_site à la table brute pour créer table finale brute
   tar_target(
-    name= data_idsite,
-    command= ajouter_id_site(data_brute_ULTIME)
-  ),
-  tar_target(
-    name= data_ULTIME_with_ID,
-    command= create_unique_id(data_idsite)
+    name= Brute_finale,
+    command= ajouter_id_site(data_uniform_dec)
   ),
   
-  #Étape 6 : Création de la table primaire (sans unique_id) ####BUG POUR TARGET
+  
+  #Étape 8 : Création de la table primaire (sans unique_id) ####BUG POUR TARGET
   tar_target(
     name= tab_prim_sans_id,
-    command= tab_primaire(data_brute_ULTIME)
+    command= tab_primaire(Brute_finale)
   ),
   
-  #Étape 7 : Ajout de `unique_id` basé sur les colonnes de `tab_prim`de l'étape 6
+  #Étape 9 : création d'un unique_id
+  tar_target(
+    name= creation_unique_id,
+    command= create_unique_id(tab_prim_sans_id)
+  ),
+  
+  #Étape 9 : Ajout de `unique_id` dans la table primaire 
   tar_target(
     name= tab_prim,
     command= create_unique_id(tab_prim_sans_id)
   ),
   
-  #Étape 8 : Création de la table secondaire site
+  #Étape 10 : Création de la table secondaire site
   tar_target(
     name= tab_site,
     command= create_site_table(tab_prim_vide, data_brute_ULTIME)
