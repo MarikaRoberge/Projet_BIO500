@@ -1,7 +1,13 @@
 # Équipe : Juliette Boulet-Thomas, Bertrand Labrecque et Marika Roberge
 # Travail sur les données de lépidoptères
 
-##On pourrait ajouter les librairies qu'on a utilisé dans les scripts (au lieu de les répéter dans chaque script concerné)
+##Librairies utilisées dans les scripts (on doit les enlever des autres scripts)
+
+library(RSQLite)
+library(dplyr)
+library(readr)
+library(DBI)
+library(RSQLite)
 
 
 ## Charger les scripts nécessaires

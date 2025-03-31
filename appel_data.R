@@ -1,4 +1,4 @@
-#Fonction qui vva chercher nos donées
+#Fonction qui va chercher nos données
 grosse_tab <- function(chemin){ 
   file_list <- list.files(path = chemin, pattern = "\\.csv$", full.names = TRUE)
   file_list <- file_list[basename(file_list) != "taxonomie.csv"]  # Exclure taxonomie.csv
