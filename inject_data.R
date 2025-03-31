@@ -1,6 +1,5 @@
-connect_db <- function(db_name = "biodiversite.sqlite") {
-  dbConnect(SQLite(), dbname = db_name)
-  con<- dbConnect(SQLite(), dbname="lepido.db") #à vérifier
+library(RSQLite)
+con <- dbConnect(SQLite(), dbname="lepido.db")
 
   
 #Injecter les données dans les tables
