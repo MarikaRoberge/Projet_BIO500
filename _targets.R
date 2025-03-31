@@ -44,20 +44,20 @@ list(
   
   #Étape 4 : Uniformisation du nombre de décimales des colonnes lat et long pour 5 décimales
   tar_target(
-    name= Brute_finale,
-    command= uniformisation_decimales(data_no_na)
+    name= data_final,
+    command= uniformisation_decimales(data_colonne_correction)
   ),
   
   #Étape 5 : Vérification des corrections apportées lors des étapes 2 à 4
   tar_target(
     name= verification,
-    command= verif(data_uniform_dec)
+    command= verif(data_final)
   ),
   
   #Étape 6 : Création de la table primaire (sans unique_id) 
   tar_target(
     name= tab_prim_sans_id,
-    command= tab_primaire(Brute_finale)
+    command= tab_primaire(data_final)
   ),
   
   #Étape 7 : création d'un "unique_id"
@@ -69,14 +69,16 @@ list(
   #Étape 10 : Création de la table secondaire site
   tar_target(
     name= tab_site,
-    command= create_site_table(primaire, tab_prim)
+    command= create_site_table(tab_prim_sans_id, tab_prim)
   ),
   
   #Étape 11 : Création de la table secondaire date
   tar_target(
     name= tab_date,
-    command= create_table_date(primaire, tab_prim)
+    command= create_table_date(tab_prim_sans_id, tab_prim)
   )
 )
 
-
+IMPORTANT POUR DÉBUGGER****** :
+#le bug qui apparait quand on fait tar_visnetwork() cercle en rouge est parce qu'il faudrait intégrer dans la fonction de création de la table 
+#primaire, le unique_id. après tout devrait fonctionner.
