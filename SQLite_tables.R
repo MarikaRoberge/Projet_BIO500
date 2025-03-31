@@ -17,6 +17,8 @@ CREATE TABLE primaire (
   
 dbSendQuery(con, tbl_primaire)
 
+dbWriteTable(con, append = TRUE, name = "primaire", value = "tab_primaire", row.names = FALSE)
+
 # Création des tables
 #CRÉER LA TABLE SECONDAIRE DES SITES
 tbl_site <- "
@@ -27,6 +29,7 @@ CREATE TABLE site (
 );"
 dbSendQuery(con, tbl_site)
 
+dbWriteTable(con, append = TRUE, name = "site", value = "tab_site", row.names = FALSE)
 
 # CRÉER LA TABLE SECONDAIRE DATE
 tbl_date <- "
@@ -39,6 +42,8 @@ CREATE TABLE date (
 );"
 
 dbSendQuery(con, tbl_date)
+
+dbWriteTable(con, append = TRUE, name = "date", value = "tab_site", row.names = FALSE)
 
   return("Tables créées")
 
