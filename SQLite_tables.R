@@ -1,50 +1,46 @@
 #Script de SQL
-
-# OUVRIR LA CONNECTION 
-library(RSQLite)
-con <- dbConnect(SQLite(), dbname="lepido.db")
+create_database <- function(db_name) {
+  library(RSQLite)
   
-# CRÉER LA TABLE PRIMAIRE
-tbl_primaire <- "
-CREATE TABLE primaire (
-  observed_scientific_name   VARCHAR(100) NOT NULL,
-  dwc_event_date             TIMESTAMP NOT NULL,
-  obs_value                  INTEGER NOT NULL,
-  id_site                    INTEGER NOT NULL,
-  unique_id                  INTEGER PRIMARY KEY,
-  FOREIGN KEY (id_site) REFERENCES site(id_site)
-);"
+  # Ouvrir la connexion
+  con <- dbConnect(SQLite(), dbname = lepido.db)
   
-dbSendQuery(con, tbl_primaire)
-
-dbWriteTable(con, append = TRUE, name = "primaire", value = "tab_primaire", row.names = FALSE)
-
-# Création des tables
-#CRÉER LA TABLE SECONDAIRE DES SITES
-tbl_site <- "
-CREATE TABLE site (
-  id_site                    INTEGER PRIMARY KEY,
-  lat                        REAL NOT NULL,
-  lon                        REAL NOT NULL
-);"
-dbSendQuery(con, tbl_site)
-
-dbWriteTable(con, append = TRUE, name = "site", value = "tab_site", row.names = FALSE)
-
-# CRÉER LA TABLE SECONDAIRE DATE
-tbl_date <- "
-CREATE TABLE date (
-  unique_id                  INTEGER PRIMARY KEY,
-  year_obs                   INTEGER NOT NULL,
-  day_obs                    INTEGER NOT NULL,
-  time_obs                   TIME NOT NULL,
-  FOREIGN KEY (unique_id) REFERENCES primaire(unique_id)
-);"
-
-dbSendQuery(con, tbl_date)
-
-dbWriteTable(con, append = TRUE, name = "date", value = "tab_site", row.names = FALSE)
-
+  # Création des tables
+  tbl_primaire <- "
+  CREATE TABLE IF NOT EXISTS primaire (
+    observed_scientific_name   VARCHAR(100) NOT NULL,
+    dwc_event_date             TIMESTAMP NOT NULL,
+    obs_value                  INTEGER NOT NULL,
+    id_site                    INTEGER NOT NULL,
+    unique_id                  INTEGER PRIMARY KEY,
+    FOREIGN KEY (id_site) REFERENCES site(id_site)
+  );"
+  
+  tbl_site <- "
+  CREATE TABLE IF NOT EXISTS site (
+    id_site                    INTEGER PRIMARY KEY,
+    lat                        REAL NOT NULL,
+    lon                        REAL NOT NULL
+  );"
+  
+  tbl_date <- "
+  CREATE TABLE IF NOT EXISTS date (
+    unique_id                  INTEGER PRIMARY KEY,
+    year_obs                   INTEGER NOT NULL,
+    day_obs                    INTEGER NOT NULL,
+    time_obs                   TIME NOT NULL,
+    FOREIGN KEY (unique_id) REFERENCES primaire(unique_id)
+  );"
+  
+  # Exécuter les requêtes de création
+  dbExecute(con, tbl_primaire)
+  dbExecute(con, tbl_site)
+  dbExecute(con, tbl_date)
+  
+  # Fermer la connexion
+  dbDisconnect(con)
+  
   return("Tables créées")
+}
 
-dbDisconnect(con)
+
