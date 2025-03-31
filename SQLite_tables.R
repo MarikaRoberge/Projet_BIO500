@@ -8,13 +8,10 @@ connect_db <- function(db_name = "biodiversite.sqlite") {
 # Création des tables
 #CRÉER LA TABLE SECONDAIRE DES SITES
 tbl_site <- "
-CREATE TABLE prim (
-  auteur      VARCHAR(50),    #évidemment changer les noms de colonnes et leurs types
-  statut      VARCHAR(40),
-  institution VARCHAR(200),
-  ville       VARCHAR(40),
-  pays        VARCHAR(40),
-  PRIMARY KEY (auteur)
+CREATE TABLE site (
+  id
+  lat        
+  lon
 );"
 dbSendQuery(con, tbl_site)
 # CRÉER LA TABLE SECONDAIRE ESPECE WROOOONG
