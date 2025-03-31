@@ -1,5 +1,4 @@
-library(DBI)
-library(RSQLite)
+
 
 # Connexion à la base SQLite
 connect_db <- function(db_name = "biodiversite.sqlite") {
@@ -9,20 +8,11 @@ connect_db <- function(db_name = "biodiversite.sqlite") {
 #CRÉER LA TABLE SECONDAIRE DES SITES
 tbl_site <- "
 CREATE TABLE site (
-  Site_id
+  id_site
   lat        
   lon
 );"
 dbSendQuery(con, tbl_site)
-# CRÉER LA TABLE SECONDAIRE ESPECE WROOOONG
-tbl_espece <- "
-CREATE TABLE espece (
- Espece_id
- observed_scientific_name
- obs_value
-);"
-
-dbSendQuery(con, tbl_espece)
 
 
 # CRÉER LA TABLE SECONDAIRE DATE
@@ -38,10 +28,11 @@ dbSendQuery(con, tbl_date)
 # CRÉER LA TABLE PRIMAIRE
 tbl_primaire <- "
 CREATE TABLE primaire (
-  Espece_id
-  Site_id
+  observed_scientific_name
   dwc_event_date
-  obs_variable
+  obs_value
+  id_site
+  unique_id
 );"
 
 dbSendQuery(con, tbl_primaire)
