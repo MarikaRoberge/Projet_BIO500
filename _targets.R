@@ -12,8 +12,8 @@ source("nettoyage_data.R") #script d'une fonction qui ajoute des NA et corrige l
 source("colonne_type.R") #script qui spécifie les types de colones de la table brute
 source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
 source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
-source("create_unique_id")
-source("Ajout_id_site")
+source("create_unique_id.R")
+source("Ajout_id_site.R")
 #création de la table primaire et des tables secondaires
 source("table_primaire.R") #script qui permet de construire la table primaire 
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
@@ -57,9 +57,9 @@ list(
   ),
   
   tar_target(
-    name= data_idsite
+    name= data_idsite,
     command= ajouter_id_site(data_brute_ULTIME)
-  )
+  ),
   tar_target(
     name= data_ULTIME_with_ID,
     command= create_unique_id(data_idsite)
