@@ -11,7 +11,7 @@ source("nettoyage_data.R") #script d'une fonction qui ajoute des NA et corrige l
 source("colonne_type.R") #script qui spécifie les types de colones de la table brute
 source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
 source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
-
+source("site_id.R")
 #création de la table primaire et des tables secondaires
 source("table_primaire.R") #script qui permet de construire la table primaire 
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
@@ -51,15 +51,21 @@ list(
   #Étape 5 : Vérification des corrections apportées lors des étapes 2 à 4
   tar_target(
     name= data_verif_fin,
-    command= verif(data_final)
+    command= verif(data_final) #Ne crée pas un data frame mais simplement une conclusion
   ),
   
-  #Étape 6 : Création de la table primaire (sans unique_id) 
+  #Étape 6 : ajouter id unique dans la database
   tar_target(
     name= data_avec_unique_id,
-    command= create_unique_id(data_verif_fin)
+    command= create_unique_id(data_final)
   ),
   
+  #Étape 7:  ajouter id_site dans la database
+  tar_target(
+    name= ULTIME_database,
+    command= creation_site_id(data_avec_unique_id)
+  )
+)
   
   
   

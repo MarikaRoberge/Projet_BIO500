@@ -3,5 +3,8 @@ Brute|stem|Brute|0|skipped
 data_no_na|stem|data_no_na|0|skipped
 data_colonne_correction|stem|data_colonne_correction|0|skipped
 data_final|stem|data_final|0|skipped
-tab_prim_sans_id|stem|tab_prim_sans_id|0|dispatched
-tab_prim_sans_id|stem|tab_prim_sans_id|0|errored
+data_avec_unique_id|stem|data_avec_unique_id|0|dispatched
+data_avec_unique_id|stem|data_avec_unique_id|0|completed
+data_verif_fin|stem|data_verif_fin|0|skipped
+ULTIME_database|stem|ULTIME_database|0|dispatched
+ULTIME_database|stem|ULTIME_database|0|completed
