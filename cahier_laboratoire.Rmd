@@ -8,6 +8,7 @@ Travail de session sur les lépidoptères
 ====================================
 
 ## Nos questions de recherche
+Avoir une question large et 3 questions plus spécifiques
 
 **Question principale** :  
 Quels sont les changements de la composition et l’abondance des espèces de lépidoptères dans le temps et dans l’espace ?
@@ -22,6 +23,11 @@ Comment la composition et l’abondance des communautés de lépidoptères varie
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+À faire : 
+-changer les noms de colonnes de la table de données brutes pour que ca soit plus compréhensible
+-ajouter des étapes dans la fonction nettoyage_data : pour enlever TXX:XX:XX de dwc_event_date et ajuster ca dans verification_data
+-S'assurer que obs_value réfère à quelque chose en particulier (presence, abondance, et ajuster les données de ca, ex. 11 111)
+-Dans la table secondaire date, voir à ce que chaque ligne soit unique (ex. site de 1 à 10 (donc de 10 lignes de combinaison de lat et lon unique) et dans table primaire à site_id on retrouverait chaque ligne avec 1 à 10)
+-Dans la table primaire on aurait les colonnes : nom_scientifique (observed_scientific_name), date (dwc_event_date), abondance (obs_value en filtrant seulement pour abundance dans obs_variable) et site_id et ?
 
 
