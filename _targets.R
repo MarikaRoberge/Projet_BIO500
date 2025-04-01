@@ -15,7 +15,7 @@ source("site_id.R") #script qui permet la création du site_id
 source("SQLite_tables.R") #script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
 source("cahier_laboratoire.Rmd") #script qui réfère à notre cahier de laboratoire, première version de notre RMarkDown pour le travail de session
-
+source("create_site_id") #script qui crée un site id pour chauqe combinaison unique de lat et lon
 library(targets)
 tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI")) #Ici on met les packages qui seront nécessaire pour les différentes fonctions
 
