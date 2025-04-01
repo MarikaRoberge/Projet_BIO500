@@ -72,14 +72,8 @@ list(
   #Étape 8: créer SQL
   tar_target(
     name= create_db,
-    command= create_database("lepido.db"),
+    command= create_database("lepido.db", ULTIME_database),
     format = "file"
-  ),
-  
-  #Étape 9: Injecter les données
-  tar_target(
-    name= youpi_SQL,
-    command= insert_data("lepido.db", ULTIME_database)
   )
 )
   

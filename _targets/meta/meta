@@ -1,15 +1,9 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-Brute|stem|78518ddd5e71422f|986c7b8d7e015b7f|9c805269d635427b|1056787139||t20179.0057042791s|s2686528b|2686528|rds|local|vector|||3.146||
-data_no_na|stem|80e8101c34b45799|767f3b9c45d0ec40|976b84dd09c92b8b|-408215289||t20179.0057049953s|s2452180b|2452180|rds|local|vector|||0.636||
-data_colonne_correction|stem|2e3072311920cd01|8f096f2f39c1d851|b09ab3d989559fbf|1173557123||t20179.0057047758s|s2451064b|2451064|rds|local|vector|||0.149|There was 1 warning in mutate.ℹ In argument year_obs  as.integeryear_obs.Caused by warning NAs introduced by coercion|
-data_final|stem|54685a720f24bb52|83b57249e4c6797e|a6c7ab5fdacd5fbb|-452558307||t20179.0057048566s|s2279707b|2279707|rds|local|vector|||0.025||
-data_avec_unique_id|stem|0d08d5215be510b0|396dedd174b773f1|7a26bc16c665d938|-1182035531||t20179.005704695s|s2694843b|2694843|rds|local|vector|||4.327||
-data_verif_fin|stem|7f64d27a16de8c73|58af030ab18a29f5|63483946419cbc1d|-1566902682||t20179.0057050067s|s44b|44|rds|local|vector|||0.617||
-ULTIME_database|stem|97830a1dcec79de2|fdba892ec320f13f|2d3918034342fcd6|-135435472||t20179.0057044642s|s2694909b|2694909|rds|local|vector|||0||
 clean_na|function|74eca2aeaaabe01f
-create_database|function|149c17b5248999a4
+create_database|function|aa34660fad2570c7
 create_table_date|function|b23dec6a2f1a449d
 uniformisation_decimales|function|e25620a883ac5ffe
+insert_data|function|64dd826e53027c76
 grosse_tab|function|8d3c0aa9f1ca752e
 create_site_table|function|b82a2f364c12a415
 create_unique_id|function|b36a570376e9e9c6
@@ -17,4 +11,11 @@ creation_site_id|function|b47658c422e49c52
 type_colonne|function|64184ef490cced29
 tab_primaire|function|6831975c3efcf851
 verif|function|af1c050d5a64bda9
-create_db|stem|d4908290fb6b7d32|f82143fca3512838|0cb8df70807a0f2e|-1797168314|lepido.db|t20179.0221104877s||33464320|file|local|vector|||0.46|le package RSQLite a été compilé avec la version R 4.4.3|erreur dïvaluation de largument value lors de la sïlection dune mïthode pour la fonction dbWriteTable  largument donnee est manquant, avec aucune valeur par défaut
+Brute|stem|78518ddd5e71422f|986c7b8d7e015b7f|9c805269d635427b|1056787139||t20178.7561257054s|s2686528b|2686528|rds|local|vector|||3.146||
+data_no_na|stem|80e8101c34b45799|767f3b9c45d0ec40|976b84dd09c92b8b|-408215289||t20178.7561265722s|s2452180b|2452180|rds|local|vector|||0.636||
+data_colonne_correction|stem|2e3072311920cd01|8f096f2f39c1d851|b09ab3d989559fbf|1173557123||t20178.7561261806s|s2451064b|2451064|rds|local|vector|||0.149|There was 1 warning in mutate.ℹ In argument year_obs  as.integeryear_obs.Caused by warning NAs introduced by coercion|
+data_final|stem|54685a720f24bb52|83b57249e4c6797e|a6c7ab5fdacd5fbb|-452558307||t20179.0344622138s|s2279707b|2279707|rds|local|vector|||0.025||
+data_avec_unique_id|stem|0d08d5215be510b0|396dedd174b773f1|7a26bc16c665d938|-1182035531||t20179.0344620287s|s2694843b|2694843|rds|local|vector|||4.327||
+data_verif_fin|stem|7f64d27a16de8c73|58af030ab18a29f5|63483946419cbc1d|-1566902682||t20179.0344622138s|s44b|44|rds|local|vector|||0.617||
+ULTIME_database|stem|97830a1dcec79de2|fdba892ec320f13f|2d3918034342fcd6|-135435472||t20179.0344618664s|s2694909b|2694909|rds|local|vector|||0||
+create_db|stem|bf7da1f54ab77e13|75bf53b3161eb4cf|3e760a0e0e1dc173|-1797168314|lepido.db|t20179.0555995653s|s16384b|16384|file|local|vector|||0.015||

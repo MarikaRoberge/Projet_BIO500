@@ -1,5 +1,5 @@
 #Script de SQL
-create_database <- function(db_name, donnee) {
+create_database <- function(db_name) {
   
   # Vérifier si le fichier de base de données existe déjà
   if (!file.exists(db_name)) {
@@ -38,10 +38,6 @@ create_database <- function(db_name, donnee) {
     dbExecute(con, tbl_site)
     dbExecute(con, tbl_date)
     
-    dbWriteTable(con, name = "primaire", value = donnee, append = TRUE, row.names = FALSE)
-    dbWriteTable(con, name = "site", value = donnee, append = TRUE, row.names = FALSE)
-    dbWriteTable(con, name = "date", value = donnee, append = TRUE, row.names = FALSE)
-    
     # Table 'site' : site_id, lat, lon
     df_site <- df_global[, c("site_id", "lat", "lon")]
     
@@ -51,6 +47,9 @@ create_database <- function(db_name, donnee) {
     # Table 'date' : unique_id, year_obs, day_obs, time_obs
     df_date <- df_global[, c("unique_id", "year_obs", "day_obs", "time_obs")]
     
+    dbWriteTable(con, name = "primaire", value = df_primaire, append = TRUE, row.names = FALSE)
+    dbWriteTable(con, name = "site", value = df_site, append = TRUE, row.names = FALSE)
+    dbWriteTable(con, name = "date", value = df_date, append = TRUE, row.names = FALSE)
     
     # Fermer la connexion
     dbDisconnect(con)
@@ -58,7 +57,7 @@ create_database <- function(db_name, donnee) {
   
   # Retourner le nom de la base de données créée ou existante
   return(db_name)
-  #
+  
 }
 
 
