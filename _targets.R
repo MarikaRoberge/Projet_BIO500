@@ -84,7 +84,3 @@ list(
 )
   
 
- 
-#IMPORTANT POUR DÉBUGGER****** :
-#le bug qui apparait quand on fait tar_visnetwork() cercle en rouge est parce qu'il faudrait intégrer dans la fonction de création de la table 
-#primaire, le unique_id. après tout devrait fonctionner.
