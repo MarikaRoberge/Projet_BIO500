@@ -1,8 +1,6 @@
 # Équipe : Juliette Boulet-Thomas, Bertrand Labrecque et Marika Roberge
 # Travail sur les données de lépidoptères
 
-
-
 ## Charger les scripts nécessaires
 
 #ajout et modif de la table brute
@@ -13,8 +11,8 @@ source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimale
 source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
 source("SQLite_tables.R") #script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
-#ource("cahier_laboratoire.Rmd") #script qui réfère à notre cahier de laboratoire, première version de notre RMarkDown pour le travail de session
-source("create_site_id.R") #script qui crée un site id pour chauqe combinaison unique de lat et lon
+#source("cahier_laboratoire.Rmd") #script qui réfère à notre cahier de laboratoire, première version de notre RMarkDown pour le travail de session
+source("create_site_id.R") #script qui crée un site id pour changer la combinaison unique de lat et lon
 library(targets)
 tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI")) #Ici on met les packages qui seront nécessaire pour les différentes fonctions
 

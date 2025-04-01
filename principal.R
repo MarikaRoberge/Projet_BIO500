@@ -1,29 +1,3 @@
-# Équipe : Juliette Boulet-Thomas, Bertrand Labrecque et Marika Roberge
-# Travail sur les données de lépidoptères
-
-##Librairies utilisées dans les scripts (on doit les enlever des autres scripts)
-
-library(RSQLite)
-library(dplyr)
-library(readr)
-library(DBI)
-library(RSQLite)
-
-
-## Charger les scripts nécessaires
-
-#ajout et modif de la table brute
-source("appel_data.R") #script qui met les données brutes dans un dataframe
-source("nettoyage_data.R") #script d'une fonction qui ajoute des NA et corrige les erreurs d'orthographes retrouvés dans les données, il faudrait changer ça pour que ca remplace toutes les cases vides de lepidopteres par NA.
-source("colonne_type.R") #script qui spécifie les types de colones de la table brute
-source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
-source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
-
-#création de la table primaire et des tables secondaires
-source("table_primaire.R") #script qui permet de construire la table primaire 
-source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
-source("table_site.R") #script  qui permet de construire la table secondaire site, contenant les informations relatives au site (avec le site_id) 
-source("table_date.R") #script qui permet de construire la table secondaire date, contenant les informations relatives à la date 
 
 
 ##Étapes :   
