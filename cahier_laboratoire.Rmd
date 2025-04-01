@@ -1,29 +1,26 @@
 ---
-title: "cahier_laboratoire"
-author: "Marika Roberge"
-date: "2025-04-01"
+title: "Cahier de laboratoire"
+author: "Marika Roberge, Juliette Boulet-Thomas et Bertrand Labrecque"
+
 output: html_document
 ---
-#Travail de session sur les lépidoptères
-##Par Juliette Boulet-Thomas, Bertrand Labrecque et Marika Roberge
+Travail de session sur les lépidoptères
+
+## Nos questions de recherche
+
+**Question principale** :  
+Quels sont les changements de la composition et l’abondance des espèces de lépidoptères dans le temps et dans l’espace ?
+
+### **Variation temporelle**  
+Comment la composition des communautés de lépidoptères a-t-elle évolué au fil des années dans un site donné ?
+
+### **Variation spatiale**  
+Comment la composition et l’abondance des communautés de lépidoptères varient-elles selon les différentes localisations géographiques ?
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Nos questions de recherche : 
 
 
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
