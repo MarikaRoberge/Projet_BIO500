@@ -1,6 +1,7 @@
 name|type|parent|branches|progress
-Brute|stem|Brute|0|dispatched
-Brute|stem|Brute|0|completed
+Brute|stem|Brute|0|skipped
+create_db|stem|create_db|0|dispatched
+create_db|stem|create_db|0|completed
 data_no_na|stem|data_no_na|0|dispatched
 data_no_na|stem|data_no_na|0|completed
 data_colonne_correction|stem|data_colonne_correction|0|dispatched

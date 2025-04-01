@@ -12,11 +12,13 @@ source("colonne_type.R") #script qui spécifie les types de colones de la table 
 source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
 source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
 source("site_id.R")
+source("SQLite_tables.R")
 #création de la table primaire et des tables secondaires
 source("table_primaire.R") #script qui permet de construire la table primaire 
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
 source("table_site.R") #script  qui permet de construire la table secondaire site, contenant les informations relatives au site (avec le site_id) 
 source("table_date.R") #script qui permet de construire la table secondaire date, contenant les informations relatives à la date 
+
 
 library(targets)
 tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI")) #Ici on met les packages qui seront nécessaire pour les différentes fonctions
@@ -64,9 +66,15 @@ list(
   tar_target(
     name= ULTIME_database,
     command= creation_site_id(data_avec_unique_id)
+  ), 
+  
+  #Étape 8: créer SQL
+  tar_target(
+    name= create_db,
+    command= create_database("lepido.db"),
+    format = "file"
   )
 )
-  
   
   
  
