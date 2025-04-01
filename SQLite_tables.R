@@ -1,5 +1,5 @@
 #Script de SQL
-create_database <- function(db_name) {
+create_database <- function(db_name, donnee) {
   
   # Vérifier si le fichier de base de données existe déjà
   if (!file.exists(db_name)) {
@@ -14,7 +14,7 @@ create_database <- function(db_name) {
       obs_value                  INTEGER NOT NULL,
       unique_id                  INTEGER PRIMARY KEY,
       site_id                    INTEGER NOT NULL,
-      FOREIGN KEY (id_site) REFERENCES site(site_id)
+      FOREIGN KEY (site_id) REFERENCES site(site_id)
     );"
     
     tbl_site <- "
@@ -38,6 +38,20 @@ create_database <- function(db_name) {
     dbExecute(con, tbl_site)
     dbExecute(con, tbl_date)
     
+    dbWriteTable(con, name = "primaire", value = donnee, append = TRUE, row.names = FALSE)
+    dbWriteTable(con, name = "site", value = donnee, append = TRUE, row.names = FALSE)
+    dbWriteTable(con, name = "date", value = donnee, append = TRUE, row.names = FALSE)
+    
+    # Table 'site' : site_id, lat, lon
+    df_site <- df_global[, c("site_id", "lat", "lon")]
+    
+    # Table 'primaire' : observed_scientific_name, dwc_event_date, obs_value, unique_id, site_id
+    df_primaire <- df_global[, c("observed_scientific_name", "dwc_event_date", "obs_value", "unique_id", "site_id")]
+    
+    # Table 'date' : unique_id, year_obs, day_obs, time_obs
+    df_date <- df_global[, c("unique_id", "year_obs", "day_obs", "time_obs")]
+    
+    
     # Fermer la connexion
     dbDisconnect(con)
   }
@@ -45,3 +59,5 @@ create_database <- function(db_name) {
   # Retourner le nom de la base de données créée ou existante
   return(db_name)
 }
+
+
