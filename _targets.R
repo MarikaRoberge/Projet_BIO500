@@ -11,7 +11,6 @@ source("nettoyage_data.R") #script d'une fonction qui ajoute des NA et corrige l
 source("colonne_type.R") #script qui spécifie les types de colones de la table brute
 source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
 source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
-source("site_id.R") #script qui permet la création du site_id
 source("SQLite_tables.R") #script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
 source("cahier_laboratoire.Rmd") #script qui réfère à notre cahier de laboratoire, première version de notre RMarkDown pour le travail de session
