@@ -68,8 +68,8 @@ list(
   )
 )
   
-#Nous n'avons pas réussi à afficher les données dans nos tables et pas été en mesure de faire une étape 9 pour faire le lien avec notre RmarkDown cahier de laboratoire.
-#Pour le RMarkDown, on aurait ajouter ça comme étape 9 : 
+#Nous n'avons pas réussi à afficher les données dans nos tables (notre table primaire et nos deux tables secondaires) et pas été en mesure non plus de faire une étape 9 pour faire le lien avec notre RmarkDown cahier de laboratoire.
+#Pour le RMarkDown, on aurait ajouter ça comme étape 9 du pipeline : 
 #tar_target(
 #cahier_labo,
 #render("cahier_laboratoire.Rmd", output_format = "html_document"),
