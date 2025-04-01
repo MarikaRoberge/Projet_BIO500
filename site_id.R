@@ -7,6 +7,3 @@ creation_site_id <- function(df)
   colnames(df_site)[ncol(df_site)] <- "site_id" #nomer la nouvelle colonne "site_id"
   return(df_site)
 }
-
-
-
