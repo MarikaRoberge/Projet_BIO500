@@ -16,4 +16,4 @@ insert_data <- function(db_name, df_name) {
   return("Données insérées avec succès")
 }
 
-insert_data("lepido.db", ULTIME_database)
+

@@ -1,9 +1,17 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
 Brute|stem|78518ddd5e71422f|986c7b8d7e015b7f|9c805269d635427b|1056787139||t20179.0196775077s|s2686528b|2686528|rds|local|vector|||3.146||
+data_no_na|stem|80e8101c34b45799|767f3b9c45d0ec40|976b84dd09c92b8b|-408215289||t20179.020479422s|s2452180b|2452180|rds|local|vector|||0.636||
+data_colonne_correction|stem|2e3072311920cd01|8f096f2f39c1d851|b09ab3d989559fbf|1173557123||t20179.0204941504s|s2451064b|2451064|rds|local|vector|||0.149|There was 1 warning in mutate.ℹ In argument year_obs  as.integeryear_obs.Caused by warning NAs introduced by coercion|
+data_final|stem|54685a720f24bb52|83b57249e4c6797e|a6c7ab5fdacd5fbb|-452558307||t20179.0205075441s|s2279707b|2279707|rds|local|vector|||0.025||
+data_avec_unique_id|stem|0d08d5215be510b0|396dedd174b773f1|7a26bc16c665d938|-1182035531||t20179.0205717454s|s2694843b|2694843|rds|local|vector|||4.327||
+data_verif_fin|stem|7f64d27a16de8c73|58af030ab18a29f5|63483946419cbc1d|-1566902682||t20179.0205789696s|s44b|44|rds|local|vector|||0.617||
+ULTIME_database|stem|97830a1dcec79de2|fdba892ec320f13f|2d3918034342fcd6|-135435472||t20179.020593337s|s2694909b|2694909|rds|local|vector|||0||
+create_db|stem|d4908290fb6b7d32|f82143fca3512838|0cedc91f937415cc|-1797168314|lepido.db|t20179.0209153566s|s33464320b|33464320|file|local|vector|||0.46||
 clean_na|function|74eca2aeaaabe01f
 create_database|function|cce30a541cb15edc
 create_table_date|function|b23dec6a2f1a449d
 uniformisation_decimales|function|e25620a883ac5ffe
+insert_data|function|64dd826e53027c76
 grosse_tab|function|8d3c0aa9f1ca752e
 create_site_table|function|b82a2f364c12a415
 create_unique_id|function|b36a570376e9e9c6
@@ -11,10 +19,4 @@ creation_site_id|function|b47658c422e49c52
 type_colonne|function|64184ef490cced29
 tab_primaire|function|6831975c3efcf851
 verif|function|af1c050d5a64bda9
-create_db|stem|2c530c1562a7fbd1|f82143fca3512838|0cedc91f937415cc|-1797168314|lepido.db|t20179.0196777904s|s0b|0|file|local|vector|||0.366||
-data_no_na|stem|80e8101c34b45799|767f3b9c45d0ec40|976b84dd09c92b8b|-408215289||t20179.020479422s|s2452180b|2452180|rds|local|vector|||0.636||
-data_colonne_correction|stem|2e3072311920cd01|8f096f2f39c1d851|b09ab3d989559fbf|1173557123||t20179.0204941504s|s2451064b|2451064|rds|local|vector|||0.149|There was 1 warning in mutate.ℹ In argument year_obs  as.integeryear_obs.Caused by warning NAs introduced by coercion|
-data_final|stem|54685a720f24bb52|83b57249e4c6797e|a6c7ab5fdacd5fbb|-452558307||t20179.0205075441s|s2279707b|2279707|rds|local|vector|||0.025||
-data_avec_unique_id|stem|0d08d5215be510b0|396dedd174b773f1|7a26bc16c665d938|-1182035531||t20179.0205717454s|s2694843b|2694843|rds|local|vector|||4.327||
-data_verif_fin|stem|7f64d27a16de8c73|58af030ab18a29f5|63483946419cbc1d|-1566902682||t20179.0205789696s|s44b|44|rds|local|vector|||0.617||
-ULTIME_database|stem|97830a1dcec79de2|fdba892ec320f13f|2d3918034342fcd6|-135435472||t20179.020593337s|s2694909b|2694909|rds|local|vector|||0||
+youpi_SQL|stem|6aa15b4c501e690e|2fbd1d9cdc8c06e0|8ba625c5ded0b460|-1312605825||t20179.0289490105s|s81b|81|rds|local|vector|||0.653||

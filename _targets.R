@@ -13,6 +13,7 @@ source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimale
 source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
 source("site_id.R")
 source("SQLite_tables.R")
+source("inject_data.R")
 #création de la table primaire et des tables secondaires
 source("table_primaire.R") #script qui permet de construire la table primaire 
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
@@ -73,10 +74,16 @@ list(
     name= create_db,
     command= create_database("lepido.db"),
     format = "file"
+  ),
+  
+  #Étape 9: Injecter les données
+  tar_target(
+    name= youpi_SQL,
+    command= insert_data("lepido.db", ULTIME_database)
   )
 )
   
-  
+
  
 #IMPORTANT POUR DÉBUGGER****** :
 #le bug qui apparait quand on fait tar_visnetwork() cercle en rouge est parce qu'il faudrait intégrer dans la fonction de création de la table 
