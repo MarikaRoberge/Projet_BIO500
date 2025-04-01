@@ -11,16 +11,11 @@ source("nettoyage_data.R") #script d'une fonction qui ajoute des NA et corrige l
 source("colonne_type.R") #script qui spécifie les types de colones de la table brute
 source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
 source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
-source("site_id.R")
-source("SQLite_tables.R")
-source("inject_data.R")
-#création de la table primaire et des tables secondaires
-source("table_primaire.R") #script qui permet de construire la table primaire 
+source("site_id.R") #script qui permet la création du site_id
+source("SQLite_tables.R") #script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
-source("table_site.R") #script  qui permet de construire la table secondaire site, contenant les informations relatives au site (avec le site_id) 
-source("table_date.R") #script qui permet de construire la table secondaire date, contenant les informations relatives à la date 
-
-
+source("cahier_laboratoire.Rmd") #script qui réfère à notre cahier de laboratoire, première version de notre RMarkDown pour le travail de session
+source("create_site_id") #script qui crée un site id pour chauqe combinaison unique de lat et lon
 library(targets)
 tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI")) #Ici on met les packages qui seront nécessaire pour les différentes fonctions
 
@@ -73,6 +68,12 @@ list(
   tar_target(
     name= create_db,
     command= create_database("lepido.db", ULTIME_database)
+  ),
+  
+  #Étape 9 :
+  tar_target(
+    name= cahier_labo,
+    command = render("cahier_laboratoire.Rmd")
   )
 )
   
