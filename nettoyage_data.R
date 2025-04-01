@@ -8,4 +8,7 @@ clean_na <- function(df) {
   df$time_obs <- gsub("0", NA, df$time_obs) #remplacement seule donnée "0" et "00:00:00" par NA 
   #df <- df%>%mutate(time_obs=recode(time_obs, "0" = "Na"))   #changer 0 pour rien et ensuite rien pour NA car problème 00:00:00 devient NANA:NANA:NANA
   return(df)
-  }
+}
+
+#rajouter une ligne pour changer XX:XX:XX pour rien dans la colonne dwc_event_date
+#si on change nettoyage_data on doit aussi changer verification data
