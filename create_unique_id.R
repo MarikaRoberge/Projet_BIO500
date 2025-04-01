@@ -16,7 +16,7 @@ create_unique_id <- function(data) {
   site_id <- as.data.frame(seq(1:nrow(data))) #créer une seq avce une veleur pour toutes les lignes du df
   df_site <- cbind(data, site_id) 
   colnames(df_site)[ncol(df_site)] <- "site_id" #nomer la nouvelle colonne "site_id"
-  return(df_site) #
+  return(df_site) 
 
 }
 
