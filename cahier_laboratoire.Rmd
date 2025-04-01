@@ -4,12 +4,14 @@ author: "Marika Roberge"
 date: "2025-04-01"
 output: html_document
 ---
-
+#Travail de session sur les lépidoptères
+##Par Juliette Boulet-Thomas, Bertrand Labrecque et Marika Roberge
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+#Nos questions de recherche : 
+
 
 
 ```{r cars}
