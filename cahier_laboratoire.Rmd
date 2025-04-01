@@ -5,6 +5,7 @@ author: "Marika Roberge, Juliette Boulet-Thomas et Bertrand Labrecque"
 output: html_document
 ---
 Travail de session sur les lépidoptères
+====================================
 
 ## Nos questions de recherche
 

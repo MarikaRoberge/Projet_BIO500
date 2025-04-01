@@ -13,8 +13,8 @@ source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimale
 source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
 source("SQLite_tables.R") #script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
-source("cahier_laboratoire.Rmd") #script qui réfère à notre cahier de laboratoire, première version de notre RMarkDown pour le travail de session
-source("create_site_id") #script qui crée un site id pour chauqe combinaison unique de lat et lon
+#ource("cahier_laboratoire.Rmd") #script qui réfère à notre cahier de laboratoire, première version de notre RMarkDown pour le travail de session
+source("create_site_id.R") #script qui crée un site id pour chauqe combinaison unique de lat et lon
 library(targets)
 tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI")) #Ici on met les packages qui seront nécessaire pour les différentes fonctions
 
@@ -60,19 +60,13 @@ list(
   #Étape 7:  ajouter id_site dans la database
   tar_target(
     name= ULTIME_database,
-    command= creation_site_id(data_avec_unique_id)
+    command= ajouter_id_site(data_avec_unique_id)
   ), 
   
   #Étape 8: créer SQL
   tar_target(
     name= create_db,
     command= create_database("lepido.db", ULTIME_database)
-  ),
-  
-  #Étape 9 :
-  tar_target(
-    name= cahier_labo,
-    command = render("cahier_laboratoire.Rmd")
   )
 )
   
