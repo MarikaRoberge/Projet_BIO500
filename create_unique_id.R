@@ -3,7 +3,7 @@
 library(dplyr)
 
 create_unique_id <- function(data) { 
-  if (!is.data.frame(data)) {
+  if (!is.data.frame(data)) { #chek si l'argument data est vraiment un dataframe
     stop("L'entrée doit être un data frame")
   }
   
