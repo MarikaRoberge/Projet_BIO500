@@ -65,6 +65,12 @@ list(
   tar_target(
     name= create_db,
     command= create_database("lepido.db", ULTIME_database)
+  ),
+  
+  #Étape 9: association au RMarkDown
+  tar_render(
+    cahier_labo,
+    render("cahier_laboratoire.Rmd")
   )
 )
   
