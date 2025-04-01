@@ -1,5 +1,5 @@
 #Script de SQL
-create_database <- function(db_name) {
+create_database <- function(db_name, df_global) {
   
   # Vérifier si le fichier de base de données existe déjà
   if (!file.exists(db_name)) {

@@ -72,8 +72,7 @@ list(
   #Étape 8: créer SQL
   tar_target(
     name= create_db,
-    command= create_database("lepido.db", ULTIME_database),
-    format = "file"
+    command= create_database("lepido.db", ULTIME_database)
   )
 )
   
