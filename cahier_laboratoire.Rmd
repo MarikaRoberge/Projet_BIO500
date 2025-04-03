@@ -30,5 +30,7 @@ knitr::opts_chunk$set(echo = TRUE)
 4. Dans la table secondaire date, voir à ce que chaque ligne soit unique (ex. site de 1 à 10 (donc de 10 lignes de combinaison de lat et lon unique) et dans table primaire à site_id on retrouverait chaque ligne avec 1 à 10)
 5. Dans la table primaire on aurait les colonnes : nom_scientifique (observed_scientific_name), date (dwc_event_date), abondance (obs_value en filtrant seulement pour abundance dans obs_variable) et site_id et ?
 
+
 Updates: 
 2. réglé dans la fonction type_colone, rete en characters
+3.problème de 11111 réglé

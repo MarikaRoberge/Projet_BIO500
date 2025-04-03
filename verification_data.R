@@ -2,11 +2,11 @@
 verif <- function(df){
   v <- class(df$dwc_event_date) #tester la classe d'objet du dwc_event_date de notre data frame
   
-  if(v == "Date"){
-    cat("le format date est bien programmé \n") 
+  if(v == "character"){
+    cat("le format character est bien programmé \n") 
   }
-  if(v != "Date"){
-    cat("format non date \n")
+  if(v != "character"){
+    cat("format non character \n")
   }
   
   # Vérifier s'il reste des chaînes vides
@@ -38,6 +38,15 @@ verif <- function(df){
     cat("Il y a encore des occurrences de '0' dans la colonne",".\n")
   } else {
     cat("Tous les '0' ont été remplacés par 'NA' dans la colonne", ".\n")
+  }
+  
+  cent <- any(df$obs_value == "11111", na.rm = TRUE) #vérifier s'il n'y a plus de valeur 0 dans time_obs, retourner un TRUE s'il y en a
+  
+  # Afficher les résultats
+  if (any(cent, na.rm = TRUE)) {
+    cat("Il y a encore une erreur de 11111 dans la colone obs_value",".\n")
+  } else {
+    cat("Il n'y a plus d'erreur dans la colone obs_value", ".\n")
   }
   
 }
