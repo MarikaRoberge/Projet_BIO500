@@ -22,8 +22,17 @@ type_colonne <- function(Brute) {
       license = as.character(license),
       owner = as.character(owner)
     )
+  date_c(Brute) #fonction dans la fonction car ne fonctionne pas si on met ces lignes
+  #directement dans la fonction (petit cheat)
 }
 
-# Utilisation de la fonction
-#Brute <- type_colonne(Brute)  # Applique la transformation au dataframe de nos données brutes
+
+#fonction passant la colonne dwc en date puis en character
+  #pour enlever les TXX:XX:XX sans garder le format "date" problémaique
+date_c <- function(X)
+{ 
+  X$dwc_event_date <- as.Date(X$dwc_event_date, tryFormats = "%Y-%m-%d" )
+  X$dwc_event_date <- as.character(X$dwc_event_date)
+  return(X)
+}
 
