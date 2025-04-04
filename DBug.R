@@ -26,15 +26,26 @@
   Brute <- type_colonne(Brute)
   Brute <- uniformisation_decimales(Brute)
   verif(Brute)
+  Brute <- create_unique_id(Brute)
+  Brute <- ajouter_id_site(Brute)
   
 }
 
 
+
+sites_combinaisons <- as.data.frame(cbind(c(unique(Brute$site_id), Brute$lat, Brute$lon)))
+fd <-  distinct(sites_combinaisons$, .keep_all=TRUE)
+
+
+
+
+
+
 #table de sites:
-# 
-# sites_combinaisons <- unique(Brute[, c("lat", "lon")])
-# nb <- as.data.frame(1:nrow(sites_combinaisons))
-# sites_combinaisons <- cbind(sites_combinaisons, nb)
+
+sites_combinaisons <- unique(Brute[, c("lat", "lon")])
+nb <- as.data.frame(1:nrow(sites_combinaisons))
+sites_combinaisons <- cbind(sites_combinaisons, nb)
 # 
 # s_tab <- function(df, reference){
 #     for(i in 1:nrow(df)){
