@@ -7,7 +7,7 @@ clean_na <- function(df) {
   df$time_obs <- gsub("00:00:00", NA, df$time_obs)
   df$time_obs <- gsub("0", NA, df$time_obs) #remplacement seule donnée "0" et "00:00:00" par NA 
   #df <- df%>%mutate(time_obs=recode(time_obs, "0" = "Na"))   #changer 0 pour rien et ensuite rien pour NA car problème 00:00:00 devient NANA:NANA:NANA
-  df$obs_value <- gsub("11111", "1", df$obs_value) #éliimine la valeur problématique 111111 dans obs_value
+  #df$obs_value <- gsub("11111", "1", df$obs_value) #éliimine la valeur problématique 111111 dans obs_value
   return(df)
 }
 

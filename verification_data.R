@@ -40,13 +40,13 @@ verif <- function(df){
     cat("Tous les '0' ont été remplacés par 'NA' dans la colonne", ".\n")
   }
   
-  cent <- any(df$obs_value == "11111", na.rm = TRUE) #vérifier s'il n'y a plus de valeur 0 dans time_obs, retourner un TRUE s'il y en a
-  
-  # Afficher les résultats
-  if (any(cent, na.rm = TRUE)) {
-    cat("Il y a encore une erreur de 11111 dans la colone obs_value",".\n")
-  } else {
-    cat("Il n'y a plus d'erreur dans la colone obs_value", ".\n")
-  }
+  # cent <- any(df$obs_value == "11111", na.rm = TRUE) #vérifier s'il n'y a plus de valeur 0 dans time_obs, retourner un TRUE s'il y en a
+  # 
+  # # Afficher les résultats
+  # if (any(cent, na.rm = TRUE)) {
+  #   cat("Il y a encore une erreur de 11111 dans la colone obs_value",".\n")
+  # } else {
+  #   cat("Il n'y a plus d'erreur dans la colone obs_value", ".\n")
+  # }
   
 }
