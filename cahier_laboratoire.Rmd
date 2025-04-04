@@ -29,8 +29,19 @@ knitr::opts_chunk$set(echo = TRUE)
 3. S'assurer que obs_value réfère à quelque chose en particulier (presence, abondance, et ajuster les données de ca, ex. 11 111)
 4. Dans la table secondaire date, voir à ce que chaque ligne soit unique (ex. site de 1 à 10 (donc de 10 lignes de combinaison de lat et lon unique) et dans table primaire à site_id on retrouverait chaque ligne avec 1 à 10)
 5. Dans la table primaire on aurait les colonnes : nom_scientifique (observed_scientific_name), date (dwc_event_date), abondance (obs_value en filtrant seulement pour abundance dans obs_variable) et site_id et ?
-
+6. Changer le nom de certains targets (ex. data_final et ULTIME_database)
 
 Updates: 
 2. réglé dans la fonction type_colone, rete en characters
-3.problème de 11111 réglé
+3. problème de 11111 réglé
+
+À faire cette semaine (jusqu'à mardi soir 8 avril) :
+-Corriger l'étape 2 de ''À faire''
+-Revoir le 11 111, qu'est ce qu'on fait avec et qu'est-ce qu'on fait avec l'abondance dans nos analyses?
+-Clairer le site_id (faire le df pour le site_id)
+-Injecter les données
+-S'assurer que SQL et targets fonctionnent (et que le MarkDown aussi)
+-Ajouter une ligne de retrait de base de données lepido dans le script de SQL
+-Identifier clairement nos questions de recherches 
+-Penser à ce qu'on veut présenter comme figures
+-Commencer à écrire le texte dans le cahier de laboratoire
