@@ -4,6 +4,7 @@
 ## Charger les scripts nécessaires
 
 #ajout et modif de la table brute
+{
 source("appel_data.R") #script qui met les données brutes dans un dataframe
 source("nettoyage_data.R") #script d'une fonction qui ajoute des NA et corrige les erreurs d'orthographes retrouvés dans les données, il faudrait changer ça pour que ca remplace toutes les cases vides de lepidopteres par NA.
 source("colonne_type.R") #script qui spécifie les types de colones de la table brute
@@ -11,11 +12,11 @@ source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimale
 source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
 source("SQLite_tables.R") #script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
-source("cahier_laboratoire.Rmd") #script qui réfère à notre cahier de laboratoire, première version de notre RMarkDown pour le travail de session.
+#source("cahier_laboratoire.Rmd") #script qui réfère à notre cahier de laboratoire, première version de notre RMarkDown pour le travail de session.
 source("create_site_id.R") #script qui crée un site id pour changer la combinaison unique de lat et lon
 library(targets)
 tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI")) #Ici on met les packages qui seront nécessaire pour les différentes fonctions
-
+}
 #Faire une liste des targets (étapes du pipeline)
 
 list(
@@ -64,14 +65,14 @@ list(
   #Étape 8: créer SQL
   tar_target(
     name= create_db,
-    command= create_database("lepido.db", ULTIME_database)
-  ),
-  
-  #Étape 9: association au RMarkDown
-  tar_render(
-    cahier_labo,
-    render("cahier_laboratoire.Rmd")
-  )
+    command= create_database("lepido.db", ULTIME_database))
+  # ),
+  # 
+  # #Étape 9: association au RMarkDown
+  # tar_render(
+  #   cahier_labo,
+  #   render("cahier_laboratoire.Rmd")
+  # )
 )
   
 #Nous n'avons pas réussi à afficher les données dans nos tables (notre table primaire et nos deux tables secondaires) et pas été en mesure non plus de faire une étape 9 pour faire le lien avec notre RmarkDown cahier de laboratoire.
