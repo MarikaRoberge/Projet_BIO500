@@ -29,7 +29,7 @@ create_database <- function(db_name, df_global) {
       unique_id                  INTEGER PRIMARY KEY,
       year_obs                   INTEGER NOT NULL,
       day_obs                    INTEGER NOT NULL,
-      time_obs                   TIME NOT NULL,
+      time_obs                   TIME,
       FOREIGN KEY (unique_id) REFERENCES primaire(unique_id)
     );"
     
@@ -39,7 +39,8 @@ create_database <- function(db_name, df_global) {
     dbExecute(con, tbl_date)
     
     # Table 'site' : site_id, lat, lon
-    df_site <- df_global[, c("site_id", "lat", "lon")]
+    df_site <- distinct(df_global, site_id, .keep_all = T)
+    df_site <- df_site[, c("site_id", "lat", "lon")]
     
     # Table 'primaire' : observed_scientific_name, dwc_event_date, obs_value, unique_id, site_id
     df_primaire <- df_global[, c("observed_scientific_name", "dwc_event_date", "obs_value", "unique_id", "site_id")]
