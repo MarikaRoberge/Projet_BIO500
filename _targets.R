@@ -12,13 +12,16 @@ source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimale
 source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
 source("SQLite_tables.R") #script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
 source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
-#source("cahier_laboratoire.Rmd") #script qui réfère à notre cahier de laboratoire, première version de notre RMarkDown pour le travail de session.
+source("Rapport.Rmd") #script qui réfère à notre cahier de laboratoire, première version de notre RMarkDown pour le travail de session.
 source("create_site_id.R") #script qui crée un site id pour changer la combinaison unique de lat et lon
-library(targets)
-tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI")) #Ici on met les packages qui seront nécessaire pour les différentes fonctions
-}
-#Faire une liste des targets (étapes du pipeline)
 
+#Téléchargement des librairies pour _targets.R
+library(targets)
+library(tarchetypes) # Utilisé pour render le rapport (tar_render)
+tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI")) #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
+}
+
+#Faire une liste des targets (étapes du pipeline)
 list(
   #Étape 1 : Mettre les données lepidopteres (brutes) dans un dataframe 
   tar_target(
@@ -65,20 +68,15 @@ list(
   #Étape 8: créer SQL
   tar_target(
     name= create_db,
-    command= create_database("lepido.db", ULTIME_database))
-  # ),
-  # 
-  # #Étape 9: association au RMarkDown
-  # tar_render(
-  #   cahier_labo,
-  #   render("cahier_laboratoire.Rmd")
-  # )
+    command= create_database("lepido.db", ULTIME_database)
+  ),
+  
+  #Étape 9: association au RMarkDown
+  tar_render(
+    name = rapport, # Cible du rapport
+    path = "./ProjetBIO_500/Rapport/Rapport.Rmd" # Le path du rapport à renderiser
+  )
 )
   
-#Nous n'avons pas réussi à afficher les données dans nos tables (notre table primaire et nos deux tables secondaires) et pas été en mesure non plus de faire une étape 9 pour faire le lien avec notre RmarkDown cahier de laboratoire.
-#Pour le RMarkDown, on aurait ajouter ça comme étape 9 du pipeline : 
-#tar_target(  #il faudrait mettre tar_render() ici et ensuite on peut le mettre dans notre pipeline
-#cahier_labo,
-#render("cahier_laboratoire.Rmd", output_format = "html_document"),
-#format = "file"
-#)
+
+
