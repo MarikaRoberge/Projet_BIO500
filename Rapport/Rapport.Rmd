@@ -64,13 +64,15 @@ output: rticles::pnas_article
 ## Nos questions de recherche
 
 ### **Question principale** :  
-Quels sont les changements de la composition et l’abondance des espèces de lépidoptères dans le temps et dans l’espace ?
+Quels sont les changements dans la biodiversité des espèces de lépidoptères dans le temps et dans l’espace au Québec ?
 
+###Questions spécifiques (1 sur la variation temporelle et 2 sur la variation temporelle+spatiale) :
 ### **Variation temporelle** :
-Comment la composition des communautés de lépidoptères a-t-elle évolué au fil des années dans un site donné ?
+Comment la diversité des espèces de lépidoptères a-t-elle évolué au fil des années?
 
-### **Variation spatiale** :
-Comment la composition et l’abondance des communautés de lépidoptères varient-elles selon les différentes localisations géographiques ?
+###**Variation temporelle et spatiale** : 
+-Comment la répartition des espèces de lépidoptères varie dans le temps? carte avec différentes couleurs pour chaque bloc de 25 ans ou 50 ans avec différentes textures (4 cartes dans une avec heat map)
+-Comment la répartition de Vanessa cardui change dans le temps et l'espace?
 
 À faire : 
 1. changer les noms de colonnes de la table de données brutes pour que ca soit plus compréhensible
@@ -95,7 +97,7 @@ Updates:
 -Penser à ce qu'on veut présenter comme figures
 -Commencer à écrire le texte dans le Rapport
 -Il faudrait vraiment créer des sous-dossiers dans notre dossier de projet ProjetBIO_500 et mieux structurer tout ca, ca va aider à faire la dépendance du Rapport.Rmd dans le pipeline des targets! Pour ca, on devrait se baser sur le code par après que le prof nous a fourni pour compiler le RMarkDown dans targets. 
-
+-Rajouter une colonne genre
 
 This PNAS journal template is provided to help you write your work in the
 correct journal format. Instructions for use are provided below.

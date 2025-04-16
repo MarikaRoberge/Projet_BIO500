@@ -25,7 +25,7 @@ create_database <- function(db_name, df_global) {
     );"
     
     tbl_date <- "
-    CREATE TABLE IF NOT EXISTS date (
+    CREATE TABLE IF NOT EXISTS Date (
       unique_id                  INTEGER PRIMARY KEY,
       year_obs                   INTEGER NOT NULL,
       day_obs                    INTEGER NOT NULL,
@@ -50,7 +50,7 @@ create_database <- function(db_name, df_global) {
     
     dbWriteTable(con, name = "primaire", value = df_primaire, append = TRUE, row.names = FALSE)
     dbWriteTable(con, name = "site", value = df_site, append = TRUE, row.names = FALSE)
-    dbWriteTable(con, name = "date", value = df_date, append = TRUE, row.names = FALSE)
+    dbWriteTable(con, name = "Date", value = df_date, append = TRUE, row.names = FALSE)
     
     # Fermer la connexion
     dbDisconnect(con)
