@@ -1,11 +1,4 @@
 name|type|parent|branches|progress
 Brute|stem|Brute|0|skipped
-data_no_na|stem|data_no_na|0|skipped
-data_colonne_correction|stem|data_colonne_correction|0|skipped
-data_final|stem|data_final|0|skipped
-data_avec_unique_id|stem|data_avec_unique_id|0|skipped
-data_verif_fin|stem|data_verif_fin|0|skipped
-ULTIME_database|stem|ULTIME_database|0|dispatched
-ULTIME_database|stem|ULTIME_database|0|completed
-create_db|stem|create_db|0|dispatched
-create_db|stem|create_db|0|completed
+rapport|stem|rapport|0|dispatched
+rapport|stem|rapport|0|errored
