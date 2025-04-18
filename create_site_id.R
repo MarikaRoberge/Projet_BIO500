@@ -1,3 +1,5 @@
+#Ce script génère site_id
+
 ajouter_id_site <- function(df, lat_col = "lat", lon_col = "lon") {
   if (!all(c(lat_col, lon_col) %in% colnames(df))) {
     stop("Les colonnes spécifiées n'existent pas dans le data.frame.")

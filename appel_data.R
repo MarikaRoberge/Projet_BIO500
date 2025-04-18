@@ -1,7 +1,7 @@
 #Fonction qui va chercher nos données
 grosse_tab <- function(chemin){ 
   file_list <- list.files(path = chemin, pattern = "\\.csv$", full.names = TRUE)
-  file_list <- file_list[basename(file_list) != "taxonomie.csv"]  # Exclure taxonomie.csv
+  file_list <- file_list[basename(file_list) != "taxonomie.csv"]  # Exclure le fichier taxonomie.csv
   
   if (length(file_list) == 0) {
     stop("Aucun fichier CSV trouvé dans le dossier !")
@@ -13,7 +13,7 @@ grosse_tab <- function(chemin){
   column_names <- c("observed_scientific_name", "year_obs", "day_obs", "time_obs", 
                     "dwc_event_date", "obs_variable", "obs_unit", "obs_value", "lat", 
                     "lon", "original_source", "creator", "title", "publisher",
-                    "intellectual_rights", "license", "owner")
+                    "intellectual_rights", "license", "owner")  #Spécifier les colonnes retrouvées
   
   for (i in seq_along(daf)) {
     if (ncol(daf[[i]]) == length(column_names)) {

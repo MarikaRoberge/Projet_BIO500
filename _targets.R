@@ -1,25 +1,25 @@
 # Équipe : Juliette Boulet-Thomas, Bertrand Labrecque et Marika Roberge
 # Travail sur les données de lépidoptères
 
-## Charger les scripts nécessaires
-
-#ajout et modif de la table brute
+##Charger les scripts nécessaires
+#Ajouts et modifications de la table brute
 {
-source("appel_data.R") #script qui met les données brutes dans un dataframe
-source("nettoyage_data.R") #script d'une fonction qui ajoute des NA et corrige les erreurs d'orthographes retrouvés dans les données, il faudrait changer ça pour que ca remplace toutes les cases vides de lepidopteres par NA.
-source("colonne_type.R") #script qui spécifie les types de colones de la table brute
-source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
-source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
-source("SQLite_tables.R") #script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
-source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
-source("create_site_id.R") #script qui crée un site id pour changer la combinaison unique de lat et lon
-#Téléchargement des librairies pour _targets.R
+source("appel_data.R") #1. script qui met les données brutes dans un dataframe
+source("nettoyage_data.R") #2. script d'une fonction qui ajoute des NA et corrige les erreurs d'orthographes retrouvés dans les données
+source("colonne_type.R") #3. script qui spécifie les types de colones de la table brute
+source("uniformisation_lat_lon.R") #4. script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
+source("verification_data.R") #5. sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
+source("SQLite_tables.R") #6. script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
+source("create_unique_id.R") #7. script qui permet d'ajouter une colonne de id de site à la table primaire
+source("create_site_id.R") #8. script qui crée un site id pour changer la combinaison unique de lat et lon
+
+##Téléchargement des librairies pour _targets.R
 library(targets)
 library(tarchetypes) # Utilisé pour render le rapport (tar_render)
 tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes")) #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
 }
 
-#Faire une liste des targets (étapes du pipeline)
+##Liste des targets (étapes du pipeline)
 list(
   #Étape 1 : Mettre les données lepidopteres (brutes) dans un dataframe 
   tar_target(
@@ -51,25 +51,25 @@ list(
     command= verif(data_final) #Ne crée pas un data frame mais simplement une conclusion
   ),
   
-  #Étape 6 : ajouter id unique dans la database
+  #Étape 6 : Ajouter unique_id dans la database
   tar_target(
     name= data_avec_unique_id,
     command= create_unique_id(data_final)
   ),
   
-  #Étape 7:  ajouter id_site dans la database
+  #Étape 7: Ajouter site_id dans la database
   tar_target(
     name= ULTIME_database,
     command= ajouter_id_site(data_avec_unique_id)
   ), 
   
-  #Étape 8: créer SQL
+  #Étape 8: créer les table SQLs
   tar_target(
     name= create_db,
     command= create_database("lepido.db", ULTIME_database)
   ),
   
-  #Étape 9: association au RMarkDown
+  #Étape 9: Association au rapport RMarkDown
   tar_render(
     name = rapport, # Cible du rapport
     path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser

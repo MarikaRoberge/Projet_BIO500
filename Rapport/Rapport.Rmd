@@ -72,7 +72,12 @@ Comment la diversité des espèces de lépidoptères a-t-elle évolué au fil de
 
 ###**Variation temporelle et spatiale** : 
 -Comment la répartition des espèces de lépidoptères varie dans le temps? carte avec différentes couleurs pour chaque bloc de 25 ans ou 50 ans avec différentes textures (4 cartes dans une avec heat map)
--Comment la répartition de Vanessa cardui change dans le temps et l'espace?
+-Comment la répartition de Papilio canadensis change dans le temps et l'espace? Papilio canadensis = 1659 lignes avec cette espèce, donc plus de données dispo que pour Vanessa cardui et Papilio canadensis n'est pas une aussi grande migratrice que cardui. Si on avait pris cardui, les fluctuations auraient pu être dues à des déplacements plutôt qu'à une simple évolution de la répartition résidentielle dans la région. Aussi, aucune mention de Papilo canadensis se trouve à l'extérieur du Québec, donc pas besoin de worry à propos de ça! J'ai vérifier ca avec les lignes de code suivantes, ou j'ai spécifié les limites lat et lon du quebec (38271 en dehors du Québec sur 153 155 lignes de Brute) et ensuite, j'ai demandé d'aller voir s'il y avait des mentions de l'espèce en dehors du Québec :
+Brute_filtered <- Brute[Brute$lat < 45 | Brute$lat > 60 | Brute$lon < -79 | Brute$lon > -64, ]
+View(Brute_filtered)
+Papilio_canadensis_rows <- Brute_filtered[Brute_filtered$scientific_name == "Papilio canadensis", ]
+View(Papilio_canadensis_rows)
+View(papilio_tab)
 
 À faire : 
 1. changer les noms de colonnes de la table de données brutes pour que ca soit plus compréhensible
@@ -91,13 +96,10 @@ Updates:
 -Revoir le 11 111, qu'est ce qu'on fait avec et qu'est-ce qu'on fait avec l'abondance dans nos analyses?
 -Clairer le site_id (faire le df pour le site_id)
 -Injecter les données
--S'assurer que SQL et targets fonctionnent (et que le MarkDown aussi)
 -Ajouter une ligne de retrait de base de données lepido dans le script de SQL
--Identifier clairement nos questions de recherches 
--Penser à ce qu'on veut présenter comme figures
 -Commencer à écrire le texte dans le Rapport
 -Il faudrait vraiment créer des sous-dossiers dans notre dossier de projet ProjetBIO_500 et mieux structurer tout ca, ca va aider à faire la dépendance du Rapport.Rmd dans le pipeline des targets! Pour ca, on devrait se baser sur le code par après que le prof nous a fourni pour compiler le RMarkDown dans targets. 
--Rajouter une colonne genre
+-trouver une facon de juste prendre en considération les lignes de données de lat et lon du québec 
 
 This PNAS journal template is provided to help you write your work in the
 correct journal format. Instructions for use are provided below.
