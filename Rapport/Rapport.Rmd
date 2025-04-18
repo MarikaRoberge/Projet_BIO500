@@ -83,13 +83,6 @@ paragraphs.
 Guide to using this template {.unnumbered}
 ========================================
 
-Please note that whilst this template provides a preview of the typeset
-manuscript for submission, to help in this preparation, it will not
-necessarily be the final publication layout. For more detailed
-information please see the [PNAS Information for
-Authors](http://www.pnas.org/site/authors/format.xhtml).
-
-
 Author Affiliations {#author-affiliations .unnumbered}
 -------------------
 
@@ -100,11 +93,6 @@ ORCID ID may supply this information at submission.
 
 Submitting Manuscripts {#submitting-manuscripts .unnumbered}
 ----------------------
-
-All authors must submit their articles at
-[PNAScentral](http://www.pnascentral.org/cgi-bin/main.plex). If you are
-using Overleaf to write your article, you can use the "Submit to PNAS"
-option in the top bar of the editor window.
 
 Format {#format .unnumbered}
 ------
@@ -149,8 +137,16 @@ and others outlined in the Information for Authors, is acceptable.
 
 Language-Editing Services {#language-editing-services .unnumbered}
 -------------------------
+![Variation du nombre d'espèces de lépidoptères au Québec en fonction du temps.<span data-label="fig:papilio"></span>]
+#ajouter une png ou jpg de notre graphique
 
-![Figure 2. Photo de Papilio canadensis observé dans son habitat naturel.<span data-label="fig:papilio"></span>](Papilio_canadensis.png) 
+![Photo de Papilio canadensis observé dans son habitat naturel.<span data-label="fig:papilio"></span>](Papilio_canadensis.png)
+
+![Répartition de Papilio canadensis au Québec au fil des années.<span data-label="fig:papilio"></span>]
+#ajouter une png ou jpg de notre figure obtenue
+
+![Variation des espèces de lépidoptères au Québec au fil des années.<span data-label="fig:papilio"></span>]
+#ajouter une png ou jpg de notre figure obtenue
 
 Digital Figures {#sec:figures .unnumbered}
 ---------------
