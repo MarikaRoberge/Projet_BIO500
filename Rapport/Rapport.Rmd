@@ -78,6 +78,7 @@ View(Brute_filtered)
 Papilio_canadensis_rows <- Brute_filtered[Brute_filtered$scientific_name == "Papilio canadensis", ]
 View(Papilio_canadensis_rows)
 View(papilio_tab)
+Dire qu'on considère chaque ligne comme 1 mention (peu importe s'il est écrit 2, 3 ou autre dans la colonne obs_value)
 
 À faire : 
 1. changer les noms de colonnes de la table de données brutes pour que ca soit plus compréhensible
