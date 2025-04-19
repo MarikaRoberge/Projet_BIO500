@@ -9,3 +9,5 @@
 !meta
 meta/*
 !meta/meta
+# Retirer meta/ de .gitignore
+# meta/
