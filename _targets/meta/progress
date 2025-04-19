@@ -1,7 +1,8 @@
 name|type|parent|branches|progress
+cartes_diversite|stem|cartes_diversite|0|dispatched
+cartes_diversite|stem|cartes_diversite|0|completed
 Brute|stem|Brute|0|skipped
-rapport|stem|rapport|0|dispatched
-rapport|stem|rapport|0|completed
+rapport|stem|rapport|0|skipped
 data_no_na|stem|data_no_na|0|skipped
 data_colonne_correction|stem|data_colonne_correction|0|skipped
 data_final|stem|data_final|0|skipped
