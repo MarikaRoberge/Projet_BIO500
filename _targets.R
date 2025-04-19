@@ -80,9 +80,13 @@ list(
       creer_cartes_diversite(db_path = "lepido.db"),
       format = "rds"
   )
+<<<<<<< HEAD
   #Étape 11 : Assembler la carte finale des cartes de biodiversité :
   )
 
+=======
+#juste pour dire....
+>>>>>>> 99f376d77b8087db3af04cb7f2236bf161b6b7fe
 
   
 
