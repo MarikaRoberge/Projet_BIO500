@@ -74,12 +74,14 @@ list(
     name = rapport, # Cible du rapport
     path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
   ),
-    #Étape 10: Faire la carte de biodiversité dans le temps:
+    #Étape 10: Faire les cartes de biodiversité dans le temps:
     tar_target(
       cartes_diversite,
       creer_cartes_diversite(db_path = "lepido.db"),
       format = "rds"
-    )
+  ), 
+  #Étape 11 : Assembler la carte finale des cartes de biodiversité :
+  )
   )
 
   

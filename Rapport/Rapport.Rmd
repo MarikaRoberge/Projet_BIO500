@@ -145,8 +145,15 @@ Language-Editing Services {#language-editing-services .unnumbered}
 ![Répartition de Papilio canadensis au Québec au fil des années.<span data-label="fig:papilio"></span>]
 #ajouter une png ou jpg de notre figure obtenue
 
-![Variation des espèces de lépidoptères au Québec au fil des années.<span data-label="fig:papilio"></span>]
-#ajouter une png ou jpg de notre figure obtenue
+Dans cette section, nous analysons l'évolution de la biodiversité des lépidoptères au fil du temps à travers plusieurs visualisations. Nous allons créer des cartes et des graphiques pour observer les variations et tendances.
+
+## Visualisation des données
+
+Les graphiques ci-dessous montrent l'évolution de la biodiversité des lépidoptères pour différentes périodes et critères. Nous avons créé six graphiques pour illustrer les tendances dans les données des lépidoptères.
+
+## Fusionner les cartes :
+
+![Variation des espèces de lépidoptères au Québec au fil des années.<span data-label="fig:papilio"></span>](carte_1850-1874.png)
 
 Digital Figures {#sec:figures .unnumbered}
 ---------------
