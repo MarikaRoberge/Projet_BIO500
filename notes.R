@@ -29,3 +29,12 @@
 # -Commencer à écrire le texte dans le Rapport
 # -Il faudrait vraiment créer des sous-dossiers dans notre dossier de projet ProjetBIO_500 et mieux structurer tout ca, ca va aider à faire la dépendance du Rapport.Rmd dans le pipeline des targets! Pour ca, on devrait se baser sur le code par après que le prof nous a fourni pour compiler le RMarkDown dans targets. 
 # -trouver une facon de juste prendre en considération les lignes de données de lat et lon du québec 
+
+
+
+install.packages(
+  "rnaturalearthhires",
+  repos = "https://ropensci.r-universe.dev",
+  type = "source"
+)
+#j'ai passé 30 min à chercher ce boute de code...
