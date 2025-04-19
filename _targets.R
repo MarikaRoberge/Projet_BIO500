@@ -16,7 +16,7 @@ source("creer_cartes_diversite.R") #10. script pour faire les cartes de biodiver
 ##Téléchargement des librairies pour _targets.R
 library(targets)
 library(tarchetypes) # Utilisé pour render le rapport (tar_render)
-tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes", "sf", "ggplot2","canadianmaps", "rnaturalearth" )) #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
+tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes", "sf", "ggplot2","canadianmaps", "rnaturalearth", "patchwork" )) #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
 }
 
 ##Liste des targets (étapes du pipeline)
@@ -75,18 +75,17 @@ list(
     path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
   ),
     #Étape 10: Faire les cartes de biodiversité dans le temps:
-    tar_target(
-      cartes_diversite,
-      creer_cartes_diversite(db_path = "lepido.db"),
-      format = "rds"
+  tar_target(
+    cartes_diversite,
+    creer_cartes_diversite(
+      db_path = "lepido.db",
+      cellsize = 50000,
+      output_dir = "outputs/cartes_periodes"
+    ),
+    format = "file" 
   )
-<<<<<<< HEAD
-  #Étape 11 : Assembler la carte finale des cartes de biodiversité :
-  )
+)
 
-=======
-#juste pour dire....
->>>>>>> 99f376d77b8087db3af04cb7f2236bf161b6b7fe
 
   
 

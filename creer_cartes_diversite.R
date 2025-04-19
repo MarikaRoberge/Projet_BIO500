@@ -1,6 +1,7 @@
 creer_cartes_diversite <- function(db_path = "lepido.db",
                                    cellsize = 50000,
                                    output_dir = "cartes_periodes") {
+ 
   
   # 1. Connexion DB + requête
   con <- dbConnect(SQLite(), db_path)
@@ -20,11 +21,12 @@ creer_cartes_diversite <- function(db_path = "lepido.db",
   donnees <- dbGetQuery(con, query)
   dbDisconnect(con)
   
-  # 2. Nettoyage, car une donnée de 405,5 un peu exagérer comparé aux autres
+  # 2. Nettoyage
   donnees <- donnees %>%
     filter(n_especes < 100) %>%
+    filter(year_obs >= 1875 & year_obs <= 2024) %>%  # bornes fixes
     mutate(
-      periode_25ans = floor(year_obs / 25) * 25,
+      periode_25ans = floor((year_obs - 1875) / 25) * 25 + 1875,
       periode_label = paste0(periode_25ans, "-", periode_25ans + 24)
     ) %>%
     group_by(periode_label, lat, lon) %>%
@@ -69,8 +71,9 @@ creer_cartes_diversite <- function(db_path = "lepido.db",
   # 5. Création dossier output
   if (!dir.exists(output_dir)) dir.create(output_dir)
   
-  # 6. Boucle des cartes
-  periodes <- unique(grid_data$periode_label)
+  # 6. Création des cartes et stockage
+  periodes <- sort(unique(grid_data$periode_label))
+  liste_cartes <- list()
   
   for (periode in periodes) {
     data_sub <- grid_data %>% filter(periode_label == periode)
@@ -97,12 +100,16 @@ creer_cartes_diversite <- function(db_path = "lepido.db",
            subtitle = paste("Période :", periode),
            caption = "Projection locale EPSG:32198 - Données lissées sur 25 ans")
     
-    ggsave(filename = file.path(output_dir, paste0("carte_", periode, ".png")),
-           plot = p,
-           width = 10, height = 8, units = "in", dpi = 300)
-    
-    message("Carte sauvegardée pour la période ", periode)
+    liste_cartes[[periode]] <- p
   }
+  
+  # 7. Combinaison finale des 6 cartes en une seule image
+  image_finale <- (liste_cartes[[1]] | liste_cartes[[2]] | liste_cartes[[3]]) /
+    (liste_cartes[[4]] | liste_cartes[[5]] | liste_cartes[[6]])
+  
+  ggsave(filename = file.path(output_dir, "cartes_combinees.png"),
+         plot = image_finale,
+         width = 15, height = 10, units = "in", dpi = 300)
   
   return(invisible(NULL))
 }
