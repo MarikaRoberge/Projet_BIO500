@@ -14,7 +14,8 @@
   source("create_site_id.R") #8. script qui crée un site id pour changer la combinaison unique de lat et lon
   source("creer_cartes_diversite.R") #10. script pour faire les cartes de biodiversité dans le temps avec des gap de 25 ans
   source("creer_graph_diversite.R")
-  source("intermediaire.R")
+  source("intermediaire_cartes.R")
+  source("intermediaire_graph.R")
   source("SQL2.0.R")
   ##Téléchargement des librairies pour _targets.R
   library(targets)
@@ -78,10 +79,10 @@ list(
   #   path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
   # ),
 
-  #Étape intermédiaire
+  #Étape intermédiaire cartes
   tar_target(
     name = donnees_carte,
-    command = intermediaire(create_db)
+    command = intermediaire1(create_db)
   ),
   
   #Étape 10: Faire les cartes de biodiversité dans le temps
@@ -94,11 +95,17 @@ list(
     ),
     format = "file" 
   ),
+  #Étape intermédiaire graphique
+  tar_target(
+    name = donnees_graphique,
+    command = intermediaire2(create_db)
+  ),
+  
   #Étape 11: Faire le graphique de biodiversité dans le temps
   tar_target(
     graphique_diversite,
     creer_graphique_diversite(
-      donnees = donnees_qc,  # Remplace 'donnees_qc' par le nom réel de l'objet filtré pour Québec si différent
+      donnees = donnees_graphique,  # Remplace 'donnees_qc' par le nom réel de l'objet filtré pour Québec si différent
       output_dir = "Figures_analyse"
     )
   )

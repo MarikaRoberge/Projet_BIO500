@@ -1,27 +1,6 @@
 #Analyse 1 
-creer_graphique_diversite <- function(db_path = "lepido.db", donnees, output_dir, crs = 4326) {
+creer_graphique_diversite <- function(donnees, output_dir, crs = 4326) {
   
-  # S'assurer que le dossier existe
-  if (!dir.exists(output_dir)) {
-    dir.create(output_dir, recursive = TRUE)
-  }
-  
-  # 1. Connexion à la base de données
-  con <- dbConnect(RSQLite::SQLite(), db_path)
-  
-  # 2. Extraction des données via SQL
-  query <- "
-    SELECT 
-        p.observed_scientific_name,
-        s.lat,
-        s.lon,
-        d.year_obs
-    FROM primaire p
-    JOIN site s ON p.site_id = s.site_id
-    JOIN Date d ON p.unique_id = d.unique_id
-  "
-  donnees <- dbGetQuery(con, query)
-  dbDisconnect(con)
   
   # 3. Conversion en objet spatial
   donnees_sf <- st_as_sf(donnees, coords = c("lon", "lat"), crs = crs)
