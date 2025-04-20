@@ -4,19 +4,20 @@
 ##Charger les scripts nécessaires
 #Ajouts et modifications de la table brute
 {
-source("appel_data.R") #1. script qui met les données brutes dans un dataframe
-source("nettoyage_data.R") #2. script d'une fonction qui ajoute des NA et corrige les erreurs d'orthographes retrouvés dans les données
-source("colonne_type.R") #3. script qui spécifie les types de colones de la table brute
-source("uniformisation_lat_lon.R") #4. script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
-source("verification_data.R") #5. sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
-source("SQLite_tables.R") #6. script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
-source("create_unique_id.R") #7. script qui permet d'ajouter une colonne de id de site à la table primaire
-source("create_site_id.R") #8. script qui crée un site id pour changer la combinaison unique de lat et lon
-source("creer_cartes_diversite.R") #10. script pour faire les cartes de biodiversité dans le temps avec des gap de 25 ans
-##Téléchargement des librairies pour _targets.R
-library(targets)
-library(tarchetypes) # Utilisé pour render le rapport (tar_render)
-tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes", "sf", "ggplot2","canadianmaps", "rnaturalearth", "patchwork", "rmarkdown", "wk")) #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
+  source("appel_data.R") #1. script qui met les données brutes dans un dataframe
+  source("nettoyage_data.R") #2. script d'une fonction qui ajoute des NA et corrige les erreurs d'orthographes retrouvés dans les données
+  source("colonne_type.R") #3. script qui spécifie les types de colones de la table brute
+  source("uniformisation_lat_lon.R") #4. script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
+  source("verification_data.R") #5. sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
+  source("SQLite_tables.R") #6. script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
+  source("create_unique_id.R") #7. script qui permet d'ajouter une colonne de id de site à la table primaire
+  source("create_site_id.R") #8. script qui crée un site id pour changer la combinaison unique de lat et lon
+  source("creer_cartes_diversite.R") #10. script pour faire les cartes de biodiversité dans le temps avec des gap de 25 ans
+  source("intermediaire.R")
+  ##Téléchargement des librairies pour _targets.R
+  library(targets)
+  library(tarchetypes) # Utilisé pour render le rapport (tar_render)
+  tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes", "sf", "ggplot2","canadianmaps", "rnaturalearth", "patchwork", "rmarkdown", "wk")) #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
 }
 
 ##Liste des targets (étapes du pipeline)
@@ -26,7 +27,7 @@ list(
     name= Brute, 
     command = grosse_tab("lepidopteres")  #définir le chemin pour le dossier lepidopteres
   ),
- 
+  
   #Étape 2 : Remplace les cases vides par NA et corrige les fautes d'orthographes retrouvées dans lepidopteres
   tar_target(
     name= data_no_na,
@@ -69,25 +70,31 @@ list(
     command= create_database("lepido.db", ULTIME_database)
   ),
   
-  #Étape 9: Association au rapport RMarkDown
-  tar_render(
-    name = rapport, # Cible du rapport
-    path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
+  # #Étape 9: Association au rapport RMarkDown
+  # tar_render(
+  #   name = rapport, # Cible du rapport
+  #   path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
+  # ),
+  
+  #Étape intermédiire
+  tar_target(
+    name = donnees_carte,
+    command = intermediaire(create_db)
   ),
   
-    #Étape 10: Faire les cartes de biodiversité dans le temps:
+  #Étape 10: Faire les cartes de biodiversité dans le temps:
   tar_target(
     cartes_diversite,
     creer_cartes_diversite(
-      db_path = "lepido.db",
+      donnees = donnees_carte,
       cellsize = 50000,
-      output_dir = "outputs/cartes_periodes"
+      output_dir = "Cartes1"
     ),
     format = "file" 
   )
 )
 
 
-  
+
 
 

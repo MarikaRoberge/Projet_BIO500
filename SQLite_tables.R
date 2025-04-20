@@ -1,3 +1,4 @@
+#SQLite_table
 #Script de SQL
 create_database <- function(db_name, df_global) {
   

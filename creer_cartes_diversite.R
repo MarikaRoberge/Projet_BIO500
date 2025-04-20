@@ -1,8 +1,7 @@
-#Analyse 2
-creer_cartes_diversite <- function(db_path = "lepido.db",
-                                   cellsize = 50000,
-                                   output_dir = "cartes_periodes") {
- 
+#creer_cartes
+creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
+  
+  
   # 1. Création du répertoire (output) de sortie avant tout traitement
   if (!dir.exists(output_dir)) dir.create(output_dir)
   
@@ -23,6 +22,7 @@ creer_cartes_diversite <- function(db_path = "lepido.db",
   "
   donnees <- dbGetQuery(con, query)
   dbDisconnect(con)
+  >>>>>>> f77c25f43af141f78afe34a915059c8119f84a3b
   
   # 3. Nettoyage
   donnees <- donnees %>%
