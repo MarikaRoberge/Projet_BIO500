@@ -1,5 +1,11 @@
 #Analyse 1 
-creer_graphique_diversite <- function(db_path = "lepido.db", output_dir, crs = 4326) {
+creer_graphique_diversite <- function(db_path = "lepido.db", donnees, output_dir, crs = 4326) {
+  
+  # S'assurer que le dossier existe
+  if (!dir.exists(output_dir)) {
+    dir.create(output_dir, recursive = TRUE)
+  }
+  
   # 1. Connexion à la base de données
   con <- dbConnect(RSQLite::SQLite(), db_path)
   
@@ -38,7 +44,7 @@ creer_graphique_diversite <- function(db_path = "lepido.db", output_dir, crs = 4
   
   # 7. Création du graphique
   p <- ggplot(biodiv_temp, aes(x = year_obs, y = n_especes)) +
-    geom_line(color = "#1f77b4", size = 1) +
+    geom_line(color = "#1f77b4", linewidth = 1) +
     geom_point(size = 2) +
     labs(
       title = "Évolution de la richesse spécifique des lépidoptères au Québec",
@@ -47,12 +53,11 @@ creer_graphique_diversite <- function(db_path = "lepido.db", output_dir, crs = 4
     ) +
     theme_minimal()
   
-  # Afficher le graphique
-  print(p)
+  # Définir le chemin du fichier de sortie
+  output_file <- file.path(output_dir, "graphique_biodiversite.png")
   
-  #Sauvegarde du graphique
-  ggsave(filename = file.path(output_dir, "graphique_biodiversite.png"),
-         plot = p)
+  # Sauvegarder le graphique
+  ggsave(filename = output_file, plot = p)
   
   # Retourner aussi les données au cas où
   return(invisible(biodiv_temp))

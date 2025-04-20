@@ -9,16 +9,17 @@
   source("colonne_type.R") #3. script qui spécifie les types de colones de la table brute
   source("uniformisation_lat_lon.R") #4. script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
   source("verification_data.R") #5. sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
-  #source("SQLite_tables.R") #6. script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
+  source("SQLite_tables.R") #6. script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
   source("create_unique_id.R") #7. script qui permet d'ajouter une colonne de id de site à la table primaire
   source("create_site_id.R") #8. script qui crée un site id pour changer la combinaison unique de lat et lon
   source("creer_cartes_diversite.R") #10. script pour faire les cartes de biodiversité dans le temps avec des gap de 25 ans
+ #source("creer_graph_diversite.R")
   source("intermediaire.R")
   source("SQL2.0.R")
   ##Téléchargement des librairies pour _targets.R
   library(targets)
   library(tarchetypes) # Utilisé pour render le rapport (tar_render)
-  tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes", "sf", "ggplot2","canadianmaps", "rnaturalearth", "patchwork", "rmarkdown", "wk")) #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
+  tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes", "sf", "ggplot2","canadianmaps", "rnaturalearth", "patchwork", "rmarkdown", "wk", "labeling")) #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
 }
 
 ##Liste des targets (étapes du pipeline)
@@ -71,12 +72,12 @@ list(
     command= create_database("lepido.db", ULTIME_database)
   ),
   
-  # #Étape 9: Association au rapport RMarkDown
-  # tar_render(
-  #   name = rapport, # Cible du rapport
-  #   path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
-  # ),
-  
+  #Étape 9: Association au rapport RMarkDown
+  tar_render(
+    name = rapport, # Cible du rapport
+    path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
+  ),
+
   #Étape intermédiaire
   tar_target(
     name = donnees_carte,
@@ -89,19 +90,18 @@ list(
     creer_cartes_diversite(
       donnees = donnees_carte,
       cellsize = 50000,
-      output_dir = "Cartes1"
+      output_dir = "Figures_analyse"
     ),
     format = "file" 
   ),
-  #Étape 11: Faire le graphique de biodiversité dans le temps
-  tar_target(
-    graphique_diversite,
-    creer_graphique_diversite(
-      donnees = donnees_qc,  # Remplace 'donnees_qc' par le nom réel de l'objet filtré pour Québec si différent
-      output_dir = "Cartes1"
-    ),
-    format = "file"
-  )
+  # #Étape 11: Faire le graphique de biodiversité dans le temps
+  # tar_target(
+  #   graphique_diversite,
+  #   creer_graphique_diversite(
+  #     donnees = donnees_qc,  # Remplace 'donnees_qc' par le nom réel de l'objet filtré pour Québec si différent
+  #     output_dir = "Figures_analyse"
+  #   )
+  # )
 )
 
 
