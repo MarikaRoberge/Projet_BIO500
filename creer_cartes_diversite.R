@@ -2,8 +2,10 @@ creer_cartes_diversite <- function(db_path = "lepido.db",
                                    cellsize = 50000,
                                    output_dir = "cartes_periodes") {
  
+  # 1. Création du répertoire (output) de sortie avant tout traitement
+  if (!dir.exists(output_dir)) dir.create(output_dir)
   
-  # 1. Connexion DB + requête
+  # 2. Connexion DB + requête
   con <- dbConnect(SQLite(), db_path)
   query <- "
   SELECT 
@@ -21,7 +23,7 @@ creer_cartes_diversite <- function(db_path = "lepido.db",
   donnees <- dbGetQuery(con, query)
   dbDisconnect(con)
   
-  # 2. Nettoyage
+  # 3. Nettoyage
   donnees <- donnees %>%
     filter(n_especes < 100) %>%
     filter(year_obs >= 1875 & year_obs <= 2024) %>%  # bornes fixes
@@ -39,7 +41,7 @@ creer_cartes_diversite <- function(db_path = "lepido.db",
   
   donnees_sf <- st_as_sf(donnees, coords = c("lon", "lat"), crs = 4326)
   
-  # 3. Québec + grille
+  # 4. Québec + grille
   canada <- ne_states(country = "Canada", returnclass = "sf")
   qc <- canada %>%
     filter(name_en == "Quebec") %>%
@@ -55,7 +57,7 @@ creer_cartes_diversite <- function(db_path = "lepido.db",
     st_transform(32198) %>%
     filter(!is.na(n_especes))
   
-  # 4. Agrégation spatiale
+  # 5. Agrégation spatiale
   grid_data <- st_join(donnees_local, grid_hex) %>%
     st_drop_geometry() %>%
     group_by(grid_id, periode_label) %>%
@@ -67,9 +69,6 @@ creer_cartes_diversite <- function(db_path = "lepido.db",
     left_join(grid_hex, by = "grid_id") %>%
     st_as_sf() %>%
     st_transform(4326)
-  
-  # 5. Création dossier output
-  if (!dir.exists(output_dir)) dir.create(output_dir)
   
   # 6. Création des cartes et stockage
   periodes <- sort(unique(grid_data$periode_label))
