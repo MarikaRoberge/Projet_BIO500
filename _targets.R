@@ -13,7 +13,7 @@
   source("create_unique_id.R") #7. script qui permet d'ajouter une colonne de id de site à la table primaire
   source("create_site_id.R") #8. script qui crée un site id pour changer la combinaison unique de lat et lon
   source("creer_cartes_diversite.R") #10. script pour faire les cartes de biodiversité dans le temps avec des gap de 25 ans
- #source("creer_graph_diversite.R")
+  source("creer_graph_diversite.R")
   source("intermediaire.R")
   source("SQL2.0.R")
   ##Téléchargement des librairies pour _targets.R
@@ -94,14 +94,14 @@ list(
     ),
     format = "file" 
   ),
-  # #Étape 11: Faire le graphique de biodiversité dans le temps
-  # tar_target(
-  #   graphique_diversite,
-  #   creer_graphique_diversite(
-  #     donnees = donnees_qc,  # Remplace 'donnees_qc' par le nom réel de l'objet filtré pour Québec si différent
-  #     output_dir = "Figures_analyse"
-  #   )
-  # )
+  #Étape 11: Faire le graphique de biodiversité dans le temps
+  tar_target(
+    graphique_diversite,
+    creer_graphique_diversite(
+      donnees = donnees_qc,  # Remplace 'donnees_qc' par le nom réel de l'objet filtré pour Québec si différent
+      output_dir = "Figures_analyse"
+    )
+  )
 )
 
 
