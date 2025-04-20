@@ -137,10 +137,7 @@ included in tables should be included with the main reference section.
 Data Archival {#data-archival .unnumbered}
 -------------
 
-PNAS must be able to archive the data essential to a published article.
-Where such archiving is not possible, deposition of data in public
-databases, such as GenBank, ArrayExpress, Protein Data Bank, Unidata,
-and others outlined in the Information for Authors, is acceptable.
+Présenter ici la biologie de l'espèce rapidement et de combien de données ont a utilisés pour créer le graphique. Avec références bibliographiques.
 
 
 
