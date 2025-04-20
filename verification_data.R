@@ -40,13 +40,31 @@ verif <- function(df){
     cat("Tous les '0' ont été remplacés par 'NA' dans la colonne", ".\n")
   }
   
-  # cent <- any(df$obs_value == "11111", na.rm = TRUE) #vérifier s'il n'y a plus de valeur 0 dans time_obs, retourner un TRUE s'il y en a
-  # 
-  # # Afficher les résultats
-  # if (any(cent, na.rm = TRUE)) {
-  #   cat("Il y a encore une erreur de 11111 dans la colone obs_value",".\n")
-  # } else {
-  #   cat("Il n'y a plus d'erreur dans la colone obs_value", ".\n")
-  # }
+  date_check <- grepl("^\\d{4}-\\d{2}-\\d{2}$", df$dwc_event_date)
+  
+  # Afficher les résultats
+  if (any(!date_check, na.rm = TRUE)) {
+    cat("Il y a des valeurs non conformes dans la colonne 'dwc_event_date'. Ces valeurs doivent être des dates au format 'YYYY-MM-DD'.\n")
+  } else {
+    cat("Toutes les valeurs dans la colonne 'dwc_event_date' sont des dates au format 'YYYY-MM-DD'.\n")
+  }
+  
+  year_check <- grepl("^\\d{4}$", df$year_obs)  # Vérifie que chaque entrée dans year_obs est une année à 4 chiffres
+  
+  #Afficher les résultats 
+  if (any(!year_check, na.rm = TRUE)) {
+    cat("Il y a des valeurs non conformes dans la colonne 'year_obs'. Ces valeurs doivent être des années à 4 chiffres.\n")
+  } else {
+    cat("Toutes les valeurs dans la colonne 'year_obs' sont des années à 4 chiffres.\n")
+  }
+
+  cent <- any(df$obs_value == "11111", na.rm = TRUE) #vérifier s'il n'y a plus de valeur 0 dans time_obs, retourner un TRUE s'il y en a
+  
+  #Afficher les résultats
+  if (any(cent, na.rm = TRUE)) {
+    cat("Il y a encore une erreur de 11111 dans la colone obs_value",".\n")
+  } else {
+    cat("Il n'y a plus d'erreur dans la colone obs_value", ".\n")
+  }
   
 }
