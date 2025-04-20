@@ -22,7 +22,6 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
   "
   donnees <- dbGetQuery(con, query)
   dbDisconnect(con)
-  >>>>>>> f77c25f43af141f78afe34a915059c8119f84a3b
   
   # 3. Nettoyage
   donnees <- donnees %>%

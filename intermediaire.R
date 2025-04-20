@@ -42,4 +42,3 @@ intermediaire <- function(db_path) {
   
   return(donnees)
 }
-#
