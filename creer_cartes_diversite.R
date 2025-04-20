@@ -80,6 +80,10 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
     liste_cartes[[periode]] <- p
   }
   
+  #Création d'un dossier pour mettre la carte
+  if (!dir.exists(output_dir)) {
+    dir.create(output_dir, recursive = TRUE)}
+  
   # 7. Combinaison finale des 6 cartes en une seule image
   image_finale <- (liste_cartes[[1]] | liste_cartes[[2]] | liste_cartes[[3]]) /
     (liste_cartes[[4]] | liste_cartes[[5]] | liste_cartes[[6]])
