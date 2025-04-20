@@ -1,28 +1,6 @@
 #creer_cartes
 creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
   
-  
-  # 1. Création du répertoire (output) de sortie avant tout traitement
-  if (!dir.exists(output_dir)) dir.create(output_dir)
-  
-  # 2. Connexion DB + requête
-  con <- dbConnect(SQLite(), db_path)
-  query <- "
-  SELECT 
-      CAST(d.year_obs AS INTEGER) AS year_obs,
-      s.lat,
-      s.lon,
-      COUNT(DISTINCT p.observed_scientific_name) AS n_especes,
-      AVG(p.obs_value) AS valeur_moyenne,
-      COUNT(*) AS n_observations
-  FROM primaire p
-  JOIN site s ON p.site_id = s.site_id
-  JOIN Date d ON p.unique_id = d.unique_id
-  GROUP BY s.site_id, d.year_obs
-  "
-  donnees <- dbGetQuery(con, query)
-  dbDisconnect(con)
-  
   # 3. Nettoyage
   donnees <- donnees %>%
     filter(n_especes < 100) %>%
