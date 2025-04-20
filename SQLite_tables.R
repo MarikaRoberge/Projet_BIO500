@@ -4,7 +4,7 @@ create_database <- function(db_name, df_global) {
   # Vérifier si le fichier de base de données existe déjà
   if (!file.exists(db_name)) {
     # Ouvrir la connexion (cela crée le fichier si nécessaire)
-    con <- dbConnect(SQLite(), dbname = db_name)
+    con <- dbConnect(RSQLite::SQLite(), dbname = db_name)
     
     # Création des tables
     tbl_primaire <- "
@@ -52,6 +52,11 @@ create_database <- function(db_name, df_global) {
     dbWriteTable(con, name = "site", value = df_site, append = TRUE, row.names = FALSE)
     dbWriteTable(con, name = "Date", value = df_date, append = TRUE, row.names = FALSE)
     
+    # Lire les tables
+    primaire_data <- dbReadTable(con, "primaire")
+    site_data <- dbReadTable(con, "site")
+    date_data <- dbReadTable(con, "Date")
+    
     # Fermer la connexion
     dbDisconnect(con)
   }
@@ -60,5 +65,4 @@ create_database <- function(db_name, df_global) {
   return(db_name)
   
 }
-
 

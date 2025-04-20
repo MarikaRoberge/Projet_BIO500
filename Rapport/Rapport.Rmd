@@ -60,6 +60,16 @@ lineno: false
 
 output: rticles::pnas_article
 ---
+Le rapport doit contenir :
+
+3 figures
+Un titre et un résumé
+Une courte introduction spécifiant les questions
+Une courte description de la méthode et des résultats
+Une discussion, enrichie de citations provenant de la littérature scientifique
+Références interne aux figures et à la bibliographie
+L'ensemble du texte doit faire 1000-1500 mots max
+Une bibliographie
 
 ## Nos questions de recherche
 
@@ -68,15 +78,14 @@ Quels sont les changements dans la biodiversité des espèces de lépidoptères 
 
 ###Questions spécifiques (1 sur la variation temporelle et 2 sur la variation temporelle+spatiale) :
 ### **Variation temporelle** :
-Comment la diversité des espèces de lépidoptères a-t-elle évolué au fil des années?
+Analyse 1 : Comment la diversité des espèces de lépidoptères a-t-elle évoluée au fil des années?
 
 ###**Variation temporelle et spatiale** : 
--Comment la répartition des espèces de lépidoptères varie dans le temps? carte avec différentes couleurs pour chaque bloc de 25 ans ou 50 ans avec différentes textures (4 cartes dans une avec heat map)
--Comment la répartition de Papilio canadensis change dans le temps et l'espace? 
+Analyse 2 : Comment la dviersité et la répartition des espèces de lépidoptères a-t-elle évoluée au fil des années?
+Analyse 3 : Comment la répartition de Papilio canadensis change dans le temps et l'espace? 
 
 
-
-Note: please start your introduction without including the word
+Please start your introduction without including the word
 "Introduction" as a section heading; this heading is implied in the first
 paragraphs.
 
