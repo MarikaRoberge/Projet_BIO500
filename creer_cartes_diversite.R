@@ -1,3 +1,4 @@
+#Analyse 2
 creer_cartes_diversite <- function(db_path = "lepido.db",
                                    cellsize = 50000,
                                    output_dir = "cartes_periodes") {
