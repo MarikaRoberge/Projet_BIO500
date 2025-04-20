@@ -24,7 +24,7 @@ intermediaire <- function(db_path) {
         s.lat,
         s.lon,
         COUNT(DISTINCT p.observed_scientific_name) AS n_especes,
-        AVG(p.obs_value) AS valeur_moyenne,
+         AVG(p.obs_value) AS valeur_moyenne,
         COUNT(*) AS n_observations
     FROM primaire p
     JOIN site s ON p.site_id = s.site_id
