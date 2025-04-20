@@ -77,13 +77,13 @@ list(
   #   path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
   # ),
   
-  #Étape intermédiire
+  #Étape intermédiaire
   tar_target(
     name = donnees_carte,
     command = intermediaire(create_db)
   ),
   
-  #Étape 10: Faire les cartes de biodiversité dans le temps:
+  #Étape 10: Faire les cartes de biodiversité dans le temps
   tar_target(
     cartes_diversite,
     creer_cartes_diversite(
@@ -92,6 +92,15 @@ list(
       output_dir = "Cartes1"
     ),
     format = "file" 
+  ),
+  #Étape 11: Faire le graphique de biodiversité dans le temps
+  tar_target(
+    graphique_diversite,
+    creer_graphique_diversite(
+      donnees = donnees_qc,  # Remplace 'donnees_qc' par le nom réel de l'objet filtré pour Québec si différent
+      output_dir = "Cartes1"
+    ),
+    format = "file"
   )
 )
 
