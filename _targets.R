@@ -73,10 +73,10 @@ list(
   ),
   
   #Étape 9: Association au rapport RMarkDown
-  tar_render(
-    name = rapport, # Cible du rapport
-    path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
-  ),
+  # tar_render(
+  #   name = rapport, # Cible du rapport
+  #   path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
+  # ),
 
   #Étape intermédiaire
   tar_target(
