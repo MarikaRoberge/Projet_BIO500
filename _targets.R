@@ -4,19 +4,18 @@
 ##Charger les scripts nécessaires
 #Ajouts et modifications de la table brute
 {
-  source("appel_data.R") #1. script qui met les données brutes dans un dataframe
-  source("nettoyage_data.R") #2. script d'une fonction qui ajoute des NA et corrige les erreurs d'orthographes retrouvés dans les données
-  source("colonne_type.R") #3. script qui spécifie les types de colones de la table brute
-  source("uniformisation_lat_lon.R") #4. script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
-  source("verification_data.R") #5. sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
-  #source("SQLite_tables.R") #6. script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
-  source("create_unique_id.R") #7. script qui permet d'ajouter une colonne de id de site à la table primaire
-  source("create_site_id.R") #8. script qui crée un site id pour changer la combinaison unique de lat et lon
-  source("creer_cartes_diversite.R") #10. script pour faire les cartes de biodiversité dans le temps avec des gap de 25 ans
-  source("creer_graph_diversite.R")
-  source("intermediaire_cartes.R")
-  source("intermediaire_graph.R")
-  source("SQL2.0.R")
+  source("appel_data.R") #script qui met les données brutes dans un dataframe
+  source("nettoyage_data.R") #script d'une fonction qui ajoute des NA et corrige les erreurs d'orthographes retrouvés dans les données
+  source("colonne_type.R") #script qui spécifie les types de colones de la table brute
+  source("uniformisation_lat_lon.R") #script qui uniformise le nombre de décimales des colonnes "lat" et "lon"
+  source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
+  source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
+  source("create_site_id.R") #script qui crée un site id pour changer la combinaison unique de lat et lon
+  source("creer_cartes_diversite.R") #script pour faire les cartes de biodiversité dans le temps avec des gap de 25 ans
+  source("creer_graph_diversite.R") #script pour créer le graphique de diversité
+  source("intermediaire_cartes.R") #script qui joint les fichiers pour l'analyse des cartes de diversit.
+  source("intermediaire_graph.R") #script qui joint les fichiers pour l'analyse graphique
+  source("SQLtables.R")  # script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
   ##Téléchargement des librairies pour _targets.R
   library(targets)
   library(tarchetypes) # Utilisé pour render le rapport (tar_render)
@@ -72,14 +71,8 @@ list(
     name= create_db,
     command= create_database("lepido.db", ULTIME_database)
   ),
-  
-  #Étape 9: Association au rapport RMarkDown
-  # tar_render(
-  #   name = rapport, # Cible du rapport
-  #   path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
-  # ),
 
-  #Étape intermédiaire cartes
+  #Étape 9 : intermédiaire cartes
   tar_target(
     name = donnees_carte,
     command = intermediaire1(create_db)
@@ -95,13 +88,14 @@ list(
     ),
     format = "file" 
   ),
-  #Étape intermédiaire graphique
+  
+  #Étape 11: intermédiaire graphique
   tar_target(
     name = donnees_graphique,
     command = intermediaire2(create_db)
   ),
   
-  #Étape 11: Faire le graphique de biodiversité dans le temps
+  #Étape 12: Faire le graphique de biodiversité dans le temps
   tar_target(
     graphique_diversite,
     creer_graphique_diversite(
@@ -109,6 +103,11 @@ list(
       output_dir = "Figures_analyse"
     )
   )
+  # #Étape 13: Association au rapport RMarkDown
+  # tar_render(
+  #   name = rapport, # Cible du rapport
+  #   path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
+  # )
 )
 
 

@@ -143,8 +143,9 @@ Présenter ici la biologie de l'espèce rapidement et de combien de données ont
 
 Language-Editing Services {#language-editing-services .unnumbered}
 -------------------------
-![Variation du nombre d'espèces de lépidoptères au Québec en fonction du temps.<span data-label="fig:papilio"></span>]
-#ajouter une png ou jpg de notre graphique
+```{r fig_graphique_biodiversite, echo=FALSE, fig.width=7, fig.height=6, out.width="100%", fig.cap="Variation du nombre d'espèces de lépidoptères au Québec en fonction du temps."}
+knitr::include_graphics("../Figures_analyse/graphique_biodiversite.png")
+```
 
 ![Photo de Papilio canadensis observé dans son habitat naturel.<span data-label="fig:papilio"></span>](Papilio_canadensis.png)
 
@@ -182,9 +183,9 @@ En conclusion, ces 6 cartes sont combinées en une seule image finale, ce qui pe
 
 Les graphiques ci-dessous montrent l'évolution de la biodiversité des lépidoptères pour différentes périodes et critères. Nous avons créé six graphiques pour illustrer les tendances dans les données des lépidoptères.
 
-
-![*Image de la province du Québec et de six cartes qui montre l'évolution de la biodiversité des espèces de lépidoptères via le temps avec des fenêtres de 25 ans*](../Figures_analyse/cartes_combinees.png)
-
+```{r fig_cartes_combinees, echo=FALSE, out.width="\\textwidth", fig.align="left", fig.cap="Image de la province du Québec et de six cartes qui montrent l'évolution de la biodiversité des espèces de lépidoptères au fil du temps (fenêtres de 25 ans)."}
+knitr::include_graphics("../Figures_analyse/cartes_combinees.png")
+```
 
 ## **Résultats**
 

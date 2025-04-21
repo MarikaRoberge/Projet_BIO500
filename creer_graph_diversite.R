@@ -21,16 +21,23 @@ creer_graphique_diversite <- function(donnees, output_dir, crs = 4326) {
     summarise(n_especes = n_distinct(observed_scientific_name)) %>%
     arrange(year_obs)
   
-  # 7. Création du graphique
   p <- ggplot(biodiv_temp, aes(x = year_obs, y = n_especes)) +
-    geom_line(color = "#1f77b4", linewidth = 1) +
-    geom_point(size = 2) +
+    geom_line(color = "#2ca02c", linewidth = 1) +
     labs(
-      title = "Évolution de la richesse spécifique des lépidoptères au Québec",
+      title = "Évolution de la richesse spécifique des \nlépidoptères au Québec",
       x = "Année",
       y = "Nombre d'espèces uniques observées"
     ) +
-    theme_minimal()
+    theme_minimal() +
+    theme(
+      axis.line = element_line(size = 1, color = "black"),  # Lignes des axes plus épaisses et noires
+      axis.ticks = element_line(size = 1, color = "black"),  # Tic des axes
+      panel.grid.major = element_line(size = 0.5, color = "gray"),  # Quadrillage majeur plus visible
+      panel.grid.minor = element_line(size = 0.5, color = "lightgray"),  # Quadrillage mineur
+      plot.title = element_text(size = 18, face = "bold", hjust = 0.5),  # Titre du graphique
+      axis.title.x = element_text(size = 14, face = "bold"),  # Nom de l'axe X
+      axis.title.y = element_text(size = 14, face = "bold")   # Nom de l'axe Y
+    )
   
   # Définir le chemin du fichier de sortie
   output_file <- file.path(output_dir, "graphique_biodiversite.png")

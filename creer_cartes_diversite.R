@@ -1,7 +1,7 @@
 #creer_cartes
 creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
   
-  # 3. Nettoyage
+  # 1. Nettoyage
   donnees <- donnees %>%
     filter(n_especes < 100) %>%
     filter(year_obs >= 1875 & year_obs <= 2024) %>%  # bornes fixes
@@ -19,7 +19,7 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
   
   donnees_sf <- st_as_sf(donnees, coords = c("lon", "lat"), crs = 4326)
   
-  # 4. Québec + grille
+  # 2. Québec + grille
   canada <- ne_states(country = "Canada", returnclass = "sf")
   qc <- canada %>%
     filter(name_en == "Quebec") %>%
@@ -35,7 +35,7 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
     st_transform(32198) %>%
     filter(!is.na(n_especes))
   
-  # 5. Agrégation spatiale
+  # 3. Agrégation spatiale
   grid_data <- st_join(donnees_local, grid_hex) %>%
     st_drop_geometry() %>%
     group_by(grid_id, periode_label) %>%
@@ -48,7 +48,7 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
     st_as_sf() %>%
     st_transform(4326)
   
-  # 6. Création des cartes et stockage
+  # 4. Création des cartes et stockage
   periodes <- sort(unique(grid_data$periode_label))
   liste_cartes <- list()
   
@@ -80,11 +80,11 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
     liste_cartes[[periode]] <- p
   }
   
-  #Création d'un dossier pour mettre la carte
+  #5. Création d'un dossier pour mettre la carte
   if (!dir.exists(output_dir)) {
     dir.create(output_dir, recursive = TRUE)}
   
-  # 7. Combinaison finale des 6 cartes en une seule image
+  # 6. Combinaison finale des 6 cartes en une seule image
   image_finale <- (liste_cartes[[1]] | liste_cartes[[2]]) /
     (liste_cartes[[3]] | liste_cartes[[4]]) /
     (liste_cartes[[5]] | liste_cartes[[6]])
