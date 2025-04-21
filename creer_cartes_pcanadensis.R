@@ -81,7 +81,7 @@ for (i in 1:4) { #car on a 4 groupes d'années
   titre_carte <- if (i == 1) "Observation de Papilio canadensis au Québec" else NULL
   
   p <- ggplot() +
-    geom_sf(data = qc, fill = "#FFFFFF", color = "black", size = 2) +  # Carte du Québec
+    geom_sf(data = qc, fill = "#FFFFFF", color = "black", size = 1) +  # Carte du Québec
     geom_sf(data = data_sub, aes(geometry = geometry), color = "red", size = 1) +  # Ajouter les points
     theme_minimal() +
     labs(title = titre_carte,  
