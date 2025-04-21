@@ -1,53 +1,35 @@
 ---
-title: Rapport - Article scientifique
+title: Variations spatio-temporelles de la biodiversité des lépidoptères au Québec
 
 # Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
 author:
   - name: Marika Roberge
-    affiliation: a,1,4
+    affiliation: a
   - name: Bertrand Labrecque
-    affiliation: a,2,4
+    affiliation: a
   - name: Juliette Boulet-Thomas
-    affiliation: a,3,4
+    affiliation: a
     
 address:
   - code: a
-    address: Faculté des sciences, Département de biologie, 2500 Boulevard de l'Université, Sherbrooke, Québec, Zip
-
-corresponding_author:
-  code: 1
-  text: "To whom correspondence should be addressed. E-mail: marikaroberge@email.com"
+    address: Faculté des sciences, Département de biologie, 2500 Boulevard de l'Université, Sherbrooke, Québec, J1K 2R1
 
 # For footer text
 lead_author_surname: Roberge
 
-## Remove this if not required    
-equal_authors:
-  code: 4
-  text: "M.R.(Author One), B.L. (Author Two) and J.B-T. (Author Three) contributed equally to this work (remove if not applicable)."
-
-author_contributions: |
-  Please provide details of author contributions here.
-
 ## Remove this if not required
-conflict_of_interest: |
-  Please declare any conflict of interest here.
 
 abstract: |
-  Please provide an abstract of no more than 250 words in a single paragraph. Abstracts should explain to the general reader the major contributions of the article. References in the abstract must be cited in full within the abstract itself and cited in the text.
-
-
-significance: |
-  Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the Significance Statement is to explain the relevance of the work in broad context to a broad readership. The Significance Statement appears in the paper itself and is required for all research papers.
+  Inclure le résumé ici.
 
 acknowledgements: |
-  Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.
 
 keywords:
   - lepidopteres
   - communautés
   - variation temporelle
   - variation spatiale
+  - Québec
 
 ## must be one of: pnasresearcharticle (usual two-column layout), pnasmathematics (one column layout), or pnasinvited (invited submissions only)
 pnas_type: pnasresearcharticle
@@ -60,8 +42,8 @@ lineno: false
 
 output: rticles::pnas_article
 ---
-Le rapport doit contenir :
 
+Le rapport doit contenir :
 3 figures
 Un titre et un résumé
 Une courte introduction spécifiant les questions
@@ -73,35 +55,18 @@ Une bibliographie
 
 ## Nos questions de recherche
 
-### **Question principale** :  
+**Question principale** :  
 Quels sont les changements dans la biodiversité des espèces de lépidoptères dans le temps et dans l’espace au Québec ?
 
-###Questions spécifiques (1 sur la variation temporelle et 2 sur la variation temporelle+spatiale) :
-### **Variation temporelle** :
-Analyse 1 : Comment la diversité des espèces de lépidoptères a-t-elle évoluée au fil des années?
+Questions spécifiques (1 sur la variation temporelle et 2 sur la variation temporelle+spatiale) :
+**Variation temporelle** :
+Analyse 1 : 
+Comment la diversité des espèces de lépidoptères a-t-elle évoluée au fil des années?
 
-###**Variation temporelle et spatiale** : 
-Analyse 2 : Comment la dviersité et la répartition des espèces de lépidoptères a-t-elle évoluée au fil des années?
+**Variation temporelle et spatiale** : 
+Analyse 2 : Comment la diversité et la répartition des espèces de lépidoptères a-t-elle évoluée au fil des années?
 Analyse 3 : Comment la répartition de Papilio canadensis change dans le temps et l'espace? 
 
-
-Please start your introduction without including the word
-"Introduction" as a section heading; this heading is implied in the first
-paragraphs.
-
-Guide to using this template {.unnumbered}
-========================================
-
-Author Affiliations {#author-affiliations .unnumbered}
--------------------
-
-Include department, institution, and complete address, with the
-ZIP/postal code, for each author. Use lower case letters to match
-authors with institutions, as shown in the example. Authors with an
-ORCID ID may supply this information at submission.
-
-Submitting Manuscripts {#submitting-manuscripts .unnumbered}
-----------------------
 
 Format {#format .unnumbered}
 ------
@@ -111,18 +76,6 @@ following order of sections; Title, Author Affiliation, Keywords,
 Abstract, Significance Statement, Results, Discussion, Materials and
 methods, Acknowledgments, and References. Other orders and headings are
 permitted.
-
-Manuscript Length {#manuscript-length .unnumbered}
------------------
-
-PNAS generally uses a two-column format averaging 67 characters,
-including spaces, per line. The maximum length of a Direct Submission
-research article is six pages and a PNAS PLUS research article is ten
-pages including all text, spaces, and the number of characters displaced
-by figures, tables, and equations. When submitting tables, figures,
-and/or equations in addition to text, keep the text for your manuscript
-under 39,000 characters (including spaces) for Direct Submissions and
-72,000 characters (including spaces) for PNAS PLUS.
 
 References {#references .unnumbered}
 ----------
@@ -134,32 +87,27 @@ for the SI, should be included in the main manuscript file. References
 appearing in both sections should not be duplicated. SI references
 included in tables should be included with the main reference section.
 
-Data Archival {#data-archival .unnumbered}
--------------
 
-Présenter ici la biologie de l'espèce rapidement et de combien de données ont a utilisés pour créer le graphique. Avec références bibliographiques.
-
-
-
-Language-Editing Services {#language-editing-services .unnumbered}
+Résultats {#Résultats .unnumbered}
 -------------------------
-```{r fig_graphique_biodiversite, echo=FALSE, fig.width=7, fig.height=6, out.width="100%", fig.cap="Variation du nombre d'espèces de lépidoptères au Québec en fonction du temps."}
+Ici, est présenté un graphique (Fig. 1) mettant en évidence les variations en termes de nombre d'espèces uniques observés au fil des années. Expliquer pourquoi le nombre unique est utiliser et donc sa pertinence.
+
+```{r fig_graphique_biodiversite, echo=FALSE, fig.width=7, fig.height=6, out.width="90%", fig.cap="Variation du nombre d'espèces de lépidoptères au Québec en fonction du temps."}
 knitr::include_graphics("../Figures_analyse/graphique_biodiversite.png")
 ```
 
-![Photo de Papilio canadensis observé dans son habitat naturel.<span data-label="fig:papilio"></span>](Papilio_canadensis.png)
+Comme deuxième analyse, elle porte sur une espèce commune au Québec, *Papilio canadensis*, communément appelé Papillon tigré du Canada (Fig. 2). Présenter ici la biologie de l'espèce rapidement et de combien de données ont a utilisés pour créer le graphique. Avec références bibliographiques.
+
+![Papillon tigré du Canada (*Papilio canadensis*) observé dans son habitat naturel.](Papilio_canadensis.png)
+
+L'analyse portant sur l'espèce permet de décrire comment la répartition de *Papilio canadensis* change dans le temps et l'espace.
 
 ![Répartition de Papilio canadensis au Québec au fil des années.<span data-label="fig:papilio"></span>]
-#ajouter une png ou jpg de notre figure obtenue
+#ajouter un png de notre figure obtenue dans un code chunk comme les autres figures d'analyse.
 
-Dans cette section, nous analysons l'évolution de la biodiversité des lépidoptères au fil du temps à travers plusieurs visualisations. Nous allons créer des cartes et des graphiques pour observer les variations et tendances.
+On voit dans cette figure (Fig.3 - ici cartes de l'espece) que ...On peut donc dire que l'espèce est devenue plus/moins présente avec le temps...
 
-
-
-
-
-
-
+Maintenant, dans cette section, nous analysons l'évolution de la biodiversité des lépidoptères au fil du temps à travers plusieurs visualisations. Nous allons créer des cartes et des graphiques pour observer les variations et tendances.
 
 
 ## **Méthodes**
@@ -171,19 +119,12 @@ Pour l'étude de la biodiversité des Lépidoptère dans le temps et l'espace, u
 En conclusion, ces 6 cartes sont combinées en une seule image finale, ce qui permet une comparaison visuelle claire de l’évolution spatio-temporelle de la diversité spécifique au Québec. Ce qui est utile visualiser les zones où la diversité augmente, diminue ou reste stable. 
 
 
-
-
-
-
-
-
-
-
 ## Visualisation des données
 
 Les graphiques ci-dessous montrent l'évolution de la biodiversité des lépidoptères pour différentes périodes et critères. Nous avons créé six graphiques pour illustrer les tendances dans les données des lépidoptères.
 
-```{r fig_cartes_combinees, echo=FALSE, out.width="\\textwidth", fig.align="left", fig.cap="Image de la province du Québec et de six cartes qui montrent l'évolution de la biodiversité des espèces de lépidoptères au fil du temps (fenêtres de 25 ans)."}
+
+```{r fig_cartes_combinees, fullpage-figure, echo=FALSE, fig.width=7, fig.height=6, out.width="100%", fig.cap="Image de la province du Québec et de six cartes qui montrent l'évolution de la biodiversité des espèces de lépidoptères au fil du temps (fenêtres de 25 ans).", fig.align="left", fig.asp=1}
 knitr::include_graphics("../Figures_analyse/cartes_combinees.png")
 ```
 

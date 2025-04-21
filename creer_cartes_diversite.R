@@ -55,6 +55,8 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
   for (periode in periodes) {
     data_sub <- grid_data %>% filter(periode_label == periode)
     
+    titre <- if (periode == periodes[1]) "Diversité spécifique au Québec" else NULL
+    
     p <- ggplot() +
       geom_sf(data = data_sub,
               aes(fill = n_especes, size = n_points),
@@ -73,9 +75,13 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
         breaks = c(1, 5, 10, 20)
       ) +
       theme_void() +
-      labs(title = "Diversité spécifique au Québec",
-           subtitle = paste("Période :", periode),
-           caption = "Projection locale EPSG:32198 - Données lissées sur 25 ans")
+      labs(title = titre,
+           subtitle = paste("Période :", periode))
+    
+    # Ajouter la légende de caption uniquement pour le 6e graphique
+    if (periode == "2000-2024") { 
+      p <- p + labs(caption = "Projection locale EPSG:32198 - Données lissées sur 25 ans")
+    }
     
     liste_cartes[[periode]] <- p
   }
@@ -88,10 +94,15 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
   image_finale <- (liste_cartes[[1]] | liste_cartes[[2]]) /
     (liste_cartes[[3]] | liste_cartes[[4]]) /
     (liste_cartes[[5]] | liste_cartes[[6]])
-  
+   
   ggsave(filename = file.path(output_dir, "cartes_combinees.png"),
          plot = image_finale,
          width = 15, height = 10, units = "in", dpi = 300)
+  
+  #7. Rogner les marges de l'image finale
+  img <- image_read(file.path(output_dir, "cartes_combinees.png"))
+  img_crop <- image_trim(img)
+  image_write(img_crop, path = file.path(output_dir, "cartes_combinees.png"))  # Remplace l’image originale
   
   return(invisible(NULL))
 }
