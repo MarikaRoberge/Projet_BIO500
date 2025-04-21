@@ -121,6 +121,19 @@ list(
         output_dir = "Figures_analyse")
     )
     
+    # #Étape 14: intermédiaire cartes avec points
+    # tar_target(
+    #   name = donnees_points,
+    #   command = intermediaire3(create_db)
+    # ),
+    # #Étape 15: faire les 4 grpahiques avec les points d'observations
+    # tar_target(
+    #   graphique_points,
+    #   graph_points(
+    #     donnees_pc = donnees_points,
+    #     output_dir = "Figures_analyse")
+    # )
+    #
   )
   # #Étape 13: Association au rapport RMarkDown
   # tar_render(
