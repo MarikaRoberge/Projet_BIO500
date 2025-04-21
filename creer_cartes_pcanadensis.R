@@ -100,7 +100,7 @@ image_finale <- (liste_cartes[[1]] | liste_cartes[[2]]) /
 
 ggsave(filename = file.path(output_dir, "cartes_pcanadensis.png"),
        plot = image_finale,
-       width = 15, height = 10, units = "in", dpi = 300)
+       width = 7, height = 5, units = "in", dpi = 300)
 
 #12. Rogner les marges de l'image finale
 img <- image_read(file.path(output_dir, "cartes_pcanadensis.png"))
