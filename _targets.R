@@ -16,7 +16,7 @@
   source("intermediaire_cartes.R") #script qui joint les fichiers pour l'analyse des cartes de diversit.
   source("intermediaire_graph.R") #script qui joint les fichiers pour l'analyse graphique
   source("intermediaire_points.R") #script qui joint les fichiers pour creation graphique points
-  source("graph_bert.R") #fonction qui crée les graphiques de points
+  source("creer_cartes_pcanadensis.R") #fonction qui crée les graphiques de points
   source("SQLtables.R")  # script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
   ##Téléchargement des librairies pour _targets.R
   library(targets)
@@ -113,7 +113,7 @@ list(
       command = intermediaire3(create_db)
     ),
     
-    #Étape 14: faire les 4 grpahiques avec les points d'observations
+    #Étape 14: faire les 4 graphiques avec les points d'observations
     tar_target(
       graphique_points,
       graph_points(

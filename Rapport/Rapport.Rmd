@@ -52,7 +52,7 @@ Ces résultats permettront de discuter des mécanismes potentiels à l’origine
 Ici, est présenté un graphique (Fig. 1) mettant en évidence les variations en termes de nombre d'espèces uniques observés au fil des années. Expliquer pourquoi le nombre unique est utiliser et donc sa pertinence.
 
 
-```{r fig_graphique_biodiversite, echo=FALSE, fig.width=7, fig.height=6, out.width="90%", fig.cap="Variation du nombre d'espèces de lépidoptères au Québec en fonction du temps."}
+```{r fig_graphique_biodiversite, echo=FALSE, fig.width=7, fig.height=5, out.width="90%", fig.cap="Variation du nombre d'espèces de lépidoptères au Québec en fonction du temps."}
 knitr::include_graphics("../Figures_analyse/graphique_biodiversite.png")
 ```
 
@@ -62,8 +62,9 @@ Comme deuxième analyse, elle porte sur une espèce commune au Québec, *Papilio
 
 L'analyse portant sur l'espèce permet de décrire comment la répartition de *Papilio canadensis* change dans le temps et l'espace.
 
-![Répartition de Papilio canadensis au Québec au fil des années.span data-label=figpapiliospan]
-#ajouter un png de notre figure obtenue dans un code chunk comme les autres figures d'analyse.
+```{r fig_cartes_pcanadensis, fullpage-figure, echo=FALSE, fig.width=7, fig.height=6, out.width="100%", fig.cap="Image de la province du Québec et de 4 cartes qui montrent l'évolution de *Papilio canadensis* au fil du temps (fenêtres de 50 ans).", fig.align="left", fig.asp=1}
+knitr::include_graphics("../Figures_analyse/cartes_pcanadensis.png") 
+```
 
 Texte ici présentant les résultats de l'analyse 2. Comme on peut le voir sur la Figure 2, on voit que la répartition de *P. canadensis* s'est...
 
