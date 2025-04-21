@@ -15,11 +15,16 @@
   source("creer_graph_diversite.R") #script pour créer le graphique de diversité
   source("intermediaire_cartes.R") #script qui joint les fichiers pour l'analyse des cartes de diversit.
   source("intermediaire_graph.R") #script qui joint les fichiers pour l'analyse graphique
+  source("intermediaire_points.R") #script qui joint les fichiers pour creation graphique points
+  source("graph_bert.R") #fonction qui crée les graphiques de points
   source("SQLtables.R")  # script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
   ##Téléchargement des librairies pour _targets.R
   library(targets)
   library(tarchetypes) # Utilisé pour render le rapport (tar_render)
-  tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes", "sf", "ggplot2","canadianmaps", "rnaturalearth", "patchwork", "rmarkdown", "wk", "labeling")) #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
+  tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes", 
+                              "sf", "ggplot2","canadianmaps", "rnaturalearth", 
+                              "patchwork", "rmarkdown", "wk", "labeling")) 
+  #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
 }
 
 ##Liste des targets (étapes du pipeline)
@@ -101,7 +106,21 @@ list(
     creer_graphique_diversite(
       donnees = donnees_graphique,  # Remplace 'donnees_qc' par le nom réel de l'objet filtré pour Québec si différent
       output_dir = "Figures_analyse"
+    ),
+    
+    #Étape 13: intermédiaire cartes avec points
+    tar_target(
+      name = donnees_points,
+      command = intermediaire3(create_db)
+    ),
+    #Étape 14: faire les 4 grpahiques avec les points d'observations
+    tar_target(
+      graphique_points,
+      graph_points(
+        donnees_pc = donnees_points,
+        output_dir = "Figures_analyse")
     )
+    
   )
   # #Étape 13: Association au rapport RMarkDown
   # tar_render(

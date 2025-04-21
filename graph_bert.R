@@ -1,19 +1,23 @@
 #carte du Québec
-{
-  library(ggplot2)
-  library(tidyverse)
-  library(sf)
-  library(maps)
-  #library(rmapshaper) # the package that allows geo shape transformation
-  #library(tmap)
-  library(rnaturalearth)
-  library(rnaturalearthhires)
-  library(dplyr)
-  library(canadianmaps)
-  library(RSQLite)
-  library(patchwork)
-}
+# {
+#   library(ggplot2)
+#   library(tidyverse)
+#   library(sf)
+#   library(maps)
+#   #library(rmapshaper) # the package that allows geo shape transformation
+#   #library(tmap)
+#   library(rnaturalearth)
+#   library(rnaturalearthhires)
+#   library(dplyr)
+#   library(canadianmaps)
+#   library(RSQLite)
+#   library(patchwork)
+# }
 ######
+
+graph_points <- function(donnees_pc,output_dir){
+
+#crétion carte du canada zoom in sur la belle province  
 canada <- ne_states(country = "Canada", returnclass = "sf")
 qc <- canada %>%
   filter(name_en == "Quebec") %>%
@@ -21,29 +25,8 @@ qc <- canada %>%
 
 
 
-###Aller chercher les données des papillons tigrés Papilio canadensis
-
-con <- dbConnect(SQLite(), dbname = "lepido.db")
-request <- "
-  SELECT p.*, --1
-   CAST(d.year_obs AS INTEGER) AS year_obs, --2
-      d.unique_id,
-      s.lat, --3
-      s.lon
-  FROM primaire p
-  JOIN site s ON p.site_id = s.site_id --4
-  JOIN Date d ON p.unique_id = d.unique_id
-  WHERE p.observed_scientific_name = 'Papilio canadensis' --5
-
-"
-#1 sélectionner toute la table primaire
-#2 années(character) -> années(integer)
-#3 sélection de la lattitude de la table site (allias s.)
-#4 joindre les tables en précisant les forgein keys les reliant
-#5 filtrer la colone de noms scientifiques pour extraire uniquement le papillon tigré
-
-donnees_pc <- dbGetQuery(con, request)
-dbDisconnect(con)
+#à partir des observations des papillons tigrés Papilio canadensis, sélectionner 
+#les observations de grpupes d'années respectant les limites géographiques du québec
 
 #sélection des localisations des années 1850 à 1900
 donnees_pc1 <- donnees_pc[donnees_pc$year_obs >= 1850 & donnees_pc$year_obs < 1900, ]
@@ -67,12 +50,13 @@ donnees_pc4 <- distinct(donnees_pc4, unique_id, .keep_all = TRUE)
 donnees_pc4 <- filter(donnees_pc4, (lat >= 45 & lat <= 61) & (lon >= -80 & lon <= -57), .preserve = TRUE)
 
 
-
+#transformer les lon et lat en point géographiques intéreprétables pour la carte (sf)
 points_1 <- st_as_sf(donnees_pc1, coords = c("lon", "lat"), crs = 4326)
 points_2 <- st_as_sf(donnees_pc2, coords = c("lon", "lat"), crs = 4326)
 points_3 <- st_as_sf(donnees_pc3, coords = c("lon", "lat"), crs = 4326)
 points_4 <- st_as_sf(donnees_pc4, coords = c("lon", "lat"), crs = 4326)
 
+#créations de listes pour render plusieurs graphiques
 pc <- list(points_1, points_2, points_3, points_4)
 titre <- list("entre 1850 et 1900", "entre 1901 et 1950", "entre 1951 et 2000",
               "entre 2001 et 2023")
@@ -83,12 +67,12 @@ output_dir <- "test123"
 
 liste_cartes <- list()
 
-for (i in 1:4) {
+for (i in 1:4) { #car on a 4 groupes d'années
   data_sub <- pc[[i]]
   
   p <- ggplot() +
     geom_sf(data = qc, fill = "lightblue", color = "black") +  # Carte du Québec
-    geom_sf(data = data_sub, aes(geometry = geometry), color = "red", size = 2) +  # Ajouter les points
+    geom_sf(data = data_sub, aes(geometry = geometry), color = "red", size = 1) +  # Ajouter les points
     theme_minimal() +
     labs(title = "Observation de Papilio canadensis",
          subtitle = titre[[i]])
