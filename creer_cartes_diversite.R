@@ -85,8 +85,9 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
     dir.create(output_dir, recursive = TRUE)}
   
   # 7. Combinaison finale des 6 cartes en une seule image
-  image_finale <- (liste_cartes[[1]] | liste_cartes[[2]] | liste_cartes[[3]]) /
-    (liste_cartes[[4]] | liste_cartes[[5]] | liste_cartes[[6]])
+  image_finale <- (liste_cartes[[1]] | liste_cartes[[2]]) /
+    (liste_cartes[[3]] | liste_cartes[[4]]) /
+    (liste_cartes[[5]] | liste_cartes[[6]])
   
   ggsave(filename = file.path(output_dir, "cartes_combinees.png"),
          plot = image_finale,
