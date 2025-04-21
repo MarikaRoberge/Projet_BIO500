@@ -1,4 +1,5 @@
 #carte du Québec
+#######
 # {
 #   library(ggplot2)
 #   library(tidyverse)
@@ -13,6 +14,16 @@
 #   library(RSQLite)
 #   library(patchwork)
 # }
+
+# 
+# install.packages(
+#   "rnaturalearthhires",
+#   repos = "https://ropensci.r-universe.dev",
+#   type = "source")
+#
+
+
+
 ######
 
 graph_points <- function(donnees_pc,output_dir){
@@ -60,7 +71,7 @@ points_4 <- st_as_sf(donnees_pc4, coords = c("lon", "lat"), crs = 4326)
 pc <- list(points_1, points_2, points_3, points_4)
 titre <- list("entre 1850 et 1900", "entre 1901 et 1950", "entre 1951 et 2000",
               "entre 2001 et 2023")
-output_dir <- "test123"
+
 
 
 # 6. Création des cartes et stockage
@@ -95,12 +106,5 @@ ggsave(filename = file.path(output_dir, "cartes_bert.png"),
 return(invisible(NULL))
 }
 
-
-# 
-# install.packages(
-#   "rnaturalearthhires",
-#   repos = "https://ropensci.r-universe.dev",
-#   type = "source")
-#
 
 

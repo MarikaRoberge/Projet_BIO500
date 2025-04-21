@@ -17,7 +17,7 @@ intermediaire3 <- function(db_path) {
     stop("Tables manquantes: ", paste(missing_tables, collapse = ", "))
   }
   
-  request <- "
+  query <- "
   SELECT p.*, --1
    CAST(d.year_obs AS INTEGER) AS year_obs, --2
       d.unique_id,
