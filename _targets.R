@@ -21,10 +21,9 @@
   ##Téléchargement des librairies pour _targets.R
   library(targets)
   library(tarchetypes) # Utilisé pour render le rapport (tar_render)
-  tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes", 
+  tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes", #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
                               "sf", "ggplot2","canadianmaps", "rnaturalearth", 
                               "patchwork", "rmarkdown", "wk", "labeling","magick")) 
-  #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
 }
 
 ##Liste des targets (étapes du pipeline)
@@ -104,7 +103,7 @@ list(
   tar_target(
     graphique_diversite,
     creer_graphique_diversite(
-      donnees = donnees_graphique,  # Remplace 'donnees_qc' par le nom réel de l'objet filtré pour Québec si différent
+      donnees = donnees_graphique,
       output_dir = "Figures_analyse"
     ),
     
