@@ -1,27 +1,18 @@
-#creer_cartes
 creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
   
   # 1. Nettoyage
   donnees <- donnees %>%
-    filter(n_especes < 100) %>%
-    filter(year_obs >= 1875 & year_obs <= 2024) %>%  # bornes fixes
+    filter(year_obs >= 1875 & year_obs <= 2024) %>%
     mutate(
       periode_25ans = floor((year_obs - 1875) / 25) * 25 + 1875,
       periode_label = paste0(periode_25ans, "-", periode_25ans + 24)
-    ) %>%
-    group_by(periode_label, lat, lon) %>%
-    summarise(
-      n_especes = mean(n_especes, na.rm = TRUE),
-      valeur_moyenne = mean(valeur_moyenne, na.rm = TRUE),
-      n_observations = sum(n_observations, na.rm = TRUE),
-      .groups = 'drop'
     )
   
   donnees_sf <- st_as_sf(donnees, coords = c("lon", "lat"), crs = 4326)
   
   # 2. Québec + grille
   canada <- ne_states(country = "Canada", returnclass = "sf")
-  qc <- canada %>%
+  qc <- canada %>% 
     filter(name_en == "Quebec") %>%
     st_transform(32198)
   
@@ -33,20 +24,20 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
   
   donnees_local <- donnees_sf %>%
     st_transform(32198) %>%
-    filter(!is.na(n_especes))
+    filter(!is.na(observed_scientific_name))
   
-  # 3. Agrégation spatiale
+  # 3. Agrégation spatiale modifiée
   grid_data <- st_join(donnees_local, grid_hex) %>%
     st_drop_geometry() %>%
     group_by(grid_id, periode_label) %>%
     summarise(
-      n_especes = mean(n_especes, na.rm = TRUE),
-      n_points = n(),
+      n_especes = n_distinct(observed_scientific_name, na.rm = TRUE), # Comptage des espèces uniques
       .groups = "drop"
     ) %>%
     left_join(grid_hex, by = "grid_id") %>%
     st_as_sf() %>%
     st_transform(4326)
+
   
   # 4. Création des cartes et stockage
   periodes <- sort(unique(grid_data$periode_label))
@@ -57,26 +48,19 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
     
     p <- ggplot() +
       geom_sf(data = data_sub,
-              aes(fill = n_especes, size = n_points),
+              aes(fill = n_especes),
               color = "white", alpha = 0.8) +
       geom_sf(data = qc %>% st_transform(4326),
               fill = NA, color = "black", linewidth = 0.3) +
       scale_fill_gradientn(
         name = "Nombre moyen d'espèces",
         colors = hcl.colors(10, "RdYlGn"),
-        limits = c(1, 10),
-        breaks = seq(1, 10, 2)
-      ) +
-      scale_size_continuous(
-        name = "Nombre de points agrégés",
-        range = c(0.5, 5),
-        breaks = c(1, 5, 10, 20)
+        limits = c(1, max(grid_data$n_especes, na.rm = TRUE)) # Échelle dynamique
       ) +
       theme_void() +
       labs(title = "Diversité spécifique au Québec",
            subtitle = paste("Période :", periode),
            caption = "Projection locale EPSG:32198 - Données lissées sur 25 ans")
-    
     liste_cartes[[periode]] <- p
   }
   

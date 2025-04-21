@@ -1,7 +1,7 @@
 #intermediaire
 intermediaire1 <- function(db_path) {
   # Validation du fichier
-  if(!file.exists(db_path)) {
+  if (!file.exists(db_path)) {
     stop("Fichier de base de données introuvable: ", db_path)
   }
   
@@ -12,31 +12,29 @@ intermediaire1 <- function(db_path) {
   existing_tables <- DBI::dbListTables(con)
   
   missing_tables <- setdiff(required_tables, existing_tables)
-  if(length(missing_tables) > 0) {
+  if (length(missing_tables) > 0) {
     DBI::dbDisconnect(con)
     stop("Tables manquantes: ", paste(missing_tables, collapse = ", "))
   }
   
-  # Requête SQL
+  # Requête SQL avec observed_scientific_name directement
   query <- "
     SELECT 
         CAST(d.year_obs AS INTEGER) AS year_obs,
         s.lat,
         s.lon,
-        COUNT(DISTINCT p.observed_scientific_name) AS n_especes,
-         AVG(p.obs_value) AS valeur_moyenne,
-        COUNT(*) AS n_observations
+        p.observed_scientific_name,
+        p.obs_value
     FROM primaire p
     JOIN site s ON p.site_id = s.site_id
     JOIN Date d ON p.unique_id = d.unique_id
-    GROUP BY s.site_id, d.year_obs
   "
   
   donnees <- DBI::dbGetQuery(con, query)
   DBI::dbDisconnect(con)
   
   # Validation des données retournées
-  if(nrow(donnees) == 0) {
+  if (nrow(donnees) == 0) {
     warning("La requête a retourné 0 lignes")
   }
   
