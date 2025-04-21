@@ -13,8 +13,6 @@ address:
   - code: a
     address: Faculté des sciences, Département de biologie, 2500 Boulevard de l'Université, Sherbrooke, Québec, J1K 2R1
 
-# For footer text
-lead_author_surname: Roberge
 
 ## Remove this if not required
 
@@ -89,7 +87,9 @@ Un premier point important a aborder est que entre 1975 et 1899 il y a très peu
 
 -Analyse 1 :
 -Analyse 2 :
--Analyse 3 : Un biais de la cartes de biodiversité spatio-temporelle est que plus on avance dans le temps plus il y a d'observation ce qui est logique. Par contre, ces données reflètent aussi les efforts d'échantillonnage autant que la réalité biologique. Ce qui mène aussi à se poser la question pour les zones en rouges (faible diversité), à savoir si elles représentent réellement peu d'espèces ou simplement un manque de points d'échantillonnage. De plus, le sud du Québec a plus de données récoltées et c'est aussi là qu'on remarque une augmentation de la diversité. D'autre part, à partir de 1975, on voit une bonne stabilisation du nombre d'espèces moyen dans plusieurs cellules, ce qui pourrait refléter un effort d'échantillonnage suffisant pour capter la vraie diversité locale.
+-Analyse 3 : Un des biais importants associés à la carte de biodiversité spatio-temporelle réside dasn l'augmentation du nombre d'observations au fil du temps, ce qui est attendu étant donné l'évolution des efforts d'échantillonnage. Toutefois, ces données traduisent autant les dynamiques biologiques réelles que l'intensité vriable de l'observation. En effet, les avancées technologiques récentes (comme la génétique ou la modélisation climatique) permettent de mettre en lumière des dynamiques écologiques auparavant invisibles, créant ainsi un décalage interprétatif avec les méthodes historiques. Comme souligné dans une études, les bases de donnes naturalistes présentent un effort d'échantillonnage inégal dans le temps et dans l'espace, ce qui peut nuire à la représentativité écologique des cartes produites ().
+
+Cela soulève notamment des questions concernant l'interprétation des zones identifiées comme peu diverisifiées (en rouge). Ces zones reflètent-elles une réelle faible diversité biologique ou simplement un manque d'effort d'échantillonnage? Ce questionnement est d'autant plus pertinent lorsqu'on observe que le sud du Québec, mieux couvert par les inventaires, présente aussi une diversité plus élevée. Par ailleurs, à partir de 1975, on observe une stabilisation du nombre moyen d'espèces dans plusieurs cellules, ce qui pourrait indiquer que l'effort d'échantillonnage devient suffisant pour représenter de façon plus fidèle la diversité locale. 
 
 
 # Conclusion
