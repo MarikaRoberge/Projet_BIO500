@@ -31,6 +31,15 @@
 # -trouver une facon de juste prendre en considération les lignes de données de lat et lon du québec 
 
 
+Le rapport doit contenir 
+3 figures
+Un titre et un résumé
+Une courte introduction spécifiant les questions
+Une courte description de la méthode et des résultats
+Une discussion, enrichie de citations provenant de la littérature scientifique
+Références interne aux figures et à la bibliographie
+L'ensemble du texte doit faire 1000-1500 mots max
+Une bibliographie
 
 install.packages(
   "rnaturalearthhires",

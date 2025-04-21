@@ -41,31 +41,13 @@ lineno: false
 output: rticles::pnas_article
 ---
 
-Le rapport doit contenir 
-3 figures
-Un titre et un résumé
-Une courte introduction spécifiant les questions
-Une courte description de la méthode et des résultats
-Une discussion, enrichie de citations provenant de la littérature scientifique
-Références interne aux figures et à la bibliographie
-L'ensemble du texte doit faire 1000-1500 mots max
-Une bibliographie
+**Introduction et questions de recherche**
 
-##**Nos questions de recherche**
+Les lépidoptères, en tant qu’indicateurs sensibles à la température et aux changements environnementaux (Devictor et al., 2012; Parmesan et al., 1999), sont particulièrement utiles pour évaluer les effets des perturbations anthropiques, notamment les changements climatiques et l’altération des habitats. Au Québec, plusieurs espèces pourraient voir leur aire de répartition modifiée, soit par l’expansion d’espèces thermophiles vers le nord, soit par un recul des espèces froid-adaptées.
 
-**Question principale** 
-Quels sont les changements dans la biodiversité des espèces de lépidoptères dans le temps et dans l’espace au Québec 
+Dans ce contexte, nous avons étudié l’évolution de la diversité des lépidoptères au Québec, à la fois dans le temps et dans l’espace, en nous basant sur les données de présence collectées depuis environ 150 ans. L’objectif principal est d’évaluer les changements dans la diversité des lépidoptères au Québec à travers ces deux dimensions. Ainsi, la première analyse se pose la question suivante : comment la richesse spécifique des lépidoptères a-t-elle évolué au fil des années ? La deuxième analyse s'interroge sur : comment la diversité et la répartition des lépidoptères ont-elles évolué au fil du temps et selon les régions du Québec ? Enfin, la troisième analyse cherche à répondre à la question suivante : comment la répartition de Papilio canadensis a-t-elle changé au cours du temps et dans l’espace au Québec ?
 
-**Questions spécifiques** (1 sur la variation temporelle et 2 sur la variation temporelle+spatiale) 
-**Variation temporelle**
-*Analyse 1*  
-Comment la diversité des espèces de lépidoptères a-t-elle évoluée au fil des années
-
-**Variation temporelle et spatiale**
-*Analyse 2*  
-Comment la diversité et la répartition des espèces de lépidoptères a-t-elle évoluée au fil des années
-*Analyse 3*  
-Comment la répartition de Papilio canadensis change dans le temps et l'espace 
+Ces résultats permettront de discuter des mécanismes potentiels à l’origine des patrons observés, entre biais d’échantillonnage et signaux biologiques réels, et d’évaluer si la composition des communautés de lépidoptères au Québec reflète une transformation de la biodiversité entomologique.
 
 
 Format {#format .unnumbered}
