@@ -16,14 +16,14 @@
   source("intermediaire_cartes.R") #script qui joint les fichiers pour l'analyse des cartes de diversit.
   source("intermediaire_graph.R") #script qui joint les fichiers pour l'analyse graphique
   #source("intermediaire_points.R") #script qui joint les fichiers pour creation graphique points
- # source("graph_bert.R") #fonction qui crée les graphiques de points
+  #source("graph_bert.R") #fonction qui crée les graphiques de points
   source("SQLtables.R")  # script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
   ##Téléchargement des librairies pour _targets.R
   library(targets)
   library(tarchetypes) # Utilisé pour render le rapport (tar_render)
   tar_option_set(packages = c("dplyr", "RSQLite", "readr", "DBI", "tarchetypes", 
                               "sf", "ggplot2","canadianmaps", "rnaturalearth", 
-                              "patchwork", "rmarkdown", "wk", "labeling")) 
+                              "patchwork", "rmarkdown", "wk", "labeling","magick")) 
   #Ici, on met les packages qui seront nécessaires pour les différentes fonctions de nos différents scripts
 }
 
@@ -113,6 +113,7 @@ list(
     #   name = donnees_points,
     #   command = intermediaire3(create_db)
     # ),
+    
     # #Étape 14: faire les 4 grpahiques avec les points d'observations
     # tar_target(
     #   graphique_points,
@@ -120,7 +121,6 @@ list(
     #     donnees_pc = donnees_points,
     #     output_dir = "Figures_analyse")
     # )
-    
    
   )
   # #Étape 13: Association au rapport RMarkDown
