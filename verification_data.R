@@ -1,6 +1,7 @@
 
 verif <- function(df){
-  v <- class(df$dwc_event_date) #tester la classe d'objet du dwc_event_date de notre data frame
+  v <- class(df$dwc_event_date) #tester la classe d'objet du dwc_event_date de notre data frame est bien
+  #en character
   
   if(v == "character"){
     cat("le format character est bien programmé \n") 
@@ -42,7 +43,7 @@ verif <- function(df){
   
   date_check <- grepl("^\\d{4}-\\d{2}-\\d{2}$", df$dwc_event_date)
   
-  # Afficher les résultats
+  # Afficher les résultats, s'assurer que les formats sont en date 
   if (any(!date_check, na.rm = TRUE)) {
     cat("Il y a des valeurs non conformes dans la colonne 'dwc_event_date'. Ces valeurs doivent être des dates au format 'YYYY-MM-DD'.\n")
   } else {
