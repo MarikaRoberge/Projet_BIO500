@@ -112,7 +112,7 @@ list(
     name = graphique_points,
     command =graph_points(donnees_points, "Rapport"),
     format = "file"
-  ),
+  )
   
   # # Étape 13: Association au rapport RMarkDown
   # tar_render(
