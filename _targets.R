@@ -18,6 +18,7 @@
   source("intermediaire_graph.R") #script qui joint les fichiers pour l'analyse graphique
   source("intermediaire_points.R") #script qui joint les fichiers pour creation de l'analyse des cartes de P. canadensis
   source("SQLtables.R")  # script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
+  
   ##Téléchargement des librairies pour _targets.R
   library(targets)
   library(tarchetypes) # Utilisé pour render le rapport (tar_render)
