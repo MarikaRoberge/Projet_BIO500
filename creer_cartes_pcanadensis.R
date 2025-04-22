@@ -39,7 +39,7 @@ qc <- canada %>%
 #les observations de groupes d'années respectant les limites géographiques du Québec
 
 #3. Sélection des localisations des années 1850 à 1900
-donnees_pc1 <- donnees_pc[donnees_pc$year_obs >= 1850 & donnees_pc$year_obs < 1900, ]
+donnees_pc1 <- donnees_pc[donnees_pc$year_obs >= 1858 & donnees_pc$year_obs < 1900, ]
 donnees_pc1 <- distinct(donnees_pc1, unique_id, .keep_all = TRUE)
 donnees_pc1 <- filter(donnees_pc1, (lat >= 45 & lat <= 61) & (lon >= -80 & lon <= -57), .preserve = TRUE)
 
@@ -68,7 +68,7 @@ points_4 <- st_as_sf(donnees_pc4, coords = c("lon", "lat"), crs = 4326)
 
 #8. Créations de listes pour render plusieurs graphiques
 pc <- list(points_1, points_2, points_3, points_4)
-titre <- list("entre 1850 et 1900", "entre 1901 et 1950", "entre 1951 et 2000",
+titre <- list("entre 1859 et 1900", "entre 1901 et 1950", "entre 1951 et 2000",
               "entre 2001 et 2023")
 
 #9. Création des cartes et stockage
