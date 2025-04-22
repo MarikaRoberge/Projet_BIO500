@@ -11,12 +11,12 @@
   source("verification_data.R") #sript qui permet de valider et vérifier que nos modifications/corrections se sont bien faites
   source("create_unique_id.R") #script qui permet d'ajouter une colonne de id de site à la table primaire
   source("create_site_id.R") #script qui crée un site id pour changer la combinaison unique de lat et lon
-  source("creer_cartes_diversite.R") #script pour faire les cartes de biodiversité dans le temps avec des gap de 25 ans
+  source("creer_cartes_diversite.R") #script pour créer les cartes de biodiversité dans le temps avec blocs de 25 ans
   source("creer_graph_diversite.R") #script pour créer le graphique de diversité
-  source("intermediaire_cartes.R") #script qui joint les fichiers pour l'analyse des cartes de diversit.
+  source("creer_cartes_pcanadensis.R") #script pour créer les cartes de Papilio canadensis avec blocs de 50 ans
+  source("intermediaire_cartes.R") #script qui joint les fichiers pour l'analyse des cartes de diversité
   source("intermediaire_graph.R") #script qui joint les fichiers pour l'analyse graphique
-  source("intermediaire_points.R") #script qui joint les fichiers pour creation graphique points
-  source("creer_cartes_pcanadensis.R") #fonction qui crée les graphiques de points
+  source("intermediaire_points.R") #script qui joint les fichiers pour creation de l'analyse des cartes de P. canadensis
   source("SQLtables.R")  # script de SQL qui permet de créer nos tables (notre table primaire et nos deux tables secondaires)
   ##Téléchargement des librairies pour _targets.R
   library(targets)
@@ -113,10 +113,21 @@ list(
     format = "file"
   ),
   
-  # Étape 13: Association au rapport RMarkDown
-  tar_render(
-  name = rapport, # Cible du rapport
-  path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
-   )
+  # # Étape 13: Association au rapport RMarkDown
+  # tar_render(
+  # name = rapport, # Cible du rapport
+  # path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
+  #  )
+  #Commentaire sur l'étape 13 : Nous avons essayé de plusieurs manières d'associer notre RMarkDown à notre pipeline targets 
+  #avec tar_render, mais ça ne fonctionne pas. Nous avons remarqué que quand nous retirons les codes chunck du Rapport.Rmd 
+  #(qui font référence à nos figures et permettent de les insérer dans le rapport), nous sommes en mesure de faire l'association
+  #RMarkDown avec le pipeline targets. Cependant, ce n'est pas l'idéal parce que nos figures ne se retrouvent pas dans le rapport.
+  #Ce que nous avons décidé de faire, c'est de retirer l'étape 13. En effet, avec le reste de notre pipeline, on est capable de 
+  #faire nos analyses, de générer nos figures, et de les sauvegarder dans le dossier Rapport. La seule étape supplémentaire que ça
+  #nécessite pour le rapport, c'est qu'après avoir fait tar_make(), on doit aller dans le dossier Rapport et cliquer sur 
+  #Rapport.Rmd. Ensuite, on fait tout simplement "Knit🧶" et ça génère notre rapport (un rapport avec les figures mises à jour). Cela 
+  #assure quand même une certaine reproductibilité. Sinon, pour tenter de montrer comment on aurait aimé que ça fonctionne, on a 
+  #rajouté un autre rapport nommé "Rapport_render.Rmd" dans lequel on a inscrit les fonctions de création de graphique et cartes 
+  #dans les codes chunck.
 )
 
