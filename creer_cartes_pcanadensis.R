@@ -1,21 +1,5 @@
-#carte du Québec
-#######
-# {
-#   library(ggplot2)
-#   library(tidyverse)
-#   library(sf)
-#   library(maps)
-#   #library(rmapshaper) # the package that allows geo shape transformation
-#   #library(tmap)
-#   library(rnaturalearth)
-#   library(rnaturalearthhires)
-#   library(dplyr)
-#   library(canadianmaps)
-#   library(RSQLite)
-#   library(patchwork)
-# }
-
-# 
+# carte du Québec pour les observations de Papilio canadensis 
+# Installation de la carte à partir d'un github, donc le télécharger de cette façon si vous l'avez pas
 # install.packages(
 #   "rnaturalearthhires",
 #   repos = "https://ropensci.r-universe.dev",
@@ -24,15 +8,16 @@
 
 
 
-######
-
 graph_points <- function(donnees_pc,output_dir){
 
-#1. Création carte du canada zoom in sur la belle province  
+#1. Création carte du Canada zoom in sur la belle province (ON VEUT LE QUÉBEC LIBRE ICITTE!)  
 canada <- ne_states(country = "Canada", returnclass = "sf")
 qc <- canada %>%
   filter(name_en == "Quebec") %>%
   st_transform(32198)
+
+#Gens du pays c'est à votre tour de vous laisser parler d'amour❤️
+
 
 
 #2. À partir des observations des papillons tigrés Papilio canadensis, sélectionner 
@@ -66,7 +51,7 @@ points_2 <- st_as_sf(donnees_pc2, coords = c("lon", "lat"), crs = 4326)
 points_3 <- st_as_sf(donnees_pc3, coords = c("lon", "lat"), crs = 4326)
 points_4 <- st_as_sf(donnees_pc4, coords = c("lon", "lat"), crs = 4326)
 
-#8. Créations de listes pour render plusieurs graphiques
+#8. Créations de listes pour produire plusieurs graphiques
 pc <- list(points_1, points_2, points_3, points_4)
 titre <- list("entre 1859 et 1900", "entre 1901 et 1950", "entre 1951 et 2000",
               "entre 2001 et 2023")
@@ -86,15 +71,22 @@ for (i in 1:4) { #car on a 4 groupes d'années
     theme_minimal() +
     labs(title = titre_carte,  
          subtitle = titre[[i]])
+ 
+  # Ajout du caption seulement à la dernière carte pour la projection de ceux-ci
+  if (i == 4) {
+    p <- p + labs(caption = "Projection locale EPSG:32198")
+  }
   
   liste_cartes[[i]] <- p
 }
+
+
 
 #10. Création d'un dossier pour mettre la carte
 if (!dir.exists(output_dir)) {
   dir.create(output_dir, recursive = TRUE)}
 
-#11. Combinaison finale des 6 cartes en une seule image
+#11. Combinaison finale des 4 cartes en une seule image
 image_finale <- (liste_cartes[[1]] | liste_cartes[[2]]) /
                    (liste_cartes[[3]] |liste_cartes[[4]])
 

@@ -26,9 +26,8 @@ type_colonne <- function(Brute) {
   #directement dans la fonction (petit cheat)
 }
 
-
 #fonction passant la colonne dwc en date puis en character
-  #pour enlever les TXX:XX:XX sans garder le format "date" problémaique
+#pour enlever les TXX:XX:XX sans garder le format "date" problémaique
 date_c <- function(X)
 { 
   X$dwc_event_date <- as.Date(X$dwc_event_date, tryFormats = "%Y-%m-%d" )
