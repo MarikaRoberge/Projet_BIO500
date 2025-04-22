@@ -1,0 +1,398 @@
+---
+title: Variations spatio-temporelles de la biodiversité des lépidoptères au Québec
+
+author: 
+  - name: Marika Roberge
+    affiliation: a
+  - name: Bertrand Labrecque
+    affiliation: a
+  - name: Juliette Boulet-Thomas
+    affiliation: a
+    
+address: 
+  - code: a
+    address: Faculté des sciences, Département de biologie, 2500 Boulevard de l'Université, Sherbrooke, Québec, J1K 2R1
+
+
+## Remove this if not required
+
+abstract: |
+  Ce rapport explore l’évolution de la diversité des lépidoptères au Québec à partir d’environ 150 ans de données de présence. Trois analyses ont été menées : (1) la variation temporelle de la richesse spécifique, (3) les changements de répartition de Papilio canadensis, et (3) l’évolution spatio-temporelle de la diversité. Les résultats révèlent une hausse marquée des observations au fil du temps, probablement liée à l’essor de la science participative. Des cartes spatio-temporelles montrent une couverture accrue et une diversité croissante dans le sud du Québec. Ces tendances soulignent l’importance de considérer les biais d’échantillonnage pour mieux distinguer les effets réels des perturbations environnementales.
+
+acknowledgments: | 
+
+keywords: 
+  - lepidopteres
+  - communautés
+  - variation temporelle
+  - variation spatiale
+
+## must be one of pnasresearcharticle (usual two-column layout), pnasmathematics (one column layout), or pnasinvited (invited submissions only)
+pnas_type: pnasresearcharticle
+
+bibliography: pnas-sample.bib
+csl: pnas.csl
+
+## change to true to add optional line numbering
+lineno: false
+
+output: rticles::pnas_article
+---
+
+# Introduction et questions de recherche
+
+Les lépidoptères, en tant qu’indicateurs sensibles à la température et aux changements environnementaux [@devictor_differences_2012; @parmesan_poleward_1999], sont particulièrement utiles pour évaluer les effets des perturbations anthropiques, notamment les changements climatiques et l’altération des habitats. Au Québec, plusieurs espèces pourraient voir leur aire de répartition modifiée, soit par l’expansion d’espèces thermophiles vers le nord, soit par un recul des espèces froid-adaptées.  
+Dans ce contexte, nous avons étudié l’évolution de la diversité des lépidoptères au Québec, à la fois dans le temps et dans l’espace, en nous basant sur les données de présence collectées depuis environ 150 ans. L’objectif principal est d’évaluer les changements dans la diversité des lépidoptères au Québec à travers ces deux dimensions. Ainsi, la première analyse se pose la question suivante : comment la richesse spécifique des lépidoptères a-t-elle évolué au fil des années ? La deuxième analyse cherche à répondre à la question suivante : comment la répartition de Papilio canadensis a-t-elle changé au cours du temps et dans l’espace au Québec ? Enfin, la troisième analyse s'interroge sur : comment la diversité et la répartition des lépidoptères ont-elles évolué au fil du temps et selon les régions du Québec ?  
+Ces résultats permettront de discuter des mécanismes potentiels à l’origine des patrons observés, entre biais d’échantillonnage et signaux biologiques réels, et d’évaluer si la composition des communautés de lépidoptères au Québec reflète une transformation de la biodiversité entomologique.
+
+
+# Méthode et résultats d'analyse  
+Pour la première analyse, le graphique présenté ici (Fig. 1) illustre l'évolution du nombre d'espèces uniques de lépidoptères observées au fil des différentes années au Québec. Ce graphique permet de visualiser les tendances et fluctuations dans la diversité des espèces le long de la ligne du temps dans la province. Cette analyse repose sur un total de XX XXX observations valides réparties entre 1859 et 2024.
+
+Le choix d'illustrer le nombre d'espèces uniques de lépidoptères permet de mieux refléter la diversité réelle des espèces observées, en excluant les doublons et les variations dues à la fréquence des observations. Par exemple, si une même espèce est observée plusieurs fois dans une année, elle ne sera comptée qu'une seule fois, offrant ainsi une vision plus précise des tendances de diversité. Cela permet également d'analyser les fluctuations des populations et l'impact des facteurs environnementaux, comme une variation climatique, sur la présence de certaines espèces.  
+
+```{R}
+# Chargement des bibliothèques
+library(targets)
+library(sf)  # Pour travailler avec des objets spatiaux
+library(rnaturalearth)  # Pour obtenir des données géographiques
+library(dplyr)  # Pour manipuler les données
+library(ggplot2)  # Pour créer des graphiques
+
+
+#Fonction qui produit un graphique qui démontre le nombre d'espèce de Lépidoptères recenser à chaque année
+creer_graphique_diversite <- function(donnees, output_dir, crs = 4326) {
+  
+  
+  # 3. Conversion en objet spatial
+  donnees_sf <- st_as_sf(donnees, coords = c("lon", "lat"), crs = crs)
+  
+  # 4. Obtenir le polygone du Québec
+  qc <- rnaturalearth::ne_states(country = "Canada", returnclass = "sf") %>%
+    filter(name_en == "Quebec") %>%
+    st_transform(crs)
+  
+  # 5. Filtrer pour garder que les points au Québec
+  donnees_qc <- st_join(donnees_sf, qc, join = st_within, left = FALSE)
+  
+  # 6. Compter les espèces uniques par année
+  biodiv_temp <- donnees_qc %>%
+    st_drop_geometry() %>%
+    filter(!is.na(observed_scientific_name), !is.na(year_obs)) %>%
+    group_by(year_obs) %>%
+    summarise(n_especes = n_distinct(observed_scientific_name)) %>%
+    arrange(year_obs)
+  
+  # Création du graphique de biodiversité
+  p <- ggplot(biodiv_temp, aes(x = year_obs, y = n_especes)) +
+    geom_line(color = "#2ca02c", linewidth = 1) +
+    labs(
+      title = "Évolution de la richesse spécifique des \nlépidoptères au Québec",
+      x = "Année",
+      y = "Nombre d'espèces uniques observées"
+    ) +
+    theme_minimal() +
+    theme(
+      axis.line = element_line(size = 1, color = "black"),  # Lignes des axes plus épaisses et noires
+      axis.ticks = element_line(size = 1, color = "black"),  # Tic des axes
+      panel.grid.major = element_line(size = 0.5, color = "gray"),  # Quadrillage majeur plus visible
+      panel.grid.minor = element_line(size = 0.5, color = "lightgray"),  # Quadrillage mineur
+      plot.title = element_text(size = 18, face = "bold", hjust = 0.5),  # Titre du graphique
+      axis.title.x = element_text(size = 14, face = "bold"),  # Nom de l'axe X
+      axis.title.y = element_text(size = 14, face = "bold")   # Nom de l'axe Y
+    )
+  
+  # Définir le chemin du fichier de sortie
+  output_file <- file.path(output_dir, "graphique_biodiversite.png")
+  
+  # Sauvegarder le graphique
+  ggsave(filename = output_file, plot = p, width = 10, height = 6, dpi = 300)
+  
+  
+  #retourner le fichier
+  return(output_file) 
+}
+
+tar_load(donnees_graphique)
+creer_graphique_diversite(donnees_graphique, "Rapport")
+
+```
+
+
+
+
+
+```{r fig_graphique_biodiversite, echo=FALSE, fig.width=7, fig.height=5, out.width="90%", fig.cap="Variation du nombre d'espèces de lépidoptères au Québec en fonction du temps."}
+knitr::include_graphics("graphique_biodiversite.png")
+```
+
+On y observe une augmentation relativement lente et stable du nombre d’espèces identifiées jusqu’au début des années 2000, suivie d’une hausse extrêmement marquée à partir de 2005-2010, atteignant plus de 1500 espèces uniques observées.
+
+Comme deuxième analyse, elle porte sur une espèce commune au Québec, *Papilio canadensis*, communément appelé Papillon tigré du Canada (Fig. 2). 
+
+```{r fig-papilio, echo=FALSE, out.width='80%', fig.cap="Papillon tigré du Canada (*Papilio canadensis*) observé dans son habitat naturel.", fig.align="center"}
+knitr::include_graphics("Papilio_canadensis.png")
+```
+
+Cette espèce est présente dans toutes les provinces et territoires du Canada. Pour le Québec, on peut la trouver de la frontière à 100 km à l’ouest de Radisson. Ce papillon est parfait pour l’étude, car il couvre une grande partie du Québec et est facilement reconnaissable, ce qui en fait un spécimen parfait pour une étude sur la biodiversité des lépidoptères dans le temps au Québec [@layberry_butterflies_1998].
+
+L'analyse portant sur l'espèce permet de décrire comment la répartition de *Papilio canadensis* change dans le temps et l'espace.
+
+```{R}
+library(magick)       # Pour manipuler les images (rogner les marges)
+
+graph_points <- function(donnees_pc,output_dir){
+
+#1. Création carte du Canada zoom in sur la belle province (ON VEUT LE QUÉBEC LIBRE ICITTE!)  
+canada <- ne_states(country = "Canada", returnclass = "sf")
+qc <- canada %>%
+  filter(name_en == "Quebec") %>%
+  st_transform(32198)
+
+#Gens du pays c'est à votre tour de vous laisser parler d'amour❤️
+
+
+
+#2. À partir des observations des papillons tigrés Papilio canadensis, sélectionner 
+#les observations de groupes d'années respectant les limites géographiques du Québec
+
+#3. Sélection des localisations des années 1850 à 1900
+donnees_pc1 <- donnees_pc[donnees_pc$year_obs >= 1858 & donnees_pc$year_obs < 1900, ]
+donnees_pc1 <- distinct(donnees_pc1, unique_id, .keep_all = TRUE)
+donnees_pc1 <- filter(donnees_pc1, (lat >= 45 & lat <= 61) & (lon >= -80 & lon <= -57), .preserve = TRUE)
+
+#4. Sélection des localisations des années 1900 à 1950
+donnees_pc2 <- donnees_pc[donnees_pc$year_obs >= 1900 & donnees_pc$year_obs < 1950, ]
+donnees_pc2 <- distinct(donnees_pc2, unique_id, .keep_all = TRUE)
+donnees_pc2 <- filter(donnees_pc2, (lat >= 45 & lat <= 61) & (lon >= -80 & lon <= -57), .preserve = TRUE)
+
+
+#5. Sélection des localisations des années 1950 à 2000
+donnees_pc3 <- donnees_pc[donnees_pc$year_obs >= 1950 & donnees_pc$year_obs < 2000, ]
+donnees_pc3 <- distinct(donnees_pc3, unique_id, .keep_all = TRUE)
+donnees_pc3 <- filter(donnees_pc3, (lat >= 45 & lat <= 61) & (lon >= -80 & lon <= -57), .preserve = TRUE)
+
+#6. Sélection des localisations des années 2000 à 2024
+donnees_pc4 <- donnees_pc[donnees_pc$year_obs >= 2000 & donnees_pc$year_obs < 2024, ]
+donnees_pc4 <- distinct(donnees_pc4, unique_id, .keep_all = TRUE)
+donnees_pc4 <- filter(donnees_pc4, (lat >= 45 & lat <= 61) & (lon >= -80 & lon <= -57), .preserve = TRUE)
+
+
+#7. Transformer les lon et lat en points géographiques interprétables pour la carte (sf)
+points_1 <- st_as_sf(donnees_pc1, coords = c("lon", "lat"), crs = 4326)
+points_2 <- st_as_sf(donnees_pc2, coords = c("lon", "lat"), crs = 4326)
+points_3 <- st_as_sf(donnees_pc3, coords = c("lon", "lat"), crs = 4326)
+points_4 <- st_as_sf(donnees_pc4, coords = c("lon", "lat"), crs = 4326)
+
+#8. Créations de listes pour produire plusieurs graphiques
+pc <- list(points_1, points_2, points_3, points_4)
+titre <- list("entre 1859 et 1900", "entre 1901 et 1950", "entre 1951 et 2000",
+              "entre 2001 et 2023")
+
+#9. Création des cartes et stockage
+
+liste_cartes <- list()
+
+for (i in 1:4) { #car on a 4 groupes d'années
+  data_sub <- pc[[i]]
+  
+  titre_carte <- if (i == 1) "Observation de Papilio canadensis au Québec" else NULL
+  
+  p <- ggplot() +
+    geom_sf(data = qc, fill = "#FFFFFF", color = "black", size = 1) +  # Carte du Québec
+    geom_sf(data = data_sub, aes(geometry = geometry), color = "red", size = 1) +  # Ajouter les points
+    theme_minimal() +
+    labs(title = titre_carte,  
+         subtitle = titre[[i]])
+ 
+  # Ajout du caption seulement à la dernière carte pour la projection de ceux-ci
+  if (i == 4) {
+    p <- p + labs(caption = "Projection locale EPSG:32198")
+  }
+  
+  liste_cartes[[i]] <- p
+}
+
+
+
+#10. Création d'un dossier pour mettre la carte
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)}
+
+#11. Combinaison finale des 4 cartes en une seule image
+image_finale <- (liste_cartes[[1]] | liste_cartes[[2]]) /
+                   (liste_cartes[[3]] |liste_cartes[[4]])
+
+ggsave(filename = file.path(output_dir, "cartes_pcanadensis.png"),
+       plot = image_finale,
+       width = 7, height = 5, units = "in", dpi = 300)
+
+#12. Rogner les marges de l'image finale
+img <- image_read(file.path(output_dir, "cartes_pcanadensis.png"))
+img_crop <- image_trim(img)
+image_write(img_crop, path = file.path(output_dir, "cartes_pcanadensis.png"))  # Remplace l’image originale
+
+return(invisible(NULL))
+}
+
+tar_load(donnees_points)
+graph_points(donnees_points, "Rapport")
+
+```
+
+```{r fig_cartes_pcanadensis, fullpage-figure, echo=FALSE, fig.width=7, fig.height=6, out.width="100%", fig.cap="Image de la province du Québec et de 4 cartes qui montrent l'évolution de *Papilio canadensis* au fil du temps (fenêtres de 50 ans).", fig.align="left", fig.asp=1}
+knitr::include_graphics("cartes_pcanadensis.png") 
+```
+
+Les données d’observation de *Papilio Canadensis* ont été combinées en 4 groupes pour obtenir une meilleure visualisation des observations dans le temps (Fig. 3). Ces groupes sont de 1859 à 1900, de 1900 à 1950, de 1950 à 2000 et de 2000 à 2023, soit la dernière année comportant les données. Ces tranches de temps ont été choisies afin de limiter le nombre de graphiques produits et d’avoir une meilleure compréhension de l’évolution au fil des siècles. Un système de présence-absence a été utilisé pour l’ensemble des 50684 sites d’observation. Une marque sur le graphique indiquera si le papillon a été observé sur ce site dans l’intervalle de temps définit.  
+Il y a beaucoup plus d’observations avec le temps, soit 7 entre 1859 et 1900, 86 entre 1901 et 1950, 617 entre 1951 et 2000 et 923 entre 2001 et 2023. Entre 1901 et 1950, il y a déjà des observations près de Waskaganish, ces observation seront de plus en plus au nord après ces années. Les observations les plus au nord seront dans les environs de Radisson. On remarque une diminution des observations dans le centre du Québec entre la carte 3 et la carte 4. Les observation de la carte 4 sont beaucoup plus concentrées dans la région du Saint-Laurent et dans le sud-ouest alors que celles de la carte 3 sont plus concentrées a centre de la province. <br>
+
+Maintenant, dans cette section, nous analysons l'évolution de la biodiversité des lépidoptères au fil du temps à travers plusieurs visualisations. Nous allons créer des cartes et des graphiques pour observer les variations et tendances.  
+Pour l'étude de la biodiversité des lépidoptères dans le temps et l'espace, une figure regroupant six cartes a été réalisée. Dans cette figure, on observe la carte de la province du Québec qui est notre aire d'étude principale. Les points géographiques de la base de données qui sont à l'extérieur de la province ne sont pas pris en compte. La carte la plus ancienne débute en 1875 et représente les données sur 25 ans, soit de 1875 jusqu'à la fin de 1879, ces bonds de 25 ans de données vont jusqu'aux données les plus récentes, soit en 2024. Cette image permet donc de combiner une analyse temporelle (par tranche de 25 ans) et une agrégation spatiale via une grille hexagonale. En effet, une grille hexagonable est utilisée pour éviter les effets de bord qu'on a avec une grille carrée. De plus, elle permet une meilleure agrégration spatiale. La projection utilisée pour cette carte est EPSG 32198, qui est la projection locale du Québec. Cela permet une représentation précise à l'échelle régionale. Pour finir, une moyenne de nombre d'espèces par cellule pour chaque période de temps a été fait. Ce qui donne une idée plus stable et comparable de la diversité à travers le temps.  
+En conclusion, ces 6 cartes sont combinées en une seule image finale, ce qui permet une comparaison visuelle claire de l’évolution spatio-temporelle de la diversité spécifique au Québec. Ce qui est utile visualiser les zones où la diversité augmente, diminue ou reste stable. 
+
+La Figure 4 ci-dessous montrent l'évolution de la biodiversité des lépidoptères pour différentes périodes et critères. 
+
+```{r}
+
+library(scales)         # Pour ajuster les échelles de couleurs (si nécessaire)
+
+#Fonction qui génère une image composé de 6 cartes (de 1875 à 2024 avec des bonds de 25 ans)
+#Ces cartes représente des données spatio temporelle des lépidoptères au Québec
+#On peut observer le territoire avoir plus de point d'observation et une augmentation d'espèces
+creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
+  
+  # 1. Nettoyage
+  donnees <- donnees %>%
+    filter(year_obs >= 1875 & year_obs <= 2024) %>% #On prend les dates entre 1875 et 2024 seulement
+    mutate(
+      periode_25ans = floor((year_obs - 1875) / 25) * 25 + 1875, 
+      periode_label = paste0(periode_25ans, "-", periode_25ans + 24) #On produit des périodes distincte de 25 ans
+    )
+  
+  donnees_sf <- st_as_sf(donnees, coords = c("lon", "lat"), crs = 4326)
+  
+  # 2. Québec + grille
+  canada <- ne_states(country = "Canada", returnclass = "sf")
+  qc <- canada %>% 
+    filter(name_en == "Quebec") %>%
+    st_transform(32198)
+  
+  grid_hex <- st_make_grid(qc, cellsize = cellsize) %>%
+    st_as_sf() %>%
+    st_intersection(qc) %>%
+    st_make_valid() %>%
+    mutate(grid_id = row_number()) #On produit une grille hexagonale
+  
+  donnees_local <- donnees_sf %>%
+    st_transform(32198) %>%
+    filter(!is.na(observed_scientific_name)) #Filtrer les données pour avoir juste les espèces observer sur le territoire de la province du Québec
+  
+  # 3. Agrégation spatiale modifiée
+  grid_data <- st_join(donnees_local, grid_hex) %>%
+    st_drop_geometry() %>%
+    group_by(grid_id, periode_label) %>%
+    summarise(
+      n_especes = n_distinct(observed_scientific_name, na.rm = TRUE), # Comptage des espèces uniques
+      .groups = "drop"
+    ) %>%
+    left_join(grid_hex, by = "grid_id") %>%
+    st_as_sf() %>%
+    st_transform(4326)
+
+  
+  # 4. Création des cartes et stockage
+  periodes <- sort(unique(grid_data$periode_label))
+  liste_cartes <- list()
+  
+  for (periode in periodes) {
+    data_sub <- grid_data %>% filter(periode_label == periode)
+    
+    titre <- if (periode == periodes[1]) "Diversité spécifique au Québec" else NULL #Titre des cartes avec la période
+    
+    p <- ggplot() +
+      geom_sf(data = data_sub,
+              aes(fill = n_especes),
+              color = "white", alpha = 0.8) +
+      geom_sf(data = qc %>% st_transform(4326),
+              fill = NA, color = "black", linewidth = 0.3) +
+      scale_fill_gradientn(
+        name = "Nombre moyen d'espèces",
+        colors = hcl.colors(10, "RdYlGn"),
+        limits = c(1, max(grid_data$n_especes, na.rm = TRUE)) # Échelle dynamique
+      ) +
+      theme_void() +
+      
+      labs(title = titre,
+           subtitle = paste("Période :", periode))
+    
+  #5. Ajouter la légende uniquement pour le 6e graphique (en fait c'est juste pour que ça apparaît en bas à droite de l'image globale)
+    if (periode == "2000-2024") { 
+      p <- p + labs(caption = "Projection locale EPSG:32198 - Données lissées sur 25 ans")
+    }
+      
+    liste_cartes[[periode]] <- p
+  }
+  
+  #6. Création d'un dossier pour mettre la carte
+  if (!dir.exists(output_dir)) {
+    dir.create(output_dir, recursive = TRUE)}
+  
+  #7. Combinaison finale des 6 cartes en une seule image
+  image_finale <- (liste_cartes[[1]] | liste_cartes[[2]]) /
+    (liste_cartes[[3]] | liste_cartes[[4]]) /
+    (liste_cartes[[5]] | liste_cartes[[6]])
+  
+  ggsave(filename = file.path(output_dir, "cartes_combinees.png"),
+         plot = image_finale,
+         width = 15, height = 10, units = "in", dpi = 300)
+  
+  #8. Rogner les marges de l'image finale pour que ce soit plus jolie ✨
+  img <- image_read(file.path(output_dir, "cartes_combinees.png"))
+  img_crop <- image_trim(img)
+  image_write(img_crop, path = file.path(output_dir, "cartes_combinees.png"))  # Remplace l’image originale
+  
+  return(invisible(NULL))
+}
+
+tar_load(donnees_carte)
+creer_cartes_diversite(donnees_carte, 50000, "Rapport")
+
+```
+
+```{r fig_cartes_combinees, fullpage-figure, echo=FALSE, fig.width=7, fig.height=6, out.width="100%", fig.cap="Image de la province du Québec et de six cartes qui montrent l'évolution de la biodiversité des espèces de lépidoptères au fil du temps (fenêtres de 25 ans).", fig.align="left", fig.asp=1}
+knitr::include_graphics("cartes_combinees.png") 
+```
+
+Ces cartes illustrent une augmentation progressive de la couverture spatio-temporelle des données au fil des décennies. Plus on avance dans le temps, plus le nombre de cellules remplies augmente, avec des données qui deviennent à la fois plus denses, plus complètes et de plus grande valeurs. 
+
+Un premier point à souligner est que la période allant de 1875 à 1899 comporte très peu de données, principalement concentrées autour des grandes villes comme Montréal, Québec et Sherbrooke. La diversité moyenne est entre faible à modérée, mais les données sont trop rares pour en tirer des conclusions solides. Entre 1900-1934 et 1925-1949, on remarque une progression lente de la couverture grâce à l’accumulation graduelle de données d’échantillonnage. Par contre, l’effort demeure limité, ce qui rend les valeurs de diversité peu fiables, à l’exception des zones urbaines du sud qui sont mieux couvertes.
+
+Entre 1950-1974 et 1975-1999, on remarque l'apparition de cellules de couleur orangée. Le sud et l'ouest du Québec en dehors des zones urbaines sont de plus mieux couvert. Il. y a une meilleure répartition des données dans l'espace.
+
+La majorité du sud du Québec est désormais bien couverte entre les années 2000 et 2024, notamment autour des grands centres urbains et des zones agricoles. On observe également une augmentation de la diversité, illustrée par la présence accrue de cellules en oranger et jaune.
+
+Enfin, pour la période la plus récente (2000-2024), la couverture devient à la fois plus dense et plus étendue à l’échelle du territoire. La diversité moyenne y est généralement plus élevée, ce qui reflète probablement un important renforcement des efforts de suivi, en partie grâce à l’émergence de bases de données participatives comme iNaturalist.
+
+
+# Discussion
+
+Pour ce qui est de la première analyse, l'augmentation abrupte du nombre d'espèces de lepidoptères depuis 2005 au niveau de la Figure 1 ne reflète probablement pas une véritable explosion de la biodiversité des lépidoptères, mais plutôt un effort d’échantillonnage et d’identification beaucoup plus important au cours des deux dernières décennies. En effet, plusieurs facteurs peuvent expliquer cette tendance, notamment la montée en puissance de la science participative (avec des plateformes comme iNaturalist et eButterfly), la généralisation de l’utilisation des appareils photo numériques et des outils numériques de reconnaissance d’espèces, ainsi qu’un intérêt grandissant du public et des chercheurs pour la documentation de la biodiversité [@mandeville_participatory_2023]. Ces observations concordent avec les résultats d’une étude récente indiquant que l’augmentation des données disponibles sur la biodiversité depuis le début des années 2000 s’explique en grande partie par l’implication citoyenne croissante et par une couverture spatiale et temporelle des relevés plus étendue [@mandeville_participatory_2023]. 
+
+Au niveau de la deuxième analyse, la figure 3 nous apprend les régions où les papillons ont été observés à travers le temps. On peut constater qu’il y a de plus en plus d’observations au travers des années, ce qui est normal étant donné que le nombre d’observateurs a augmenté et les outils de partage des données ont évolué. Il est intéressant de constater qu’entre la carte 3 et la carte 4, on note une diminution de la population au centre du Québec et une augmentation au sud du Québec et proche de l’Ontario, et ce, malgré un nombre plus important d’observateurs. Il pourrait s’agir d’une diminution de la population dans cette région ou un moins grand effort d’échantillonnage. À part la distribution géographique de l’espèce, cette carte manque d’information pour avoir une meilleure compréhension de la situation. Par exemple, le nombre d’observation par site et le nombre d’observateurs par tranche de temps auraient pu être ajoutés, ce qui nous aurait aidés à faire un meilleur portait de la population au fil du temps. Le nombre d’observateurs nous aurait aussi aidés à connaître la relation entre l’augmentation d’observation et l’effort d’observation.
+
+Finalement, pour la troisième analyse, un des biais importants associés à la carte de biodiversité spatio-temporelle réside dans l'augmentation du nombre d'observations au fil du temps, ce qui est attendu étant donné l'évolution des efforts d'échantillonnage. Toutefois, ces données traduisent autant les dynamiques biologiques réelles que l'intensité vriable de l'observation. En effet, les avancées technologiques récentes (comme la génétique ou la modélisation climatique) permettent de mettre en lumière des dynamiques écologiques auparavant invisibles, créant ainsi un décalage interprétatif avec les méthodes historiques. Comme souligné dans une étude, les bases de données naturalistes présentent un effort d'échantillonnage inégal dans le temps et dans l'espace, ce qui peut nuire à la représentativité écologique des cartes produites [@navarro_modelisation_2021].
+
+Cela soulève notamment des questions concernant l'interprétation des zones identifiées comme peu diverisifiées (en rouge). Ces zones reflètent-elles réellement une faible diversité biologique ou simplement un manque d'effort d'échantillonnage? Ce questionnement est d'autant plus pertinent lorsqu'on observe que le sud du Québec, mieux couvert par les inventaires, présente aussi une diversité plus élevée [@hillebrand_generality_2004]. Par ailleurs, à partir de 1975, on observe une stabilisation du nombre moyen d'espèces dans plusieurs cellules, ce qui pourrait indiquer que l'effort d'échantillonnage devient suffisant pour représenter de façon plus fidèle la diversité locale. 
+
+
+# Conclusion
+
+Il demeure donc essentiel de tenir compte de l’effort d’échantillonnage afin d’éviter de surévaluer les tendances à long terme en matière de biodiversité.
+
+
+# Références bibliographiques
+
+<!-- Leave these lines as they are at the end of your .Rmd file to ensure placement of methods & acknowledgements sections before the references-->
+\showmatmethods
+\pnasbreak
