@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.19)  22 APR 2025 00:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.19)  22 APR 2025 11:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -917,31 +917,31 @@ Package: pnasresearcharticle 2018/05/06 v1.3 PNAS two column research article st
 ) (./Rapport.aux)
 \openout1 = `Rapport.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
 (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 90.
+Package hyperref Info: Link coloring ON on input line 100.
 (./Rapport.out) (./Rapport.out)
 \@outlinefile=\write4
 \openout4 = `Rapport.out'.
@@ -1004,195 +1004,216 @@ Package: ragged2e 2023/06/22 v3.6 ragged2e Package
 \RaggedRightParindent=\skip168
 \JustifyingParindent=\skip169
 )
-LaTeX Info: Redefining \microtypecontext on input line 90.
-Package microtype Info: Applying patch `item' on input line 90.
-Package microtype Info: Applying patch `toc' on input line 90.
+LaTeX Info: Redefining \microtypecontext on input line 100.
+Package microtype Info: Applying patch `item' on input line 100.
+Package microtype Info: Applying patch `toc' on input line 100.
 
-Package microtype Warning: Unable to apply patch `eqnum' on input line 90.
+Package microtype Warning: Unable to apply patch `eqnum' on input line 100.
 
-Package microtype Info: Applying patch `footnote' on input line 90.
-Package microtype Info: Applying patch `verbatim' on input line 90.
-LaTeX Info: Redefining \microtypesetup on input line 90.
+Package microtype Info: Applying patch `footnote' on input line 100.
+Package microtype Info: Applying patch `verbatim' on input line 100.
+LaTeX Info: Redefining \microtypesetup on input line 100.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 90.
+LaTeX Info: Redefining \showhyphens on input line 100.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
 (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 98.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 108.
 (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <9> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 98.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 108.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <22> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 98.
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 98.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 108.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 108.
 (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.54997pt on input line 98.
+(Font)              scaled to size 8.54997pt on input line 108.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.54997pt on input line 98.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 98.
+(Font)              scaled to size 8.54997pt on input line 108.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 108.
 (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 98.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 108.
 (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 98.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 108.
 (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 98.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 108.
 (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 98.
+(Font)              <9> on input line 108.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 98.
+(Font)              <6> on input line 108.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 98.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 98.
+(Font)              <5> on input line 108.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 108.
 (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 98.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 108.
 (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 5.69998pt on input line 98.
+(Font)              scaled to size 5.69998pt on input line 108.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.64998pt on input line 98.
+(Font)              scaled to size 6.64998pt on input line 108.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 98.
+(Font)              <7> on input line 108.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 4.74998pt on input line 98.
+(Font)              scaled to size 4.74998pt on input line 108.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 7.59998pt on input line 100.
+(Font)              scaled to size 7.59998pt on input line 110.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 107.
+(Font)              scaled to size 9.49997pt on input line 117.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.49997pt on input line 107.
+(Font)              scaled to size 9.49997pt on input line 117.
 
-Underfull \hbox (badness 1803) in paragraph at lines 109--133
+Underfull \hbox (badness 1803) in paragraph at lines 119--143
 \T1/lmr/m/n/9 (+20) Ces ré-sul-tats per-me-t-tront de dis-cuter des mé-can-ismes
  []
 
 
-Underfull \hbox (badness 1286) in paragraph at lines 109--133
+Underfull \hbox (badness 1286) in paragraph at lines 119--143
 \T1/lmr/m/n/9 (+20) po-ten-tiels à l'origine des pa-trons ob-servés, en-tre bi-ais
  []
 
+
+
+Package mdframed Info: mdframed works in twoside mode on input line 162.
+Package mdframed Info: mdframed inside float 
+ mdframed uses option nobreak mdframed on input line 162.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 162.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 5.69998pt on input line 162.
 <../Figures_analyse/graphique_biodiversite.png, id=27, 505.89pt x 505.89pt>
 File: ../Figures_analyse/graphique_biodiversite.png Graphic file (type png)
 <use ../Figures_analyse/graphique_biodiversite.png>
-Package pdftex.def Info: ../Figures_analyse/graphique_biodiversite.png  used on input line 143.
+Package pdftex.def Info: ../Figures_analyse/graphique_biodiversite.png  used on input line 164.
 (pdftex.def)             Requested size: 221.48567pt x 221.48842pt.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.64998pt on input line 143.
+(Font)              scaled to size 6.64998pt on input line 164.
 <Papilio_canadensis.png, id=29, 145.49092pt x 100.5599pt>
 File: Papilio_canadensis.png Graphic file (type png)
 <use Papilio_canadensis.png>
-Package pdftex.def Info: Papilio_canadensis.png  used on input line 157.
-(pdftex.def)             Requested size: 145.49055pt x 100.55965pt.
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 159.
-LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.64998pt on input line 159.
-<../Figures_analyse/cartes_pcanadensis.png, id=30, 297.0297pt x 337.5009pt>
-File: ../Figures_analyse/cartes_pcanadensis.png Graphic file (type png)
-<use ../Figures_analyse/cartes_pcanadensis.png>
-Package pdftex.def Info: ../Figures_analyse/cartes_pcanadensis.png  used on input line 167.
-(pdftex.def)             Requested size: 246.09686pt x 279.63644pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 167--168
-
- []
-
-
-
+Package pdftex.def Info: Papilio_canadensis.png  used on input line 178.
+(pdftex.def)             Requested size: 196.87823pt x 136.08296pt.
 
 
 [1{c:/Users/marik/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
- <../Figures_analyse/graphique_biodiversite.png> <./Papilio_canadensis.png (PNG copy)>]
-Package mdframed Info: mdframed works in twoside mode on input line 191.
-Package mdframed Info: mdframed inside float 
- mdframed uses option nobreak mdframed on input line 191.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 191.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 5.69998pt on input line 191.
+ <../Figures_analyse/graphique_biodiversite.png>]
+<../Figures_analyse/cartes_pcanadensis.png, id=48, 297.0297pt x 337.5009pt>
+File: ../Figures_analyse/cartes_pcanadensis.png Graphic file (type png)
+<use ../Figures_analyse/cartes_pcanadensis.png>
+Package pdftex.def Info: ../Figures_analyse/cartes_pcanadensis.png  used on input line 197.
+(pdftex.def)             Requested size: 246.09686pt x 279.63644pt.
 
-
-<../Figures_analyse/cartes_combinees.png, id=51, 586.5915pt x 706.3188pt>
-File: ../Figures_analyse/cartes_combinees.png Graphic file (type png)
-<use ../Figures_analyse/cartes_combinees.png>
-Package pdftex.def Info: ../Figures_analyse/cartes_combinees.png  used on input line 223.
-(pdftex.def)             Requested size: 246.09686pt x 296.32854pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 223--224
+Underfull \hbox (badness 10000) in paragraph at lines 197--198
 
  []
 
 
 
-[2 <../Figures_analyse/cartes_pcanadensis.png> <../Figures_analyse/cartes_combinees.png>]
+<../Figures_analyse/cartes_combinees.png, id=49, 586.5915pt x 706.3188pt>
+File: ../Figures_analyse/cartes_combinees.png Graphic file (type png)
+<use ../Figures_analyse/cartes_combinees.png>
+Package pdftex.def Info: ../Figures_analyse/cartes_combinees.png  used on input line 254.
+(pdftex.def)             Requested size: 246.09686pt x 296.32854pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--255
+
+ []
 
 
-Underfull \hbox (badness 4846) in paragraph at lines 294--304
+
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 279.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 6.64998pt on input line 279.
+[2 <./Papilio_canadensis.png (PNG copy)> <../Figures_analyse/cartes_pcanadensis.png>]
+
+
+Underfull \hbox (badness 4846) in paragraph at lines 342--352
 []\T1/lmr/m/n/9 (+20) Cela soulève no-tam-ment des ques-tions con-cer-nant
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 316--321
+Underfull \hbox (badness 1824) in paragraph at lines 355--358
+\T1/lmr/m/n/9 (+20) Il de-meure donc es-sen-tiel de tenir compte de l'effort
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 368--373
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--328
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 330--335
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 337--341
+Underfull \hbox (badness 10000) in paragraph at lines 375--380
 
  []
 
 
 
-[3] 
+[3 <../Figures_analyse/cartes_combinees.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 382--387
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 389--394
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 396--400
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 402--407
+
+ []
+
+
+
+
+
+[4
+
+] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./Rapport.aux)
  ***********
@@ -1203,18 +1224,18 @@ Package rerunfilecheck Info: File `Rapport.out' has not changed.
 (rerunfilecheck)             Checksum: E2F56123402CDD6102E7F27A7BCDB16F;826.
  ) 
 Here is how much of TeX's memory you used:
- 29320 strings out of 471546
- 549840 string characters out of 5517580
- 949487 words of memory out of 5000000
- 55132 multiletter control sequences out of 15000+600000
- 701887 words of font info for 182 fonts, out of 8000000 for 9000
+ 29355 strings out of 471546
+ 550466 string characters out of 5517580
+ 955369 words of memory out of 5000000
+ 55143 multiletter control sequences out of 15000+600000
+ 702642 words of font info for 195 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  117i,14n,121p,1004b,1116s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Rapport.pdf (3 pages, 1476994 bytes).
+Output written on Rapport.pdf (4 pages, 1481669 bytes).
 PDF statistics:
- 120 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
- 18 named destinations out of 1000 (max. 500000)
+ 133 PDF objects out of 1000 (max. 8388607)
+ 102 compressed objects within 2 object streams
+ 21 named destinations out of 1000 (max. 500000)
  58441 words of extra memory for PDF output out of 61914 (max. 10000000)
 
