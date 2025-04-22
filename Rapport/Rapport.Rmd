@@ -108,7 +108,7 @@ Cela soulève notamment des questions concernant l'interprétation des zones ide
 
 # Conclusion
 
-Il demeure donc essentiel de tenir compte de l’effort d’échantillonnage afin d’éviter de surévaluer les tendances à long terme en matière de biodiversité.
+En conclusion, évaluer la biodiversité des lépidoptères au Québec à partir de ces cartes présente des défis, notamment en raison de l'augmentation du nombre d'observateurs au fil du temps, ce qui entraîne une augmentation des observations. Toutefois, ces graphiques offrent une bonne visualisation de la diversité des lépidoptères dans la région et de leur ditribution. Pour obtenir une compréhension plus précise et complète de la situation globale, des analyses plus approfondies seront nécessaires.
 
 
 # Références bibliographiques
