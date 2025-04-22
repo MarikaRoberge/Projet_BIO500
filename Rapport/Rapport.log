@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.19)  22 APR 2025 11:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.19)  22 APR 2025 12:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1117,29 +1117,23 @@ Package mdframed Info: mdframed inside a box
  mdframed uses option nobreak mdframed on input line 162.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 5.69998pt on input line 162.
-<../Figures_analyse/graphique_biodiversite.png, id=27, 505.89pt x 505.89pt>
-File: ../Figures_analyse/graphique_biodiversite.png Graphic file (type png)
-<use ../Figures_analyse/graphique_biodiversite.png>
-Package pdftex.def Info: ../Figures_analyse/graphique_biodiversite.png  used on input line 164.
-(pdftex.def)             Requested size: 221.48567pt x 221.48842pt.
+<graphique_biodiversite.png, id=27, 722.7pt x 433.62pt>
+File: graphique_biodiversite.png Graphic file (type png)
+<use graphique_biodiversite.png>
+Package pdftex.def Info: graphique_biodiversite.png  used on input line 164.
+(pdftex.def)             Requested size: 221.48567pt x 132.8924pt.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 6.64998pt on input line 164.
-<Papilio_canadensis.png, id=29, 145.49092pt x 100.5599pt>
+<Papilio_canadensis.png, id=28, 145.49092pt x 100.5599pt>
 File: Papilio_canadensis.png Graphic file (type png)
 <use Papilio_canadensis.png>
 Package pdftex.def Info: Papilio_canadensis.png  used on input line 178.
 (pdftex.def)             Requested size: 196.87823pt x 136.08296pt.
-
-
-[1{c:/Users/marik/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}
-
-
- <../Figures_analyse/graphique_biodiversite.png>]
-<../Figures_analyse/cartes_pcanadensis.png, id=48, 297.0297pt x 337.5009pt>
-File: ../Figures_analyse/cartes_pcanadensis.png Graphic file (type png)
-<use ../Figures_analyse/cartes_pcanadensis.png>
-Package pdftex.def Info: ../Figures_analyse/cartes_pcanadensis.png  used on input line 197.
-(pdftex.def)             Requested size: 246.09686pt x 279.63644pt.
+<cartes_pcanadensis.png, id=29, 299.1978pt x 339.4281pt>
+File: cartes_pcanadensis.png Graphic file (type png)
+<use cartes_pcanadensis.png>
+Package pdftex.def Info: cartes_pcanadensis.png  used on input line 197.
+(pdftex.def)             Requested size: 246.09686pt x 279.1926pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 197--198
 
@@ -1147,23 +1141,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 197--198
 
 
 
-<../Figures_analyse/cartes_combinees.png, id=49, 586.5915pt x 706.3188pt>
-File: ../Figures_analyse/cartes_combinees.png Graphic file (type png)
-<use ../Figures_analyse/cartes_combinees.png>
-Package pdftex.def Info: ../Figures_analyse/cartes_combinees.png  used on input line 254.
-(pdftex.def)             Requested size: 246.09686pt x 296.32854pt.
+[1{c:/Users/marik/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+
+ <./graphique_biodiversite.png>]
+
+<cartes_combinees.png, id=48, 589.9641pt x 706.3188pt>
+File: cartes_combinees.png Graphic file (type png)
+<use cartes_combinees.png>
+Package pdftex.def Info: cartes_combinees.png  used on input line 254.
+(pdftex.def)             Requested size: 246.09686pt x 294.63646pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 254--255
 
  []
 
 
+Underfull \vbox (badness 1527) has occurred while \output is active []
+
+
 
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 279.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 274.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.64998pt on input line 279.
-[2 <./Papilio_canadensis.png (PNG copy)> <../Figures_analyse/cartes_pcanadensis.png>]
+(Font)              scaled to size 6.64998pt on input line 274.
+[2 <./Papilio_canadensis.png (PNG copy)> <./cartes_pcanadensis.png>]
 
 
 Underfull \hbox (badness 4846) in paragraph at lines 342--352
@@ -1176,6 +1178,8 @@ Underfull \hbox (badness 1824) in paragraph at lines 355--358
  []
 
 
+
+[3 <./cartes_combinees.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 368--373
 
  []
@@ -1186,8 +1190,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 375--380
  []
 
 
-
-[3 <../Figures_analyse/cartes_combinees.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 382--387
 
  []
@@ -1225,17 +1227,17 @@ Package rerunfilecheck Info: File `Rapport.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  29355 strings out of 471546
- 550466 string characters out of 5517580
- 955369 words of memory out of 5000000
+ 549839 string characters out of 5517580
+ 959369 words of memory out of 5000000
  55143 multiletter control sequences out of 15000+600000
  702642 words of font info for 195 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  117i,14n,121p,1004b,1116s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Users/marik/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Rapport.pdf (4 pages, 1481669 bytes).
+Output written on Rapport.pdf (4 pages, 859073 bytes).
 PDF statistics:
  133 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
+ 101 compressed objects within 2 object streams
  21 named destinations out of 1000 (max. 500000)
  58441 words of extra memory for PDF output out of 61914 (max. 10000000)
 

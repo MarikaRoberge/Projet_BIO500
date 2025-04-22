@@ -52,7 +52,7 @@ Pour la première analyse, le graphique présenté ici (Fig. 1) illustre l'évol
 Le choix d'illustrer le nombre d'espèces uniques de lépidoptères permet de mieux refléter la diversité réelle des espèces observées, en excluant les doublons et les variations dues à la fréquence des observations. Par exemple, si une même espèce est observée plusieurs fois dans une année, elle ne sera comptée qu'une seule fois, offrant ainsi une vision plus précise des tendances de diversité. Cela permet également d'analyser les fluctuations des populations et l'impact des facteurs environnementaux, comme une variation climatique, sur la présence de certaines espèces.  
 
 ```{r fig_graphique_biodiversite, echo=FALSE, fig.width=7, fig.height=5, out.width="90%", fig.cap="Variation du nombre d'espèces de lépidoptères au Québec en fonction du temps."}
-knitr::include_graphics("../Figures_analyse/graphique_biodiversite.png")
+knitr::include_graphics("graphique_biodiversite.png")
 ```
 
 On y observe une augmentation relativement lente et stable du nombre d’espèces identifiées jusqu’au début des années 2000, suivie d’une hausse extrêmement marquée à partir de 2005-2010, atteignant plus de 1500 espèces uniques observées.
@@ -68,7 +68,7 @@ Cette espèce est présente dans toutes les provinces et territoires du Canada. 
 L'analyse portant sur l'espèce permet de décrire comment la répartition de *Papilio canadensis* change dans le temps et l'espace.
 
 ```{r fig_cartes_pcanadensis, fullpage-figure, echo=FALSE, fig.width=7, fig.height=6, out.width="100%", fig.cap="Image de la province du Québec et de 4 cartes qui montrent l'évolution de *Papilio canadensis* au fil du temps (fenêtres de 50 ans).", fig.align="left", fig.asp=1}
-knitr::include_graphics("../Figures_analyse/cartes_pcanadensis.png") 
+knitr::include_graphics("cartes_pcanadensis.png") 
 ```
 
 Les données d’observation de *Papilio Canadensis* ont été combinées en 4 groupes pour obtenir une meilleure visualisation des observations dans le temps (Fig. 3). Ces groupes sont de 1859 à 1900, de 1900 à 1950, de 1950 à 2000 et de 2000 à 2023, soit la dernière année comportant les données. Ces tranches de temps ont été choisies afin de limiter le nombre de graphiques produits et d’avoir une meilleure compréhension de l’évolution au fil des siècles. Un système de présence-absence a été utilisé pour l’ensemble des 50684 sites d’observation. Une marque sur le graphique indiquera si le papillon a été observé sur ce site dans l’intervalle de temps définit.  
@@ -81,7 +81,7 @@ En conclusion, ces 6 cartes sont combinées en une seule image finale, ce qui pe
 La Figure 4 ci-dessous montrent l'évolution de la biodiversité des lépidoptères pour différentes périodes et critères. 
 
 ```{r fig_cartes_combinees, fullpage-figure, echo=FALSE, fig.width=7, fig.height=6, out.width="100%", fig.cap="Image de la province du Québec et de six cartes qui montrent l'évolution de la biodiversité des espèces de lépidoptères au fil du temps (fenêtres de 25 ans).", fig.align="left", fig.asp=1}
-knitr::include_graphics("../Figures_analyse/cartes_combinees.png") 
+knitr::include_graphics("cartes_combinees.png") 
 ```
 
 Ces cartes illustrent une augmentation progressive de la couverture spatio-temporelle des données au fil des décennies. Plus on avance dans le temps, plus le nombre de cellules remplies augmente, avec des données qui deviennent à la fois plus denses, plus complètes et de plus grande valeurs. 
