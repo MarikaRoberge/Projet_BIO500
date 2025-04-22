@@ -82,57 +82,41 @@ list(
     command = intermediaire1(create_db)
   ),
   
-  #Étape 10: Faire les cartes de biodiversité dans le temps
+  # Étape 10 : Cartes de diversité
   tar_target(
-    cartes_diversite,
-    creer_cartes_diversite(
-      donnees = donnees_carte,
-      cellsize = 50000,
-      output_dir = "Figures_analyse"
-    ),
-    format = "file" 
+    name = cartes_diversite,
+    command = creer_cartes_diversite(donnees_carte, 50000, "Rapport"),
+    format = "file"
   ),
   
-  #Étape 11: intermédiaire graphique
+  # Étape 11 : Intermédiaire graphique
   tar_target(
-    name = donnees_graphique,
-    command = intermediaire2(create_db)
+    name = donnees_graphique, 
+    command = intermediaire2(create_db)),
+  
+  # Étape 12 : Graphique de diversité
+  tar_target(
+    name = graphique_diversite,
+    command = creer_graphique_diversite(donnees_graphique, "Rapport"),
+    format= "file"
   ),
   
-  #Étape 12: Faire le graphique de biodiversité dans le temps
+  # Étape 13 : Intermédiaire points
   tar_target(
-    graphique_diversite,
-    creer_graphique_diversite(
-      donnees = donnees_graphique,
-      output_dir = "Figures_analyse")
-    ),
-    
-    #Étape 13: intermédiaire cartes avec points
-    tar_target(
-      name = donnees_points,
-      command = intermediaire3(create_db)
-    ),
-    
-    #Étape 14: faire les 4 graphiques avec les points d'observations
-    tar_target(
-      graphique_points,
-      graph_points(
-        donnees_pc = donnees_points,
-        output_dir = "Figures_analyse")
-    )
-   
+    name = donnees_points, 
+    command = intermediaire3(create_db)),
   
-  # #Étape 13: Association au rapport RMarkDown
-  # tar_render(
-  #   name = rapport, # Cible du rapport
-  #   path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
-  # ),
-  
-  #Étape FINALE: Ouverture du rapport
- # tar_read(rapport)
+  # Étape 14 : Graphiques de points
+  tar_target(
+    name = graphique_points,
+    command =graph_points(donnees_points, "Rapport"),
+    format = "file"
   )
-
-
-
+  
+   #Étape 13: Association au rapport RMarkDown
+  # tar_render(
+  #  name = rapport, # Cible du rapport
+  #  path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
+   )
 
 

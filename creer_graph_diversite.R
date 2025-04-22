@@ -45,8 +45,9 @@ creer_graphique_diversite <- function(donnees, output_dir, crs = 4326) {
   output_file <- file.path(output_dir, "graphique_biodiversite.png")
   
   # Sauvegarder le graphique
-  ggsave(filename = output_file, plot = p)
+  ggsave(filename = output_file, plot = p, width = 10, height = 6, dpi = 300)
   
-  # Retourner aussi les données au cas où
-  return(invisible(biodiv_temp))
+  
+  #retourner le fichier
+  return(output_file) 
 }
