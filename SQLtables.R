@@ -1,18 +1,19 @@
-create_database <- function(db_name, df_global) {
+create_database <- function(db_name, df_global) { #fonction créant les talbes SQL à partir 
+  #d'un  nom de table et des données filtrées
   
   con <- dbConnect(RSQLite::SQLite(), dbname = db_name)
   
   # 1. Désactiver les contraintes
   dbExecute(con, "PRAGMA foreign_keys = OFF;")
   
-  # 2. Créer les tables
+  # 2. Création de la table site avec le site id unique par combinaison de lon et lat
   dbExecute(con, "
     CREATE TABLE IF NOT EXISTS site (
       site_id INTEGER PRIMARY KEY,
       lat REAL NOT NULL,
       lon REAL NOT NULL
     );")
-  
+  #création de la table Date intégrant la date des observation liés à l'identifiant de chaque observation
   dbExecute(con, "
     CREATE TABLE IF NOT EXISTS Date (
       unique_id INTEGER PRIMARY KEY,
@@ -20,7 +21,8 @@ create_database <- function(db_name, df_global) {
       day_obs INTEGER NOT NULL,
       time_obs TEXT
     );")
-  
+  #table prmaire intégrant les noms scientifiques, la date d'observation, les valeurs d'observation,
+  #l'identifiant de site, l'identifiant d'observation
   dbExecute(con, "
     CREATE TABLE IF NOT EXISTS primaire (
       observed_scientific_name TEXT NOT NULL,
@@ -48,7 +50,7 @@ create_database <- function(db_name, df_global) {
   # 4. Activer les contraintes
   dbExecute(con, "PRAGMA foreign_keys = ON;")
   
-  # 5. Validation
+  # 5. Validation que les tables ont été effectuéee
   message("Vérification des clés étrangères...")
   dbExecute(con, "PRAGMA foreign_key_check;")
   

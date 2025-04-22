@@ -1,11 +1,14 @@
+#Fonction qui génère une image composé de 6 cartes (de 1875 à 2024 avec des bonds de 25 ans)
+#Ces cartes représente des données spatio temporelle des lépidoptères au Québec
+#On peut observer le territoire avoir plus de point d'observation et une augmentation d'espèces
 creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
   
   # 1. Nettoyage
   donnees <- donnees %>%
-    filter(year_obs >= 1875 & year_obs <= 2024) %>%
+    filter(year_obs >= 1875 & year_obs <= 2024) %>% #On prend les dates entre 1875 et 2024 seulement
     mutate(
-      periode_25ans = floor((year_obs - 1875) / 25) * 25 + 1875,
-      periode_label = paste0(periode_25ans, "-", periode_25ans + 24)
+      periode_25ans = floor((year_obs - 1875) / 25) * 25 + 1875, 
+      periode_label = paste0(periode_25ans, "-", periode_25ans + 24) #On produit des périodes distincte de 25 ans
     )
   
   donnees_sf <- st_as_sf(donnees, coords = c("lon", "lat"), crs = 4326)
@@ -20,11 +23,11 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
     st_as_sf() %>%
     st_intersection(qc) %>%
     st_make_valid() %>%
-    mutate(grid_id = row_number())
+    mutate(grid_id = row_number()) #On produit une grille hexagonale
   
   donnees_local <- donnees_sf %>%
     st_transform(32198) %>%
-    filter(!is.na(observed_scientific_name))
+    filter(!is.na(observed_scientific_name)) #Filtrer les données pour avoir juste les espèces observer sur le territoire de la province du Québec
   
   # 3. Agrégation spatiale modifiée
   grid_data <- st_join(donnees_local, grid_hex) %>%
@@ -46,7 +49,7 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
   for (periode in periodes) {
     data_sub <- grid_data %>% filter(periode_label == periode)
     
-    titre <- if (periode == periodes[1]) "Diversité spécifique au Québec" else NULL
+    titre <- if (periode == periodes[1]) "Diversité spécifique au Québec" else NULL #Titre des cartes avec la période
     
     p <- ggplot() +
       geom_sf(data = data_sub,
@@ -64,7 +67,7 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
       labs(title = titre,
            subtitle = paste("Période :", periode))
     
-  #5. Ajouter la légende de caption uniquement pour le 6e graphique
+  #5. Ajouter la légende uniquement pour le 6e graphique (en fait c'est juste pour que ça apparaît en bas à droite de l'image globale)
     if (periode == "2000-2024") { 
       p <- p + labs(caption = "Projection locale EPSG:32198 - Données lissées sur 25 ans")
     }
@@ -85,7 +88,7 @@ creer_cartes_diversite <- function(donnees, cellsize, output_dir) {
          plot = image_finale,
          width = 15, height = 10, units = "in", dpi = 300)
   
-  #8. Rogner les marges de l'image finale
+  #8. Rogner les marges de l'image finale pour que ce soit plus jolie ✨
   img <- image_read(file.path(output_dir, "cartes_combinees.png"))
   img_crop <- image_trim(img)
   image_write(img_crop, path = file.path(output_dir, "cartes_combinees.png"))  # Remplace l’image originale

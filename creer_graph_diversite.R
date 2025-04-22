@@ -1,4 +1,5 @@
 #Analyse 1 
+#Fonction qui produit un graphique qui démontre le nombre d'espèce de Lépidoptères recenser à chaque année
 creer_graphique_diversite <- function(donnees, output_dir, crs = 4326) {
   
   
@@ -10,7 +11,7 @@ creer_graphique_diversite <- function(donnees, output_dir, crs = 4326) {
     filter(name_en == "Quebec") %>%
     st_transform(crs)
   
-  # 5. Filtrer pour ne garder que les points au Québec
+  # 5. Filtrer pour garder que les points au Québec
   donnees_qc <- st_join(donnees_sf, qc, join = st_within, left = FALSE)
   
   # 6. Compter les espèces uniques par année
@@ -21,6 +22,7 @@ creer_graphique_diversite <- function(donnees, output_dir, crs = 4326) {
     summarise(n_especes = n_distinct(observed_scientific_name)) %>%
     arrange(year_obs)
   
+  # Création du graphique de biodiversité
   p <- ggplot(biodiv_temp, aes(x = year_obs, y = n_especes)) +
     geom_line(color = "#2ca02c", linewidth = 1) +
     labs(

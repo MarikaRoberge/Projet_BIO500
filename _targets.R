@@ -126,8 +126,11 @@ list(
   # tar_render(
   #   name = rapport, # Cible du rapport
   #   path = "Rapport/Rapport.Rmd" # Le path du rapport à renderiser
-  # )
-)
+  # ),
+  
+  #Étape FINALE: Ouverture du rapport
+ # tar_read(rapport)
+  )
 
 
 

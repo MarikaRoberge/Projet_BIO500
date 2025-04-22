@@ -1,4 +1,4 @@
-#intermediaire
+#Fonction qui permet de jumeler des données de cartes SQL pour faire le graphique
 intermediaire2 <- function(db_path) {
   # Validation du fichier
   if(!file.exists(db_path)) {
@@ -8,12 +8,12 @@ intermediaire2 <- function(db_path) {
   con <- DBI::dbConnect(RSQLite::SQLite(), db_path)
   
   # Vérification des tables
-  required_tables <- c("primaire", "site", "Date")
-  existing_tables <- DBI::dbListTables(con)
+  required_tables <- c("primaire", "site", "Date") #Table où on va piger nos données
+  existing_tables <- DBI::dbListTables(con) #connection au SQL
   
   missing_tables <- setdiff(required_tables, existing_tables)
   if(length(missing_tables) > 0) {
-    DBI::dbDisconnect(con)
+    DBI::dbDisconnect(con) #Si table SQL vide, se déconnecter
     stop("Tables manquantes: ", paste(missing_tables, collapse = ", "))
   }
   
@@ -30,7 +30,7 @@ JOIN Date d ON p.unique_id = d.unique_id
 "
   
   donnees <- DBI::dbGetQuery(con, query)
-  DBI::dbDisconnect(con)
+  DBI::dbDisconnect(con) #déconnection des tables SQL
   
   # Validation des données retournées
   if(nrow(donnees) == 0) {

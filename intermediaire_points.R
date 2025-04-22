@@ -1,19 +1,19 @@
-#intermediaire_points
+##Fonction qui permet de jumeler des données de cartes SQL pour faire les cartes de Papiliio Canadensis
 intermediaire3 <- function(db_path) {
   # Validation du fichier
   if(!file.exists(db_path)) {
     stop("Fichier de base de données introuvable: ", db_path)
   }
   
-  con <- DBI::dbConnect(RSQLite::SQLite(), db_path)
+  con <- DBI::dbConnect(RSQLite::SQLite(), db_path) 
   
   # Vérification des tables
   required_tables <- c("primaire", "site", "Date")
-  existing_tables <- DBI::dbListTables(con)
+  existing_tables <- DBI::dbListTables(con) #connexion aux tables SQL
   
   missing_tables <- setdiff(required_tables, existing_tables)
   if(length(missing_tables) > 0) {
-    DBI::dbDisconnect(con)
+    DBI::dbDisconnect(con) #Si les tables vides se déconnecter
     stop("Tables manquantes: ", paste(missing_tables, collapse = ", "))
   }
   
@@ -37,7 +37,7 @@ intermediaire3 <- function(db_path) {
   
   
   donnees <- DBI::dbGetQuery(con, query)
-  DBI::dbDisconnect(con)
+  DBI::dbDisconnect(con) #déconnexion des tables SQL
   
   # Validation des données retournées
   if(nrow(donnees) == 0) {

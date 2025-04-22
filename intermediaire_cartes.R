@@ -1,19 +1,20 @@
-#intermediaire
+#Fonction qui permet de jumeler des données de cartes SQL pour faire nos cartes de biodiveristé spatio-temporelle
+
 intermediaire1 <- function(db_path) {
   # Validation du fichier
   if (!file.exists(db_path)) {
     stop("Fichier de base de données introuvable: ", db_path)
   }
   
-  con <- DBI::dbConnect(RSQLite::SQLite(), db_path)
+  con <- DBI::dbConnect(RSQLite::SQLite(), db_path) #Connection au SQL
   
   # Vérification des tables
-  required_tables <- c("primaire", "site", "Date")
+  required_tables <- c("primaire", "site", "Date") #Table où on va aller piger nos données
   existing_tables <- DBI::dbListTables(con)
   
   missing_tables <- setdiff(required_tables, existing_tables)
   if (length(missing_tables) > 0) {
-    DBI::dbDisconnect(con)
+    DBI::dbDisconnect(con) #déconnecter du SQL si il n'y a pas de données dedans les tables
     stop("Tables manquantes: ", paste(missing_tables, collapse = ", "))
   }
   
@@ -31,7 +32,7 @@ intermediaire1 <- function(db_path) {
   "
   
   donnees <- DBI::dbGetQuery(con, query)
-  DBI::dbDisconnect(con)
+  DBI::dbDisconnect(con) #déconnection des tables SQL
   
   # Validation des données retournées
   if (nrow(donnees) == 0) {
